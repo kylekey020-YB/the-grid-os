@@ -3,10 +3,45 @@
 | Field | Value |
 |-------|-------|
 | **Opportunity** | Curated maintenance and replenishment kits for consumer 3D printers |
-| **Decision** | ADVANCE |
+| **Decision** | ADVANCE — no-inventory validation only; do NOT buy inventory |
 | **Date** | 2026-06-30 |
-| **Chosen wedge** | Bambu A1 / A1 Mini owner maintenance & "rescue" kits |
-| **Next action** | No-inventory validation: parts map, sourcing/compatibility check, competitor pricing, landed-cost model, landing-page demand test — BEFORE buying any inventory |
+| **Review Board verdict** | APPROVED for no-inventory validation only — 2026-06-30 |
+| **Lead wedge** | Bambu A1 Rescue Kit (urgent, emotional, less sourcing-dependent) |
+| **Secondary wedge** | B2B school/makerspace restock (strong operator fit; layer in after B2C proven) |
+| **Next action** | Six validation gates must ALL pass before any inventory purchase — see Gate 8 |
+
+---
+
+## Commerce Review Board Verdict — 2026-06-30
+
+**Status: APPROVED for no-inventory validation only.**
+
+The board reviewed the full pipeline analysis and approved advancement with
+the following refinements and constraints:
+
+1. **Do not buy inventory.** ADVANCE means proceed to the no-inventory
+   validation phase only. No purchase commitment of any kind until all six
+   validation gates (see Gate 8) pass.
+
+2. **The moat is contingent on sourcing at margin.** The compatibility
+   knowledge moat only holds if Bambu-compatible parts can be sourced at
+   genuine wholesale pricing. If the only available source is retail (Bambu's
+   own store, Amazon), the business degrades to commodity+markup. Sourcing
+   confirmation is Gate A and is the single highest-risk gate.
+
+3. **Lead wedge changed to Bambu A1 Rescue Kit.** The original "general
+   maintenance kit" framing is replaced by a rescue/urgency positioning —
+   urgent, emotional, less sourcing-dependent (primarily commodity tools plus
+   a few verified-compatible parts). Rescue converts better at the landing-page
+   stage and requires fewer SKUs to validate.
+
+4. **Secondary wedge added: B2B school/makerspace restock.** Schools and
+   makerspaces with Bambu or FDM printer fleets are underserved and fit the
+   operator's strengths (logistics, systems, B2B communication). Not the opening
+   wedge — validate B2C first, then layer in B2B structure.
+
+5. **Six gates, not five.** The validation checklist is expanded and hardened.
+   All six must pass. Partial pass is not a pass.
 
 ---
 
@@ -143,6 +178,16 @@ some components (AMS-compatible filament guides, hotend-specific parts) are
 designed around Bambu's own architecture, which means generic multi-brand
 listings are less likely to cover the A1 correctly.
 
+**Critical dependency — this moat hinges on sourcing at margin:**
+The knowledge moat only holds if Bambu-compatible parts can be sourced at
+substantially below-retail pricing from real suppliers. If the only available
+source is retail (Bambu's own store or Amazon), the "curation" framing does not
+create a viable margin structure — it is buying at retail and reselling with a
+premium customers will reject once they check the part price themselves. The
+sourcing gate (Gate 4 and validation Gate A) must confirm actual supplier quotes.
+If those quotes are not substantially below retail, this moat collapses and the
+business case does not hold.
+
 ---
 
 ## Gate 4 — Supplier Reality
@@ -167,19 +212,34 @@ in selection, compatibility verification, and bundling — not exclusive supply.
 at low MOQ. The maintenance guide (physical or digital insert) is a proprietary
 asset that adds perceived value and is zero-cost to produce.
 
+**Highest-risk finding — retail-only sourcing degrades to commodity+markup:**
+This is the single gate that can kill the opportunity before anything else
+matters. If real supplier quotes for A1-compatible nozzles, PTFE, and plates
+come in at or near what a Bambu owner pays on Amazon or direct from Bambu Labs,
+there is no margin to work with. The no-inventory validation phase must start
+with actual supplier quotes — not assumed wholesale pricing. If this gate fails,
+stop immediately. Do not proceed to landing-page testing or owner conversations
+until sourcing economics are confirmed.
+
 ---
 
 ## Gate 5 — Margins
 
 **Verdict: STRONG — consumable economics with bundle premium**
 
-Rough unit economics (to be validated in no-inventory phase):
+Rough unit economics (to be confirmed with real supplier quotes in validation phase):
 
-| Kit tier | Est. COGS | Est. sell price | Gross margin |
-|----------|-----------|-----------------|--------------|
-| "Essentials" (nozzles + PTFE + plate) | $12–18 | $38–52 | ~55–65% |
-| "Complete Maintenance" (full kit + lubricant + tools) | $20–28 | $58–72 | ~55–60% |
-| "Rescue Kit" (emergency replacements only) | $8–12 | $28–38 | ~60–68% |
+| Kit tier | Target sell price | Required COGS ceiling | Target gross margin |
+|----------|------------------|-----------------------|---------------------|
+| Rescue Kit (lead wedge) | $39 | ≤$16 | ≥59% |
+| Rescue Kit (mid) | $49 | ≤$20 | ≥59% |
+| Rescue Kit (full) | $59 | ≤$24 | ≥59% |
+
+**Margin floor: 50% gross minimum; target 50–60%.** If real COGS from supplier
+quotes cannot clear 50% gross at the $39 entry price point, the rescue kit
+is not viable at that price. Do not adjust the price assumption upward to make
+the model work — validate whether $39 is what the market will actually pay first
+(Gate E), then confirm COGS can clear 50% at that price (Gate D).
 
 Assumptions: direct-to-consumer via Shopify; excludes payment processing (~3%)
 and shipping; excludes CAC allocation (see Gate 6).
@@ -261,62 +321,126 @@ or a mystery failure) is also particularly well-suited: the customer is
 frustrated and wants the correct answer immediately. Providing that answer
 clearly and accurately is a better differentiator than looking good.
 
+**Secondary wedge — B2B school/makerspace restock:**
+Schools, university fab labs, and makerspaces running Bambu or FDM printer
+fleets face a different but related problem: bulk, reliable, PO-friendly restock
+of consumables without the per-unit research overhead. This is an underserved
+segment — no one owns "institutional 3D printer consumables" at the small-fleet
+level. Operator fit is strong: B2B communication, logistics systems, and
+documentation of compatibility specs are all core strengths. This is not the
+opening wedge — validate B2C rescue kit first, then layer in B2B pricing
+structure and PO capability once parts sourcing is confirmed. Build for it from
+day one in terms of SKU structure and compatibility documentation.
+
 ---
 
 ## Gate 8 — Decision
 
-**ADVANCE**
+**ADVANCE — approved for no-inventory validation only. Do NOT buy inventory.**
 
-Every gate passes:
-- Demand: strong, problem-driven, specific search intent documented ✓
-- Competition: genuine gap; compatibility complexity is the structural moat ✓
-- Supplier: feasible, low MOQ, multiple paths ✓
-- Margins: 55–68% gross on bundle tiers ✓
-- Acquisition: SEO + community, no visual content requirement ✓
-- Operator fit: strongest match of any opportunity evaluated ✓
+Every pipeline gate passes at the research level. The validation phase now
+determines whether the economics and demand hold in practice.
 
-**Chosen wedge: Bambu A1 / A1 Mini maintenance and rescue kits**
+**Lead wedge: Bambu A1 Rescue Kit**
 
-Rationale for Bambu over Ender 3 as first target:
+Rationale for rescue kit as lead over general maintenance kit:
+- Urgency and emotion: the rescue customer has a printer that is down right now.
+  This creates immediate willingness to pay and compresses the decision cycle.
+  Price sensitivity is lower; "I need this today" outweighs "let me comparison-shop."
+- Less sourcing-dependent at launch: a rescue kit is primarily commodity
+  consumables (cleaning needles, spare brass nozzles, PTFE sections, thermal
+  grease) plus a small number of verified-compatible Bambu-specific parts. Fewer
+  SKUs, simpler compatibility matrix, faster to validate and fulfill.
+- Sharper landing-page hook: "Your Bambu A1 is down. Here's everything you need
+  to fix it, verified compatible, ships today" is a cleaner conversion message
+  than "here's a maintenance kit for before things break."
+
+Rationale for Bambu A1 over Ender 3 as first target (unchanged):
 - Bambu overtook Creality as #1 entry-level brand in 2025 (~37% market share)
-- Entry-level 3D printer market growing ~26–47% YoY; Bambu is the growth vector
-- Bambu owners skew toward convenience-seekers who actively want curation —
-  the Ender 3 community is tinkerer culture that competes with the "just give
-  me the right parts" value proposition
-- Bambu's semi-proprietary ecosystem means generic listings cover this market
-  less completely than they cover Ender 3 / Creality
-- Ender 3 is noted as a natural expansion target once the Bambu wedge is proven
+- Entry-level market growing ~26–47% YoY; Bambu is the growth vector
+- Bambu owners skew convenience-seeker; Ender 3 skews tinkerer (competes with
+  the value proposition)
+- Semi-proprietary ecosystem means generic listings serve this market less well
+- Ender 3 / Creality: natural expansion after Bambu wedge is proven
 
-**What ADVANCE means:**
-ADVANCE is not "buy inventory." It is "proceed to the no-inventory validation
-phase." The next actions must be completed before any purchase commitment:
+**Secondary wedge: B2B school/makerspace restock** (validate B2C first)
 
-- [ ] Build the A1 / A1 Mini parts compatibility map (what components, what
-      specs, what failure modes, what replacement intervals)
-- [ ] Sourcing check: identify 2–3 suppliers per component category, get
-      sample pricing, verify Bambu-specific dimensions
-- [ ] Competitor pricing: map current Amazon listings for each component
-      category; identify the pricing gap that a curated kit can occupy
-- [ ] Landed-cost model: build the full unit economics with real supplier quotes
-- [ ] Landing page demand test: put up a product page describing the kit before
-      building it; measure click-through and email sign-up interest before
-      committing to inventory
+**Six validation gates — ALL must pass before any inventory purchase**
 
-Only if the demand test shows real interest does inventory purchasing begin.
-No inventory before validation.
+These are binary gates, not scoring criteria. A single failure stops the process.
+Do not reframe a failure as "close enough." If a gate fails, document why and
+reassess the entire thesis before continuing.
+
+- [ ] **Gate A — Real Bambu parts pricing (highest risk)**
+      Obtain actual supplier quotes — not retail, not AliExpress list prices, not
+      assumed wholesale — for A1-compatible nozzles (hardened 0.4mm, 0.6mm),
+      PTFE tube (correct ID/OD for A1 hotend), and 1–2 additional rescue
+      components. If supplier pricing is not substantially below what an A1 owner
+      pays buying direct from Bambu Labs or Amazon, stop here. The sourcing thesis
+      is broken and the business degrades to commodity+markup.
+
+- [ ] **Gate B — Live Amazon competitor pricing**
+      Map current Amazon listings for each rescue kit component category. Document
+      the realistic price ceiling the market will bear for a curated kit vs.
+      buying parts individually. Identify whether a $39–$59 curated kit occupies
+      a defensible price position or whether Amazon's combined cart pricing
+      undercuts it.
+
+- [ ] **Gate C — Supplier quotes and A1 compatibility verification**
+      Identify 2–3 suppliers per key component; confirm A1-specific dimensional
+      specs (nozzle thread pitch, PTFE inner/outer diameter, build plate
+      dimensions). Receive written sample quotes. Verify that "A1-compatible"
+      on the supplier side actually means A1-compatible — not a generic claim.
+      Do not assume compatibility; confirm it.
+
+- [ ] **Gate D — Contribution-margin model at $39/$49/$59 clearing 50–60% gross**
+      Build the full unit economics using real numbers from Gates A and C: COGS
+      per kit tier, payment processing (3%), estimated shipping cost, and any
+      packaging. All three price points must show ≥50% gross margin. If the $39
+      entry tier cannot clear 50% with real COGS, do not raise the price to make
+      the model work — revisit whether the rescue kit is the right product or
+      whether the sourcing path needs to change.
+
+- [ ] **Gate E — Landing-page waitlist test**
+      Build a single product page for the Bambu A1 Rescue Kit. Drive 50–100
+      targeted visitors from r/BambuLab, r/3Dprinting, or equivalent communities.
+      Measure email sign-up or waitlist conversion. Real demand shows up as people
+      giving their email address before the product exists. A "great idea" with
+      zero sign-ups is not demand — it is politeness. Target: meaningful sign-up
+      rate from a cold audience with no existing brand trust.
+
+- [ ] **Gate F — 10+ conversations with real Bambu A1 owners**
+      Direct interviews or substantive Reddit/forum exchanges (not polls) with A1
+      owners covering: what maintenance failures they have experienced, what parts
+      they replaced and where they bought them, what frustrated them about the
+      buying process, and whether a curated rescue kit at $39–$59 would have been
+      worth it in that moment. Qualitative signal that confirms or refutes the
+      rescue kit hypothesis. Ten conversations is a floor, not a target — keep
+      going until the pattern is clear.
+
+Only after all six gates pass does inventory purchasing begin. No exceptions.
 
 ---
 
 ## Gate 9 — Record status
 
-Filed. Decision is ADVANCE to no-inventory validation. Do not proceed to
-inventory or storefront build until the five next-action items above are
-completed and show positive signals.
+Filed. Commerce Review Board approved 2026-06-30. Decision is ADVANCE to
+no-inventory validation only.
 
-**What is closed:** The research question of which maintenance vertical to
-pursue. That answer is 3D printer / Bambu A1. Do not re-evaluate CPAP or
-espresso unless the conditions documented in their summaries change.
+**What is closed:**
+- The research question of which maintenance vertical to pursue: 3D printer /
+  Bambu A1. Do not re-evaluate CPAP or espresso unless their documented
+  conditions change.
+- The wedge selection: Bambu A1 Rescue Kit as lead, B2B school/makerspace
+  restock as secondary. Do not reopen general-maintenance-kit vs. rescue-kit
+  debate — rescue kit is the chosen entry point.
+- The operator fit question: this is the right match for the current operator.
 
-**What is open:** Whether the Bambu A1 kit specifically has enough demand at
-the right price point to justify inventory. The no-inventory validation phase
-answers that question.
+**What is open:**
+Whether the sourcing economics and real-world demand hold. The six validation
+gates (A through F in Gate 8) answer that question. Nothing else should be
+built or purchased until those gates are run.
+
+**Hard constraint:** No inventory purchase of any kind — not samples, not a
+small test order, not "just a few units to photograph" — until all six gates
+pass and the decision is explicitly re-elevated to GO for inventory.
