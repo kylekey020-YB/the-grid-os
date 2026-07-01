@@ -22,6 +22,7 @@ honest.
 | [PIPELINE.md](PIPELINE.md) | Commerce Validation Pipeline v2.0 (process doc) | — | 2026-06-30 |
 | [record-001-workspace-transformation.md](record-001-workspace-transformation.md) | Workspace Transformation / Ergonomic Setups | PARKED | 2026-06-30 |
 | [record-002-small-hand-ergonomics.md](record-002-small-hand-ergonomics.md) | Small-Hand Ergonomics Products | PARKED | 2026-06-30 |
+| [record-003-3d-printer-maintenance.md](record-003-3d-printer-maintenance.md) | 3D Printer Maintenance Kits (Bambu A1 wedge) | **GO** | 2026-06-30 |
 
 ## Status definitions
 
