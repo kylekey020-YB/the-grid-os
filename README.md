@@ -1,6 +1,8 @@
 # THE GRID UI Foundation
 
-Version 0.1 frontend shell for THE GRID, an AI operating system interface for validated business workflows.
+Current Version: v0.1.1
+
+THE GRID is a frontend foundation for an AI operating system interface that coordinates validated business workflows. It is intentionally grounded: workstations are manual first, and automation is deferred until workflows show repeatable value.
 
 ## Stack
 
@@ -16,7 +18,16 @@ Version 0.1 frontend shell for THE GRID, an AI operating system interface for va
 
 This build is intentionally only the shell. It includes navigation, responsive layout, placeholder workstations, manual lifecycle states, and grounded content for future validated workflows. It does not include backend services, trading logic, autonomous agents, or fabricated analytics.
 
-## v0.1 Hardening
+## Development Doctrine
+
+- Reality before automation.
+- Architecture before complexity.
+- Evidence before expansion.
+- Every module earns its place.
+- Workstations precede Programs.
+- Programs earn autonomy only after validated, repeated workflows.
+
+## v0.1.1 Hardening
 
 - Shared navigation registry for sidebar and mobile navigation
 - Responsive bottom navigation for tablet and phone layouts
@@ -33,7 +44,18 @@ This build is intentionally only the shell. It includes navigation, responsive l
 
     npm run build
 
+## Check
+
+    npm run check
+
 ## Suggested Milestone Commit
 
     git add .
     git commit -m "Harden THE GRID UI foundation"
+
+## Documentation
+
+- [PROJECT_LOG.md](PROJECT_LOG.md)
+- [AI_HANDOFF.md](AI_HANDOFF.md)
+- [VERSION.md](VERSION.md)
+- [CHANGELOG.md](CHANGELOG.md)
