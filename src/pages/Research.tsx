@@ -1,0 +1,3 @@
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SectionHeader } from "@/components/SectionHeader";
+export function Research() { return <div className="space-y-6"><SectionHeader eyebrow="Research" title="Research Intake" description="A neutral holding area for ideas before they earn a dedicated workstation." /><div className="grid gap-4 md:grid-cols-3">{["Open questions", "Evidence review", "Opportunity notes"].map((item) => <Card key={item}><CardHeader><CardTitle>{item}</CardTitle><CardDescription>Awaiting validated research entries.</CardDescription></CardHeader></Card>)}</div></div>; }

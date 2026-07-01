@@ -1,0 +1,4 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SectionHeader } from "@/components/SectionHeader";
+const sections = ["Briefings", "Cycle Reviews", "Meeting Notes", "Architecture Decisions", "Doctrine"];
+export function WarRoom() { return <div className="space-y-6"><SectionHeader eyebrow="War Room" title="Executive Mission Planning" description="A focused planning surface for decisions, reviews, and operating doctrine." /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">{sections.map((section) => <Card key={section} className="min-h-44"><CardHeader><CardTitle>{section}</CardTitle><CardDescription>Awaiting validated entries.</CardDescription></CardHeader><CardContent><div className="h-1 rounded-full bg-gradient-to-r from-primary/70 via-secondary/70 to-accent/70" /></CardContent></Card>)}</div></div>; }

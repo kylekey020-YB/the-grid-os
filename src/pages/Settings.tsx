@@ -1,0 +1,5 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SectionHeader } from "@/components/SectionHeader";
+import { StatusBadge } from "@/components/StatusBadge";
+const settings = ["Theme", "Appearance", "Future integrations", "Version information", "Developer mode"];
+export function SettingsPage() { return <div className="space-y-6"><SectionHeader eyebrow="Settings" title="System Preferences" description="Configuration placeholders for the shell. Integrations stay dormant until a real workflow needs them." /><Card><CardHeader><div className="flex items-start justify-between gap-3"><div><CardTitle>THE GRID v0.1</CardTitle><CardDescription>Frontend foundation build.</CardDescription></div><StatusBadge label="Developer Mode" tone="beta" /></div></CardHeader><CardContent className="grid gap-3 md:grid-cols-2">{settings.map((item) => <div key={item} className="rounded-md border border-border/70 bg-background/50 p-4 text-sm">{item}</div>)}</CardContent></Card></div>; }
