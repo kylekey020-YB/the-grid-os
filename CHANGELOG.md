@@ -2,7 +2,52 @@
 
 All notable changes to THE GRID will be documented in this file.
 
-Current Version: v0.5.0
+Current Version: v0.7.0
+
+## v0.7.0 - Income Division Revenue Factory Foundation
+
+### Added
+
+- Income Division page
+- src/data/incomeFactory.ts typed workflow data
+- INCOME_FACTORY_STATUS.md
+- Market Lab, Offer Builder, Asset Factory, Fiverr Room, Etsy Room, Publishing Room, Revenue War Room, and Compliance Sentinel sections
+- Mission Control income factory snapshot
+- Council references for DESIGN FORGE, COPY ROOM, and PUBLISHING ROOM
+
+### Changed
+
+- Navigation now includes Income Division
+- World Map now reflects Income Division as an assisted manual factory and includes Publishing Room
+- Council now references the assisted income factory workflow
+- Documentation updated for v0.7 safety boundaries and doctrine
+
+### Safety Boundary
+
+- UI/workflow foundation only
+- No autonomous publishing, scraping violations, fake reviews, trademark/copyright theft, auto-DMs, ad spend, account automation, or spending money
+
+## v0.6.0 - World Map + Council Layer Foundation
+
+### Added
+
+- World Map page
+- Council page
+- src/data/gridWorld.ts typed district data
+- src/data/council.ts typed officer data
+- World-building spaces for The Lounge, Strategy Table, Hall of Fame, and Innovation Lab
+- Navigation entries for World Map and Council
+
+### Changed
+
+- Mobile navigation now prioritizes Dashboard, Mission Control, World Map, Commerce, and Settings
+- Documentation updated to describe APEX/CLU as independent Programs and districts as arenas inside THE GRID
+- .gitignore protects local research folders and generated outputs
+
+### Safety Boundary
+
+- UI/worldbuilding and information architecture only
+- No backend, autonomous execution, APEX/CLU changes, secrets, live integrations, or fake metrics
 
 ## v0.5.0 - Income Division Planning Foundation
 

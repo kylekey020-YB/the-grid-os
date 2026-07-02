@@ -4,8 +4,11 @@ import {
   BrainCircuit,
   FlaskConical,
   Home,
+  Map,
   Radar,
   Settings,
+  UsersRound,
+  DollarSign,
   ShoppingCart,
   Swords,
 } from "lucide-react";
@@ -21,8 +24,11 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   { id: "dashboard", label: "Dashboard", icon: Home },
   { id: "mission-control", label: "Mission Control", icon: Radar },
+  { id: "world-map", label: "World Map", icon: Map },
+  { id: "council", label: "Council", icon: UsersRound },
   { id: "trading", label: "Trading", icon: BarChart3 },
   { id: "commerce", label: "Commerce", icon: ShoppingCart },
+  { id: "income-division", label: "Income Division", icon: DollarSign },
   { id: "research", label: "Research", icon: FlaskConical },
   { id: "war-room", label: "War Room", icon: Swords },
   { id: "knowledge-vault", label: "Knowledge Vault", icon: BookOpen },
@@ -31,5 +37,5 @@ export const navItems: NavItem[] = [
 ];
 
 export const mobileNavItems = navItems.filter((item) =>
-  ["dashboard", "mission-control", "commerce", "trading", "settings"].includes(item.id),
+  ["dashboard", "mission-control", "world-map", "income-division", "settings"].includes(item.id),
 );

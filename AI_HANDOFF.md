@@ -1,6 +1,6 @@
 # THE GRID AI Handoff
 
-Current Version: v0.5.0
+Current Version: v0.7.0
 
 ## Purpose
 
@@ -44,6 +44,10 @@ At v0.1.1, everything is manual. No Program is autonomous.
 ## Current Pages
 
 - Dashboard
+- Mission Control
+- World Map
+- Council
+- Income Division
 - Trading
 - Commerce
 - Research
@@ -63,6 +67,58 @@ Current Commerce purpose:
 - Keep the workflow grounded until repeatable value is demonstrated.
 
 Trading remains research only. APEX is Beta and focused on data collection and research. No fake trades, fake PnL, or live execution metrics should be added.
+
+## Income Factory v0.7
+
+THE GRID now includes an assisted Income Division revenue factory foundation. It is operational planning UI only, not autonomous marketplace software.
+
+Current source of truth:
+
+- INCOME_FACTORY_STATUS.md
+- src/data/incomeFactory.ts
+- src/pages/IncomeDivision.tsx
+
+Rooms:
+
+- Market Lab
+- Offer Builder
+- Asset Factory
+- Fiverr Room
+- Etsy Room
+- Publishing Room
+- Revenue War Room
+- Compliance Sentinel
+
+Officer references:
+
+- REVENUE ARCHITECT
+- DESIGN FORGE
+- COPY ROOM
+- PUBLISHING ROOM
+- SENTINEL
+
+Hard prohibitions: no autonomous publishing, platform scraping violations, fake reviews, copied listings, copyrighted characters, trademarks, auto-DMs, ad spend without approval, spending money, or account automation.
+
+Doctrine: research demand, create original differentiated offers, publish manually, track real results, automate only proven repeated workflows.
+
+## World Map + Council v0.6
+
+THE GRID now includes a World Map and Council layer. Treat these as UI/worldbuilding and information architecture only.
+
+Current source of truth:
+
+- src/data/gridWorld.ts
+- src/data/council.ts
+- src/pages/WorldMap.tsx
+- src/pages/Council.tsx
+
+Architecture model:
+
+- APEX and CLU are independent Programs inside their own arenas.
+- Commerce, Publishing, Income Division, and future pipelines are districts inside THE GRID.
+- Officers advise. Programs execute. Mission Commander decides.
+
+Do not add backend, autonomous execution, APEX or CLU changes, secrets, live integrations, fake metrics, or research/output folders to git.
 
 ## Income Division v0.5
 

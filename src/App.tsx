@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/layout/AppShell";
 import { Commerce } from "@/pages/Commerce";
 import { Dashboard } from "@/pages/Dashboard";
+import { IncomeDivision } from "@/pages/IncomeDivision";
 import { KnowledgeVault } from "@/pages/KnowledgeVault";
 import { MissionControl } from "@/pages/MissionControl";
 import { Programs } from "@/pages/Programs";
@@ -9,12 +10,17 @@ import { Research } from "@/pages/Research";
 import { SettingsPage } from "@/pages/Settings";
 import { Trading } from "@/pages/Trading";
 import { WarRoom } from "@/pages/WarRoom";
+import { WorldMap } from "@/pages/WorldMap";
+import { Council } from "@/pages/Council";
 
 export type PageId =
   | "dashboard"
   | "mission-control"
+  | "world-map"
+  | "council"
   | "trading"
   | "commerce"
+  | "income-division"
   | "research"
   | "war-room"
   | "knowledge-vault"
@@ -24,8 +30,11 @@ export type PageId =
 const pages: Record<PageId, JSX.Element> = {
   dashboard: <Dashboard />,
   "mission-control": <MissionControl />,
+  "world-map": <WorldMap />,
+  council: <Council />,
   trading: <Trading />,
   commerce: <Commerce />,
+  "income-division": <IncomeDivision />,
   research: <Research />,
   "war-room": <WarRoom />,
   "knowledge-vault": <KnowledgeVault />,

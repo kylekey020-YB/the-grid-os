@@ -1,6 +1,6 @@
 # THE GRID UI Foundation
 
-Current Version: v0.5.0
+Current Version: v0.7.0
 
 THE GRID is a frontend foundation for an AI operating system interface that coordinates validated business workflows. It is intentionally grounded: workstations are manual first, and automation is deferred until workflows show repeatable value.
 
@@ -80,6 +80,25 @@ This build is intentionally only the shell. It includes navigation, responsive l
 - Added REVENUE ARCHITECT as a read-only watcher.
 - Added INCOME_DIVISION_STATUS.md as the source-of-truth status document.
 - This milestone is planning + UI foundation only: no scraping, marketplace integrations, Telegram bots, autonomous posting, copied products, fake reviews, or fake revenue metrics.
+
+## v0.6 World Map + Council
+
+- Added World Map as a visual information architecture layer for THE GRID districts and arenas.
+- Added Council as a read-only advisory layer for AI officers.
+- Clarified APEX and CLU as independent Programs inside their own arenas.
+- Added world-building spaces: The Lounge, Strategy Table, Hall of Fame, and Innovation Lab.
+- Added typed static data in src/data/gridWorld.ts and src/data/council.ts.
+- Research folders and generated outputs are intentionally gitignored.
+- This milestone is UI/worldbuilding only: no backend, autonomous execution, secrets, APEX/CLU changes, live integrations, or fake metrics.
+
+## v0.7 Income Factory
+
+- Added Income Division page as an assisted revenue factory foundation.
+- Added Market Lab, Offer Builder, Asset Factory, Fiverr Room, Etsy Room, Publishing Room, Revenue War Room, and Compliance Sentinel UI sections.
+- Added typed factory data in src/data/incomeFactory.ts.
+- Added INCOME_FACTORY_STATUS.md as the source-of-truth status document.
+- Updated Mission Control, World Map, and Council with REVENUE ARCHITECT, DESIGN FORGE, COPY ROOM, PUBLISHING ROOM, and SENTINEL references.
+- This milestone is UI/workflow foundation only: no autonomous publishing, platform scraping violations, fake reviews, trademark/copyright theft, auto-DMs, ad spend, account automation, or spending money.
 
 ## Documentation
 

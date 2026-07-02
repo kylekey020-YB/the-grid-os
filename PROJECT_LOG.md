@@ -1,6 +1,6 @@
 # THE GRID Project Log
 
-Current Version: v0.5.0
+Current Version: v0.7.0
 
 ## Vision
 
@@ -137,6 +137,73 @@ Safety boundary:
 - No fake reviews
 - No autonomous posting without review
 - No fabricated revenue or analytics
+
+### v0.6.0 - World Map + Council Layer Foundation
+
+Completed / in progress:
+
+- World Map page
+- Council page
+- Typed district data in src/data/gridWorld.ts
+- Typed council officer data in src/data/council.ts
+- District cards for APEX, CLU, Commerce, Income Division, Archives, Gauntlet, War Room, Grid Core, The Lounge, and Strategy Table
+- World-building spaces for The Lounge, Strategy Table, Hall of Fame, and Innovation Lab
+- Officer cards with advisory role, evidence source, recommendation placeholder, and confidence
+- Navigation entries for World Map and Council
+- Mobile nav adjusted to Dashboard, Mission Control, World Map, Commerce, Settings
+
+Architecture note:
+
+- APEX and CLU are represented as independent Programs in separate arenas.
+- Commerce, Income Division, Publishing, and future pipelines are represented as districts.
+- Officers advise. Programs execute. Mission Commander decides.
+- Research folders and generated outputs are intentionally gitignored.
+
+Safety boundary:
+
+- UI/worldbuilding and information architecture only
+- No backend
+- No autonomous execution
+- No APEX or CLU changes
+- No secrets
+- No fake metrics
+
+### v0.7.0 - Income Division Revenue Factory Foundation
+
+Completed / in progress:
+
+- Income Division page
+- src/data/incomeFactory.ts typed workflow data
+- INCOME_FACTORY_STATUS.md
+- Market Lab product opportunity queue
+- Offer Builder
+- Asset Factory
+- Fiverr Room
+- Etsy Room
+- Publishing Room
+- Revenue War Room
+- Compliance Sentinel
+- Mission Control income factory snapshot
+- World Map Income Division and Publishing Room references
+- Council references for REVENUE ARCHITECT, DESIGN FORGE, COPY ROOM, PUBLISHING ROOM, and SENTINEL
+
+Safety boundary:
+
+- No autonomous publishing
+- No platform scraping that violates Terms
+- No fake reviews
+- No trademark or copyright theft
+- No auto-messaging customers
+- No ad spend or spending money
+- No account automation
+
+Doctrine:
+
+- Research demand
+- Create original differentiated offers
+- Publish manually
+- Track results
+- Automate only proven repeated workflows
 
 ## Validation
 

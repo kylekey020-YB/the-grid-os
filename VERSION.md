@@ -1,10 +1,10 @@
 # THE GRID
 
-Current Version: v0.5.0
+Current Version: v0.7.0
 
 ## Status
 
-Income Division Planning Foundation
+Income Division Revenue Factory Foundation
 
 ## Completed
 
@@ -24,24 +24,34 @@ Income Division Planning Foundation
 - Income Division planning foundation
 - REVENUE ARCHITECT watcher
 - Income Division status document
+- World Map page
+- Council page
+- Typed world district data
+- Typed council officer data
+- Research/output gitignore protection
+- Income Division page
+- Income Factory typed data
+- Compliance Sentinel gates
+- Fiverr/Etsy/Publishing/Revenue workflow rooms
+- INCOME_FACTORY_STATUS.md
 
 ## Current Focus
 
-- Income Division workflow design
-- Original product research
-- Manual publishing doctrine
-- Commerce Validation
+- Assisted income workflow foundation
+- Original offer validation
+- Manual publishing gates
+- Compliance review
 - Documentation
 
 ## Next Version
 
-v0.6.0
+v0.8.0
 
 Planned focus:
 
-- Mission Bus status publishers
-- status.json contracts
-- Division-level status aggregation
+- R&D and Council evidence synthesis
+- Proposal review
+- Decision history
 
 ## Known Limitations
 

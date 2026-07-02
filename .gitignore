@@ -4,3 +4,7 @@ dist
 .env.local
 .DS_Store
 *.log
+
+# Local research and generated outputs
+commerce/validation-records/
+outputs/
