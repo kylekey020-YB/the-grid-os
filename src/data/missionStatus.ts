@@ -3,26 +3,29 @@ export type SafetyState =
   | "Research-only"
   | "Inventory blocked"
   | "Read-only watcher"
-  | "Released foundation";
+  | "Released foundation"
+  | "Manual publishing only";
 
 export type ExperimentPhase =
   | "Post-fix data accumulation"
   | "100-shot accumulation"
   | "Sourcing economics"
   | "Regime-switching hypothesis"
-  | "v0.2 planning";
+  | "v0.2 planning"
+  | "Income workflow design";
 
 export type MissionSource =
   | "Last known from handoff"
   | "Manual update required"
   | "Pending live integration"
   | "Static typed data"
-  | "Commerce handoff doc";
+  | "Commerce handoff doc"
+  | "Income status doc";
 
 export type MissionRiskLevel = "Low" | "Medium" | "High" | "Controlled";
 
 export type MissionStatus = {
-  id: "apex1" | "clu" | "commerce" | "backtester" | "grid";
+  id: "apex1" | "clu" | "commerce" | "income" | "backtester" | "grid";
   name: string;
   callsign: string;
   status: string;
@@ -79,7 +82,7 @@ export const zenithProfile: ArchitectProfile = {
     "Trading doctrine",
     "AI ecosystem design",
   ],
-  currentFocus: "Mission Control v0.2",
+  currentFocus: "Income Division v0.5 planning",
   safety: [
     "Reality before automation",
     "Architecture before complexity",
@@ -136,6 +139,21 @@ export const missionStatuses: MissionStatus[] = [
     accent: "gold",
   },
   {
+    id: "income",
+    name: "Income Division",
+    callsign: "Revenue systems lab",
+    status: "Planning Foundation",
+    phase: "Income workflow design",
+    lastKnownUpdate: "INCOME_DIVISION_STATUS.md",
+    currentObjective: "Design ethical manual workflows for Etsy, Fiverr, affiliate, digital product, and creative income experiments.",
+    safetyState: "Manual publishing only",
+    nextAction: "Research patterns, create original concepts, and validate demand before any automation.",
+    dataSource: "Income status doc",
+    truth: "No scraping, platform integrations, Telegram bots, autonomous posting, copied listings, or fake metrics are implemented.",
+    riskLevel: "Controlled",
+    accent: "emerald",
+  },
+  {
     id: "backtester",
     name: "Backtester",
     callsign: "Research gauntlet",
@@ -154,7 +172,7 @@ export const missionStatuses: MissionStatus[] = [
     id: "grid",
     name: "THE GRID",
     callsign: "Mission OS core",
-    status: "v0.1.1 released",
+    status: "v0.5 planning",
     phase: "v0.2 planning",
     lastKnownUpdate: "Static typed data",
     currentObjective: "Mission Control, Knowledge OS, and mission logs.",
@@ -217,6 +235,18 @@ export const watcherStatuses: WatcherStatus[] = [
     accent: "gold",
   },
   {
+    id: "revenue-architect",
+    name: "REVENUE ARCHITECT",
+    emoji: "💸",
+    role: "Income systems strategist",
+    watches: "Etsy, Fiverr, affiliate, digital product, and creative workflow experiments",
+    currentSignal: "Planning stage",
+    lastUpdate: "INCOME_DIVISION_STATUS.md",
+    statusBadge: "READ-ONLY WATCHER",
+    promotionStatus: "Workstation Monitor, not Program",
+    accent: "emerald",
+  },
+  {
     id: "archivist",
     name: "ARCHIVIST",
     emoji: "📚",
@@ -246,7 +276,7 @@ export const watcherStatuses: WatcherStatus[] = [
     emoji: "🌐",
     role: "System Watcher",
     watches: "THE GRID version, roadmap, mission control status",
-    currentSignal: "v0.2 Mission Control planning",
+    currentSignal: "v0.5 Income Division planning",
     lastUpdate: "Static typed data",
     statusBadge: "READ-ONLY WATCHER",
     promotionStatus: "Workstation Monitor, not Program",
