@@ -7,6 +7,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        grid: {
+          void: "hsl(220 28% 3%)",
+          cyan: "rgb(var(--grid-cyan) / <alpha-value>)",
+          blue: "rgb(var(--grid-blue) / <alpha-value>)",
+          purple: "rgb(var(--grid-purple) / <alpha-value>)",
+          magenta: "rgb(var(--grid-magenta) / <alpha-value>)",
+          red: "rgb(var(--grid-red) / <alpha-value>)",
+          gold: "rgb(var(--grid-gold) / <alpha-value>)",
+          emerald: "rgb(var(--grid-emerald) / <alpha-value>)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -24,8 +34,10 @@ const config: Config = {
         display: ["Space Grotesk", "Inter", "ui-sans-serif", "system-ui"],
       },
       boxShadow: {
-        glow: "0 0 30px rgba(26, 214, 255, 0.16)",
-        panel: "0 24px 80px rgba(0, 0, 0, 0.32)",
+        glow: "0 0 30px rgba(34, 211, 238, 0.16)",
+        "glow-strong": "0 0 48px rgba(34, 211, 238, 0.22)",
+        panel: "0 24px 80px rgba(0, 0, 0, 0.34)",
+        glass: "0 24px 80px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255,255,255,0.06)",
       },
       keyframes: {
         "pulse-line": {
@@ -33,7 +45,10 @@ const config: Config = {
           "50%": { opacity: "0.8", transform: "scaleX(1)" },
         },
       },
-      animation: { "pulse-line": "pulse-line 4s ease-in-out infinite" },
+      animation: {
+        "pulse-line": "pulse-line 4s ease-in-out infinite",
+        "grid-scan": "grid-scan 14s linear infinite",
+      },
     },
   },
   plugins: [animate],

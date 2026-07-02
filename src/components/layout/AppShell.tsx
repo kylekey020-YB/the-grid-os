@@ -3,6 +3,7 @@ import { useState, type ReactNode } from "react";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopNav } from "@/components/layout/TopNav";
+import { DesignBackdrop } from "@/components/visual/DesignBackdrop";
 import type { PageId } from "@/App";
 
 export function AppShell({
@@ -24,7 +25,7 @@ export function AppShell({
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div className="grid-surface pointer-events-none absolute inset-0" />
+      <DesignBackdrop />
       <div className="relative flex min-h-screen">
         <Sidebar
           activePage={activePage}

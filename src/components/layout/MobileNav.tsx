@@ -10,7 +10,7 @@ export function MobileNav({
   onNavigate: (page: PageId) => void;
 }) {
   return (
-    <nav className="fixed inset-x-3 bottom-3 z-40 rounded-lg border border-border/80 bg-background/90 p-1 shadow-panel backdrop-blur-xl lg:hidden">
+    <nav className="fixed inset-x-3 bottom-3 z-40 rounded-lg border border-cyan-300/20 bg-background/86 p-1 shadow-glass backdrop-blur-2xl lg:hidden">
       <div className="grid grid-cols-5 gap-1">
         {mobileNavItems.map((item) => {
           const Icon = item.icon;
@@ -24,8 +24,8 @@ export function MobileNav({
               className={cn(
                 "flex h-12 flex-col items-center justify-center gap-1 rounded-md text-[10px] font-medium transition",
                 active
-                  ? "bg-primary/10 text-primary shadow-glow"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                  ? "border border-primary/25 bg-primary/10 text-primary shadow-glow"
+                  : "border border-transparent text-muted-foreground hover:bg-muted/70 hover:text-foreground",
               )}
               aria-label={item.label}
             >
