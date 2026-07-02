@@ -8,6 +8,7 @@ import {
   Radar,
   Settings,
   UsersRound,
+  CircleDollarSign,
   DollarSign,
   ShoppingCart,
   Swords,
@@ -29,6 +30,7 @@ export const navItems: NavItem[] = [
   { id: "trading", label: "Trading", icon: BarChart3 },
   { id: "commerce", label: "Commerce", icon: ShoppingCart },
   { id: "income-division", label: "Income Division", icon: DollarSign },
+  { id: "revenue-intelligence", label: "Revenue Intelligence", icon: CircleDollarSign },
   { id: "research", label: "Research", icon: FlaskConical },
   { id: "war-room", label: "War Room", icon: Swords },
   { id: "knowledge-vault", label: "Knowledge Vault", icon: BookOpen },
@@ -37,5 +39,5 @@ export const navItems: NavItem[] = [
 ];
 
 export const mobileNavItems = navItems.filter((item) =>
-  ["dashboard", "mission-control", "world-map", "income-division", "settings"].includes(item.id),
+  ["dashboard", "mission-control", "revenue-intelligence", "income-division", "settings"].includes(item.id),
 );

@@ -7,6 +7,7 @@ import { KnowledgeVault } from "@/pages/KnowledgeVault";
 import { MissionControl } from "@/pages/MissionControl";
 import { Programs } from "@/pages/Programs";
 import { Research } from "@/pages/Research";
+import { RevenueIntelligence } from "@/pages/RevenueIntelligence";
 import { SettingsPage } from "@/pages/Settings";
 import { Trading } from "@/pages/Trading";
 import { WarRoom } from "@/pages/WarRoom";
@@ -21,6 +22,7 @@ export type PageId =
   | "trading"
   | "commerce"
   | "income-division"
+  | "revenue-intelligence"
   | "research"
   | "war-room"
   | "knowledge-vault"
@@ -35,6 +37,7 @@ const pages: Record<PageId, JSX.Element> = {
   trading: <Trading />,
   commerce: <Commerce />,
   "income-division": <IncomeDivision />,
+  "revenue-intelligence": <RevenueIntelligence />,
   research: <Research />,
   "war-room": <WarRoom />,
   "knowledge-vault": <KnowledgeVault />,

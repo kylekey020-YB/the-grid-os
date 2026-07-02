@@ -2,7 +2,38 @@
 
 All notable changes to THE GRID will be documented in this file.
 
-Current Version: v0.7.0
+Current Version: v0.8.0
+
+## v0.8.0 - Revenue Intelligence Engine
+
+### Added
+
+- Revenue Intelligence page
+- src/data/revenueIntelligence.ts typed intelligence data
+- src/data/senate.ts typed Senate recommendation data
+- Market Scanner
+- Opportunity Pipeline
+- Revenue Score
+- Experiment Tracker
+- Revenue Dashboard
+- Hall of Wins
+- Opportunity Radar
+- Playbook Library
+- The Senate decision-support module
+
+### Changed
+
+- Navigation now includes Revenue Intelligence
+- Mission Control includes a Revenue Intelligence snapshot
+- Income Division includes a bridge to Revenue Intelligence
+- World Map includes Revenue Intelligence as a district
+- Council includes The Senate section
+- Documentation updated for v0.8 Unknown-first doctrine
+
+### Safety Boundary
+
+- Read-only intelligence only
+- No autonomous publishing, marketplace interaction, ToS-violating scraping, account automation, purchasing, customer messaging, or fabricated metrics
 
 ## v0.7.0 - Income Division Revenue Factory Foundation
 

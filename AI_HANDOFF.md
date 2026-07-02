@@ -1,6 +1,6 @@
 # THE GRID AI Handoff
 
-Current Version: v0.7.0
+Current Version: v0.8.0
 
 ## Purpose
 
@@ -48,6 +48,7 @@ At v0.1.1, everything is manual. No Program is autonomous.
 - World Map
 - Council
 - Income Division
+- Revenue Intelligence
 - Trading
 - Commerce
 - Research
@@ -67,6 +68,36 @@ Current Commerce purpose:
 - Keep the workflow grounded until repeatable value is demonstrated.
 
 Trading remains research only. APEX is Beta and focused on data collection and research. No fake trades, fake PnL, or live execution metrics should be added.
+
+## Revenue Intelligence v0.8
+
+THE GRID now includes a read-only Revenue Intelligence Engine for the Income Division. It helps Mission Commander identify, validate, prioritize, and systematize profitable digital business opportunities without automating marketplace behavior.
+
+Current source of truth:
+
+- src/data/revenueIntelligence.ts
+- src/data/senate.ts
+- src/pages/RevenueIntelligence.tsx
+
+Modules:
+
+- Market Scanner
+- Opportunity Pipeline
+- Revenue Score
+- Experiment Tracker
+- Revenue Dashboard
+- Hall of Wins
+- Opportunity Radar
+- Playbook Library
+- The Senate
+
+Senate doctrine:
+
+- Evidence informs
+- Officers advise
+- Mission Commander decides
+
+Hard prohibitions: no autonomous publishing, automated marketplace interaction, scraping that violates platform ToS, account automation, purchasing, customer messaging, or fabricated metrics. Unknown values must remain Unknown.
 
 ## Income Factory v0.7
 

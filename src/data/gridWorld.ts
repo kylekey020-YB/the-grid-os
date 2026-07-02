@@ -31,6 +31,7 @@ export const gridDistricts: GridDistrict[] = [
   { id: "gauntlet-lab", emoji: "🧪", name: "Gauntlet Lab", purpose: "Research and backtesting surfaces for honest validation.", currentStatus: "Research", connectedWatcher: "GAUNTLET", accent: "emerald" },
   { id: "war-room", emoji: "⚔️", name: "War Room", purpose: "Mission decisions, strategic reviews, and doctrine checkpoints.", currentStatus: "Read-Only", connectedWatcher: "ZENITH", accent: "purple" },
   { id: "grid-core", emoji: "🌐", name: "Grid Core", purpose: "System health, shell integrity, documentation, and version awareness.", currentStatus: "Active", connectedWatcher: "GRID CORE", accent: "cyan" },
+  { id: "revenue-intelligence", emoji: "📈", name: "Revenue Intelligence", purpose: "Read-only market scanner, opportunity pipeline, revenue scoring, experiment tracking, Senate advice, and playbook library.", currentStatus: "Research", connectedWatcher: "REVENUE ARCHITECT / GAUNTLET / SENTINEL", accent: "emerald" },
   { id: "the-lounge", emoji: "🍸", name: "The Lounge", purpose: "Wins, milestones, completed missions, and honest retrospectives.", currentStatus: "Planned", connectedWatcher: "ARCHIVIST", accent: "magenta" },
   { id: "strategy-table", emoji: "🎲", name: "Strategy Table", purpose: "Business, trading, and AI scenario planning before ticket creation.", currentStatus: "Planned", connectedWatcher: "ZENITH", accent: "purple" },
 ];

@@ -1,6 +1,6 @@
 # THE GRID UI Foundation
 
-Current Version: v0.7.0
+Current Version: v0.8.0
 
 THE GRID is a frontend foundation for an AI operating system interface that coordinates validated business workflows. It is intentionally grounded: workstations are manual first, and automation is deferred until workflows show repeatable value.
 
@@ -99,6 +99,15 @@ This build is intentionally only the shell. It includes navigation, responsive l
 - Added INCOME_FACTORY_STATUS.md as the source-of-truth status document.
 - Updated Mission Control, World Map, and Council with REVENUE ARCHITECT, DESIGN FORGE, COPY ROOM, PUBLISHING ROOM, and SENTINEL references.
 - This milestone is UI/workflow foundation only: no autonomous publishing, platform scraping violations, fake reviews, trademark/copyright theft, auto-DMs, ad spend, account automation, or spending money.
+
+## v0.8 Revenue Intelligence
+
+- Added Revenue Intelligence page as a read-only opportunity intelligence layer.
+- Added Market Scanner, Opportunity Pipeline, Revenue Score, Experiment Tracker, Revenue Dashboard, Hall of Wins, Opportunity Radar, Playbook Library, and The Senate.
+- Added typed static data in src/data/revenueIntelligence.ts and src/data/senate.ts.
+- Updated Mission Control, Income Division, World Map, and Council to reference the Revenue Intelligence Engine.
+- Unknown values remain Unknown; no revenue, profit, ROI, published count, or milestone is fabricated.
+- This milestone is read-only intelligence only: no autonomous publishing, marketplace interaction, ToS-violating scraping, account automation, purchasing, customer messaging, or fake metrics.
 
 ## Documentation
 

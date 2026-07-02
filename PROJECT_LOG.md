@@ -1,6 +1,6 @@
 # THE GRID Project Log
 
-Current Version: v0.7.0
+Current Version: v0.8.0
 
 ## Vision
 
@@ -204,6 +204,45 @@ Doctrine:
 - Publish manually
 - Track results
 - Automate only proven repeated workflows
+
+### v0.8.0 - Revenue Intelligence Engine
+
+Completed / in progress:
+
+- Revenue Intelligence page
+- src/data/revenueIntelligence.ts typed opportunity intelligence data
+- src/data/senate.ts typed Senate recommendation data
+- Market Scanner
+- Opportunity Pipeline
+- Revenue Score
+- Experiment Tracker
+- Revenue Dashboard
+- Hall of Wins
+- Opportunity Radar
+- Playbook Library
+- The Senate decision support layer
+- Mission Control revenue intelligence snapshot
+- Income Division revenue intelligence bridge
+- World Map Revenue Intelligence district
+- Council Senate section
+
+Doctrine:
+
+- Evidence informs
+- Officers advise
+- Mission Commander decides
+- Unknown values remain Unknown
+
+Safety boundary:
+
+- Read-only intelligence only
+- No autonomous publishing
+- No automated marketplace interaction
+- No scraping that violates platform ToS
+- No account automation
+- No purchasing
+- No customer messaging
+- No fabricated metrics
 
 ## Validation
 

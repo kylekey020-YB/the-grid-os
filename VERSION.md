@@ -1,10 +1,10 @@
 # THE GRID
 
-Current Version: v0.7.0
+Current Version: v0.8.0
 
 ## Status
 
-Income Division Revenue Factory Foundation
+Revenue Intelligence Engine
 
 ## Completed
 
@@ -34,23 +34,36 @@ Income Division Revenue Factory Foundation
 - Compliance Sentinel gates
 - Fiverr/Etsy/Publishing/Revenue workflow rooms
 - INCOME_FACTORY_STATUS.md
+- Revenue Intelligence page
+- Market Scanner
+- Opportunity Pipeline
+- Revenue Score
+- Experiment Tracker
+- Revenue Dashboard
+- Hall of Wins
+- Opportunity Radar
+- Playbook Library
+- The Senate
+- Unknown-first revenue intelligence data
 
 ## Current Focus
 
-- Assisted income workflow foundation
-- Original offer validation
-- Manual publishing gates
-- Compliance review
+- Revenue intelligence
+- Opportunity prioritization
+- Evidence-backed scoring
+- Experiment tracking
+- Senate decision support
 - Documentation
 
 ## Next Version
 
-v0.8.0
+v0.9.0
 
 Planned focus:
 
-- R&D and Council evidence synthesis
-- Proposal review
+- Integrated Operations
+- Cross-division status flow
+- Evidence synthesis
 - Decision history
 
 ## Known Limitations
