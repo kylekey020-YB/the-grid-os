@@ -1,6 +1,6 @@
 # THE GRID Project Log
 
-Current Version: v0.8.0
+Current Version: v0.9.0
 
 ## Vision
 
@@ -243,6 +243,39 @@ Safety boundary:
 - No purchasing
 - No customer messaging
 - No fabricated metrics
+
+### v0.9.0 - Hermes Live Agent Integration Plan
+
+Completed / in progress:
+
+- Hermes Agents page
+- HERMES_AGENT_STATUS.md
+- docs/HERMES_AGENT_ARCHITECTURE.md
+- src/data/hermesAgents.ts typed profile data
+- Prepared profiles for ZENITH, REVENUE ARCHITECT, DESIGN FORGE, COPY ROOM, and SENTINEL
+- Autonomy ladder from Level 1 Draft through Level 5 Money/actions forbidden for now
+- Mission Control Hermes agent layer snapshot
+- Council Hermes profile section
+- Revenue Intelligence Hermes support section
+
+Doctrine:
+
+- Prepare identity before integration
+- Define boundaries before autonomy
+- Draft and research before publishing
+- Human approval before external action
+- Mission Commander decides
+
+Safety boundary:
+
+- No connected accounts
+- No Telegram bots
+- No autonomous publishing
+- No automated marketplace interaction
+- No account automation
+- No customer messaging
+- No spending or trading
+- No fabricated agent activity or metrics
 
 ## Validation
 

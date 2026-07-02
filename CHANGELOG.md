@@ -2,7 +2,32 @@
 
 All notable changes to THE GRID will be documented in this file.
 
-Current Version: v0.8.0
+Current Version: v0.9.0
+
+## v0.9.0 - Hermes Live Agent Integration Plan
+
+### Added
+
+- Hermes Agents page
+- src/data/hermesAgents.ts typed Hermes profile data
+- HERMES_AGENT_STATUS.md
+- docs/HERMES_AGENT_ARCHITECTURE.md
+- Profiles for ZENITH, REVENUE ARCHITECT, DESIGN FORGE, COPY ROOM, and SENTINEL
+- Autonomy ladder covering Level 1 Draft, Level 2 Research, Level 3 Build, Level 4 Publish requires approval, and Level 5 Money/actions forbidden for now
+- Mission Control Hermes profile snapshot
+- Council Hermes profile section
+- Revenue Intelligence Hermes support section
+
+### Changed
+
+- Navigation now includes Hermes Agents
+- Documentation updated for v0.9 profile preparation and approval-gate doctrine
+- README, PROJECT_LOG, VERSION, and AI_HANDOFF now reference Hermes as planned/read-only only
+
+### Safety Boundary
+
+- Preparation layer only
+- No connected accounts, Telegram bots, autonomous publishing, automated marketplace interaction, account automation, customer messaging, spending, trading, or fabricated agent activity
 
 ## v0.8.0 - Revenue Intelligence Engine
 

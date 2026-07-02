@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/layout/AppShell";
 import { Commerce } from "@/pages/Commerce";
 import { Dashboard } from "@/pages/Dashboard";
+import { HermesAgents } from "@/pages/HermesAgents";
 import { IncomeDivision } from "@/pages/IncomeDivision";
 import { KnowledgeVault } from "@/pages/KnowledgeVault";
 import { MissionControl } from "@/pages/MissionControl";
@@ -23,6 +24,7 @@ export type PageId =
   | "commerce"
   | "income-division"
   | "revenue-intelligence"
+  | "hermes-agents"
   | "research"
   | "war-room"
   | "knowledge-vault"
@@ -38,6 +40,7 @@ const pages: Record<PageId, JSX.Element> = {
   commerce: <Commerce />,
   "income-division": <IncomeDivision />,
   "revenue-intelligence": <RevenueIntelligence />,
+  "hermes-agents": <HermesAgents />,
   research: <Research />,
   "war-room": <WarRoom />,
   "knowledge-vault": <KnowledgeVault />,

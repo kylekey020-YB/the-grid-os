@@ -1,6 +1,6 @@
 # THE GRID AI Handoff
 
-Current Version: v0.8.0
+Current Version: v0.9.0
 
 ## Purpose
 
@@ -49,6 +49,7 @@ At v0.1.1, everything is manual. No Program is autonomous.
 - Council
 - Income Division
 - Revenue Intelligence
+- Hermes Agents
 - Trading
 - Commerce
 - Research
@@ -68,6 +69,39 @@ Current Commerce purpose:
 - Keep the workflow grounded until repeatable value is demonstrated.
 
 Trading remains research only. APEX is Beta and focused on data collection and research. No fake trades, fake PnL, or live execution metrics should be added.
+
+## Hermes Agents v0.9
+
+THE GRID now includes a Hermes agent profile preparation layer. This is not live automation. It defines future specialist identities, allowed autonomy levels, prohibited actions, placeholders, and approval gates before any account connection exists.
+
+Current source of truth:
+
+- HERMES_AGENT_STATUS.md
+- docs/HERMES_AGENT_ARCHITECTURE.md
+- src/data/hermesAgents.ts
+- src/pages/HermesAgents.tsx
+
+Profiles:
+
+- ZENITH
+- REVENUE ARCHITECT
+- DESIGN FORGE
+- COPY ROOM
+- SENTINEL
+
+Autonomy levels:
+
+- Level 1 Draft
+- Level 2 Research
+- Level 3 Build
+- Level 4 Publish requires approval
+- Level 5 Money/actions forbidden for now
+
+Hard prohibitions: no connected accounts, Telegram bots, autonomous publishing, customer messaging, spending, trading, account automation, marketplace interaction, ToS-violating scraping, credential handling, or fabricated agent activity.
+
+Doctrine: prepare identity before integration, define boundaries before autonomy, draft and research before publishing, human approval before external action, Mission Commander decides.
+
+Future Operations Officer pattern: once Hermes has multiple active officers, do not route every officer directly to Mission Commander. A future Operations Officer should aggregate specialist updates into one daily executive briefing with priorities, blockers, recommendations, and decisions that need approval.
 
 ## Revenue Intelligence v0.8
 

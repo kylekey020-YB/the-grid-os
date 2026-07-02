@@ -1,6 +1,6 @@
 # THE GRID UI Foundation
 
-Current Version: v0.8.0
+Current Version: v0.9.0
 
 THE GRID is a frontend foundation for an AI operating system interface that coordinates validated business workflows. It is intentionally grounded: workstations are manual first, and automation is deferred until workflows show repeatable value.
 
@@ -109,6 +109,16 @@ This build is intentionally only the shell. It includes navigation, responsive l
 - Unknown values remain Unknown; no revenue, profit, ROI, published count, or milestone is fabricated.
 - This milestone is read-only intelligence only: no autonomous publishing, marketplace interaction, ToS-violating scraping, account automation, purchasing, customer messaging, or fake metrics.
 
+## v0.9 Hermes Agent Integration Plan
+
+- Added Hermes Agents page as a read-only preparation layer for future specialist profiles.
+- Added typed static data in src/data/hermesAgents.ts.
+- Added HERMES_AGENT_STATUS.md and docs/HERMES_AGENT_ARCHITECTURE.md.
+- Defined profiles for ZENITH, REVENUE ARCHITECT, DESIGN FORGE, COPY ROOM, and SENTINEL.
+- Defined explicit autonomy levels from Level 1 Draft through Level 5 Money/actions forbidden for now.
+- Updated Mission Control, Council, and Revenue Intelligence with Hermes profile references.
+- This milestone prepares future profile identity and approval gates only: no connected accounts, Telegram bots, autonomous publishing, customer messaging, spending, trading, account automation, or marketplace interaction.
+
 ## Documentation
 
 - [PROJECT_LOG.md](PROJECT_LOG.md)
@@ -117,4 +127,6 @@ This build is intentionally only the shell. It includes navigation, responsive l
 - [CHANGELOG.md](CHANGELOG.md)
 - [COMMERCE_MISSION_STATUS.md](COMMERCE_MISSION_STATUS.md)
 - [docs/MISSION_DATA_BRIDGE.md](docs/MISSION_DATA_BRIDGE.md)
+- [HERMES_AGENT_STATUS.md](HERMES_AGENT_STATUS.md)
+- [docs/HERMES_AGENT_ARCHITECTURE.md](docs/HERMES_AGENT_ARCHITECTURE.md)
 - [design-system/README.md](design-system/README.md)

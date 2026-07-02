@@ -3,6 +3,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { councilDoctrine, councilOfficers, type CouncilOfficer, type OfficerConfidence } from "@/data/council";
+import { hermesAgentProfiles } from "@/data/hermesAgents";
 import { senateDoctrine, senateRecommendations, type SenateConfidence } from "@/data/senate";
 
 const confidenceTone: Record<OfficerConfidence | SenateConfidence, "success" | "manual" | "beta"> = { High: "success", Medium: "manual", Low: "beta" };
@@ -16,6 +17,8 @@ export function Council() {
       </section>
 
       <section className="space-y-4"><SectionHeader eyebrow="The Senate" title="Revenue decision support" description={senateDoctrine} /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{senateRecommendations.map((item) => <SenateCard key={item.id} item={item} />)}</div></section>
+
+      <section className="space-y-4"><SectionHeader eyebrow="Hermes Profiles" title="Prepared specialist identities" description="Hermes profiles define future live-agent boundaries. They are not connected to accounts and cannot act autonomously." /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{hermesAgentProfiles.map((profile) => <Card key={profile.id} className="border-cyan-300/20 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-md border border-cyan-300/30 bg-cyan-300/10 text-2xl">{profile.emoji}</span><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{profile.allowedAutonomyLevel}</p><CardTitle className="mt-1 text-lg">{profile.name}</CardTitle></div></div><StatusBadge label={profile.status} tone="beta" /></div><CardDescription>{profile.role}</CardDescription></CardHeader><CardContent className="space-y-3 text-sm"><Info label="Personality" value={profile.personality} /><Info label="Approval gates" value={profile.approvalGates.join(" / ")} /></CardContent></Card>)}</div></section>
 
       <section className="space-y-4"><SectionHeader eyebrow="Officers" title="Read-only advisory layer" description="Each officer has a domain, current signal, recommendation placeholder, confidence, and evidence source." /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{councilOfficers.map((officer) => <OfficerCard key={officer.id} officer={officer} />)}</div></section>
     </div>

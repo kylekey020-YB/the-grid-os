@@ -1,5 +1,6 @@
 import {
   BarChart3,
+  Bot,
   BookOpen,
   BrainCircuit,
   FlaskConical,
@@ -31,6 +32,7 @@ export const navItems: NavItem[] = [
   { id: "commerce", label: "Commerce", icon: ShoppingCart },
   { id: "income-division", label: "Income Division", icon: DollarSign },
   { id: "revenue-intelligence", label: "Revenue Intelligence", icon: CircleDollarSign },
+  { id: "hermes-agents", label: "Hermes Agents", icon: Bot },
   { id: "research", label: "Research", icon: FlaskConical },
   { id: "war-room", label: "War Room", icon: Swords },
   { id: "knowledge-vault", label: "Knowledge Vault", icon: BookOpen },
@@ -39,5 +41,5 @@ export const navItems: NavItem[] = [
 ];
 
 export const mobileNavItems = navItems.filter((item) =>
-  ["dashboard", "mission-control", "revenue-intelligence", "income-division", "settings"].includes(item.id),
+  ["dashboard", "mission-control", "revenue-intelligence", "hermes-agents", "settings"].includes(item.id),
 );
