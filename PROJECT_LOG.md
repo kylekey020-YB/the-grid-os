@@ -1,6 +1,6 @@
 # THE GRID Project Log
 
-Current Version: v0.9.0
+Current Version: v2.1.0
 
 ## Vision
 
@@ -276,6 +276,318 @@ Safety boundary:
 - No customer messaging
 - No spending or trading
 - No fabricated agent activity or metrics
+
+### Revenue Architect Activation - Operation First Revenue
+
+Completed / in progress:
+
+- REVENUE_ARCHITECT_STATUS.md created as the profile record for the first operating department.
+- Revenue Architect accepted as ACTIVE / ADVISORY ONLY.
+- Revenue Architect board added to Revenue Intelligence through src/data/revenueArchitect.ts.
+- Operation First Revenue is framed as a manual, evidence-backed revenue campaign.
+
+Authority limits:
+
+- Advisory and organizational only.
+- No automation.
+- No scraping.
+- No account actions.
+- No autonomous publishing.
+- No customer or supplier messaging.
+- No spending.
+- No fabricated metrics.
+
+Reporting line:
+
+- Revenue Architect reports to Mission Commander through Revenue Intelligence and Mission Control.
+- ZENITH provides architecture and doctrine oversight.
+- SENTINEL provides safety and compliance review.
+- Future Operations Officer should aggregate officer updates into one daily executive briefing when multiple officers are active.
+
+### v1.2.0 - Founding Constitution
+
+Completed / in progress:
+
+- THE_GRID_CONSTITUTION.md created as the foundational governing document.
+- FOUNDING_COUNCIL_BRIEF.md created as the first-read onboarding packet for Claude, Claude Code, ChatGPT / ZENITH, Hermes profiles, Codex, and future contributors.
+- Existing doctrine consolidated across council, officers, Programs, missions, company rules, approvals, institutional memory, activation, engineering, records, and amendments.
+- Mission Commander and Officer oaths documented using established project doctrine.
+
+Safety boundary:
+
+- Documentation/governance only.
+- No automation.
+- No scraping.
+- No account actions.
+- No backend.
+- No live integrations.
+- No autonomous execution.
+- No fabricated metrics.
+
+### v1.3.0 - Approval System + Decision Records
+
+Completed / in progress:
+
+- APPROVAL_SYSTEM.md created.
+- DECISION_RECORDS.md created.
+- src/data/approvalSystem.ts created with first-class approval and decision record objects.
+- AR-001 added for Revenue Architect Income Lane Scoring Sprint.
+- DR-001 added for the decision that Income Division becomes the primary offensive effort.
+- Revenue Intelligence now displays Approval Queue and Decision Records.
+- Mission Control now displays an Approval Queue Snapshot.
+- THE_GRID_CONSTITUTION.md amended to clarify first-class approvals and decision records.
+
+Doctrine:
+
+- Everything irreversible flows through the Approval Queue.
+- Mission Records answer what happened.
+- Decision Records answer why the choice was made.
+- Mission Commander remains final approval authority.
+
+Safety boundary:
+
+- Read-only governance/UI only.
+- No backend.
+- No persistence.
+- No live approvals.
+- No account actions.
+- No publishing.
+- No spending.
+- No scraping.
+- No automation.
+
+### v1.4.0 - Mission Pipeline
+
+Completed / in progress:
+
+- Mission Pipeline page created.
+- MISSION_PIPELINE.md created.
+- src/data/missionPipeline.ts created with typed stages and current pipeline items.
+- Navigation now includes Mission Pipeline.
+- Mission Control now includes Mission Pipeline Snapshot.
+- THE_GRID_CONSTITUTION.md amended to state that nothing skips the pipeline.
+
+Pipeline:
+
+- Idea
+- Research
+- Evidence Score
+- Approval
+- Experiment
+- Revenue
+- Scale
+- Playbook
+- Automation
+- Division
+- Program
+- Institutional Knowledge
+
+Doctrine:
+
+- Every idea starts in the Mission Pipeline.
+- Nothing skips the pipeline.
+- Evidence gates precede approval gates.
+- Revenue precedes scale.
+- Playbooks precede automation.
+- Programs earn autonomy only after validated repeated workflows.
+
+Safety boundary:
+
+- Read-only workflow architecture only.
+- No backend.
+- No persistence.
+- No live stage advancement.
+- No account actions.
+- No publishing.
+- No spending.
+- No scraping.
+- No automation.
+
+### v1.5.0 - The Operations Floor
+
+Completed / in progress:
+
+- Mission Control rewritten as the Operations Floor.
+- src/data/missionEvents.ts created as the typed local Mission Event Bus.
+- src/data/officerPresence.ts created for officer presence cards.
+- Operations Feed added to Mission Control.
+- Approval Queue, Decision Records, Mission Pipeline Snapshot, Program Status, Officer Presence, and Current Executive Brief consolidated into the homepage.
+- OPERATIONS_FLOOR.md created as the architecture note.
+
+Doctrine:
+
+- Mission Control renders events; it does not own every producer.
+- Future officers, Programs, and divisions should publish compatible events.
+- Evidence informs. Officers advise. Mission Commander decides.
+
+Safety boundary:
+
+- No backend.
+- No polling.
+- No networking.
+- No autonomous execution.
+- No live approvals.
+- No external integrations.
+- No fabricated activity.
+
+### v1.6.0 - Operations Intelligence Layer
+
+Completed / in progress:
+
+- src/data/companyKpis.ts created for standardized company and division KPI reporting.
+- Mission Control now includes Company Health.
+- Division KPI reports added for Income Division, Commerce, APEX, CLU, and Operations.
+- KPI evidence notes clarify what each value is based on.
+- Missing values are shown as N/A instead of invented.
+- OPERATIONS_INTELLIGENCE.md created as the KPI architecture note.
+
+Doctrine:
+
+- No vanity metrics.
+- Unknown values remain N/A.
+- Every KPI cites evidence.
+- Real operational values require records.
+
+Safety boundary:
+
+- Typed static reporting only.
+- No external reads.
+- No account connections.
+- No jobs.
+- No automation.
+- No fake metrics.
+
+### v1.7.0 - The Academy
+
+Completed / in progress:
+
+- Academy page created as the institutional learning division.
+- src/data/academy.ts created with typed Academy wings, Founding Day, Hall of Command timeline, and Evolution Lab records.
+- Navigation now includes The Academy.
+- World Map now includes The Academy as an active district and world space.
+- Mission Control now includes an Academy snapshot.
+- Founding Day recorded as July 2, 2026.
+
+Academy structure:
+
+- Founding Hall.
+- Playbooks.
+- Master Classes.
+- Hall of Wins.
+- Hall of Failures.
+- Evolution Lab.
+- Hall of Command.
+
+Doctrine:
+
+- Every lesson learned becomes permanent institutional knowledge.
+- Wins require evidence.
+- Failures are tuition already paid.
+- Playbooks are earned by repeated workflows.
+- Evolution records explain how officers, Programs, and systems improve over time.
+
+Safety boundary:
+
+- Typed data only.
+- No backend.
+- No persistence.
+- No fake metrics.
+- No fabricated wins.
+- No invented failures.
+- No autonomous learning system.
+
+### Phase I - Foundation Complete
+
+Declared complete on Founding Day: July 2, 2026.
+
+Phase I established:
+
+- Doctrine.
+- Constitution.
+- Founding Council.
+- World Map.
+- Mission Control.
+- Revenue Intelligence.
+- Approval System.
+- Decision Records.
+- Mission Pipeline.
+- Academy.
+- Institutional Memory.
+- Operations Officer pattern.
+- Revenue Architect.
+
+### v2.0.0 - THE GRID Nervous System
+
+Completed / in progress:
+
+- Phase II - Living Systems began.
+- The Bridge page created.
+- src/data/eventRegistry.ts created for typed Mission Bus event channels.
+- src/data/officerNetwork.ts created for Council Network operational state.
+- src/data/bridge.ts created for Bridge panels and summary metrics.
+- src/data/chronicle.ts created for weekly company history records.
+- NERVOUS_SYSTEM_STATUS.md created.
+- Mission Control now references Phase II Bridge metrics.
+- World Map now includes The Bridge and Nervous System spaces.
+- The Academy now includes The Chronicle.
+- THE_GRID_CONSTITUTION.md now includes Article 0 - The Mission.
+
+Operating pattern:
+
+- Officer.
+- Event.
+- Mission Bus.
+- Mission Control.
+- Executive Brief.
+
+Doctrine:
+
+- Everything publishes events.
+- Nothing directly controls anything else.
+- Mission Control renders the latest picture.
+- The Executive Brief summarizes evidence, blockers, recommendations, and decisions needed.
+
+Safety boundary:
+
+- Typed architecture only.
+- No backend.
+- No networking.
+- No polling.
+- No external writes.
+- No account actions.
+- No autonomous execution.
+- No fabricated live activity.
+
+### v2.1.0 - Identity System + Scout Agent Layer
+
+Completed / in progress:
+
+- Identity System created.
+- src/data/identitySystem.ts created.
+- src/components/identity/GridIdentity.tsx created.
+- Company Seal, Founding Day Plaque, Operation First Revenue Campaign Patch, Division Insignias, Officer Badge shell, and Mission Ribbons added.
+- Scout Officer Layer created.
+- src/data/scoutOfficers.ts created.
+- Market Scout, Demand Scout, and Risk Scout added as planned read-only officers.
+- Scouts integrated into Mission Control, The Bridge, Council, Revenue Intelligence, World Map, and Officer Network.
+- IDENTITY_SYSTEM_STATUS.md created.
+- SCOUT_OFFICER_STATUS.md created.
+
+Reporting line:
+
+- Market Scout reports to Revenue Architect.
+- Demand Scout reports to Revenue Architect.
+- Risk Scout reports to Sentinel and Revenue Architect.
+
+Safety boundary:
+
+- No publishing.
+- No customer messaging.
+- No spending money.
+- No account automation.
+- No scraping against platform rules.
+- No copied listings, products, reviews, designs, or claims.
+- Public evidence reports only.
 
 ## Validation
 

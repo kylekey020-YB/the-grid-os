@@ -4,8 +4,11 @@ import {
   BookOpen,
   BrainCircuit,
   FlaskConical,
+  GitBranch,
   Home,
+  Landmark,
   Map,
+  Network,
   Radar,
   Settings,
   UsersRound,
@@ -26,6 +29,9 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   { id: "dashboard", label: "Dashboard", icon: Home },
   { id: "mission-control", label: "Mission Control", icon: Radar },
+  { id: "bridge", label: "The Bridge", icon: Network },
+  { id: "mission-pipeline", label: "Mission Pipeline", icon: GitBranch },
+  { id: "academy", label: "The Academy", icon: Landmark },
   { id: "world-map", label: "World Map", icon: Map },
   { id: "council", label: "Council", icon: UsersRound },
   { id: "trading", label: "Trading", icon: BarChart3 },
@@ -41,5 +47,5 @@ export const navItems: NavItem[] = [
 ];
 
 export const mobileNavItems = navItems.filter((item) =>
-  ["dashboard", "mission-control", "revenue-intelligence", "hermes-agents", "settings"].includes(item.id),
+  ["dashboard", "mission-control", "bridge", "academy", "settings"].includes(item.id),
 );

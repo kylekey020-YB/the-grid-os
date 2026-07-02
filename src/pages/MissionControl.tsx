@@ -1,85 +1,625 @@
-import { useEffect, useMemo, useState, type ElementType } from "react";
-import { Activity, AlertTriangle, BrainCircuit, CheckCircle2, Clock3, Compass, DatabaseZap, Eye, FileWarning, FlaskConical, RadioTower, ShieldCheck, Sparkles, Ticket, WifiOff } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { type ElementType } from "react";
+import {
+  Activity,
+  AlertTriangle,
+  BarChart3,
+  BrainCircuit,
+  CheckCircle2,
+  CircleDollarSign,
+  Clock3,
+  FileText,
+  GitBranch,
+  Landmark,
+  RadioTower,
+} from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { StatusBadge } from "@/components/StatusBadge";
-import { incomeAgentProfiles, incomeDivisionGoal, incomeRooms, type IncomeAgentProfile, type IncomeRoom } from "@/data/incomeDivision";
-import { complianceGates, incomeFactoryGoal, marketOpportunities, publishingQueue, revenueExperiments } from "@/data/incomeFactory";
-import { hermesAgentProfiles, hermesAutonomyLevels } from "@/data/hermesAgents";
-import { experimentTracker, marketScannerCandidates, revenueDashboardMetrics, revenueScores } from "@/data/revenueIntelligence";
-import { missionStatuses, watcherStatuses, zenithProfile, type ArchitectProfile, type MissionStatus, type WatcherStatus } from "@/data/missionStatus";
-import { cn } from "@/lib/utils";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CampaignPatch } from "@/components/identity/GridIdentity";
+import { academyOverview, academyWings, foundingDay } from "@/data/academy";
+import { approvalQueue, decisionRecords, type ApprovalRequest, type DecisionRecord } from "@/data/approvalSystem";
+import { bridgeMetrics, bridgeOverview } from "@/data/bridge";
+import { companyHealth, divisionKpiReports, type DivisionKpiReport } from "@/data/companyKpis";
+import { missionEvents, recentlyCompletedExperiments, type MissionEvent } from "@/data/missionEvents";
+import { missionPipelineItems, missionPipelineStages } from "@/data/missionPipeline";
+import { officerPresence, type OfficerPresence } from "@/data/officerPresence";
+import { scoutOfficers } from "@/data/scoutOfficers";
 
-type BridgeState = "loading" | "connected" | "stale" | "missing";
-type MissionSnapshot = { generated_at?: string; bridge_version?: string; apex?: Record<string, unknown>; clu?: Record<string, unknown>; commerce?: Record<string, unknown>; backtester?: Record<string, unknown>; grid?: Record<string, unknown>; mission_bus?: MissionBusStatus[]; safety_flags?: string[]; open_tickets?: SnapshotTicket[]; research_and_development_proposals?: ResearchProposal[]; watcher_summaries?: WatcherSummary[]; council_briefing?: CouncilBriefing[]; };
-type MissionBusStatus = { mission: string; connected: boolean; source: string; status: string; phase: string | null; last_update: string | null; next_action: string | null; tickets: number | null; };
-type SnapshotTicket = { id: string; title: string; owner: string; severity: string; status: string; evidence: string; recommendation: string; };
-type ResearchProposal = { id: string; title: string; owner: string; status: string; evidence_basis: string; recommendation: string; };
-type WatcherSummary = { name: string; role: string; signal: string; status: string; };
-type CouncilBriefing = { role: string; briefing: string; };
+const executiveBrief = [
+  "Operation First Revenue remains the primary offensive mission.",
+  "Revenue Architect is active in advisory-only mode.",
+  "AR-001 is awaiting Mission Commander approval before the income lane scoring sprint begins.",
+  "Commerce remains research-only until live quote unknowns are resolved through an approved phase.",
+];
 
-const accentClasses: Record<MissionStatus["accent"], { border: string; glow: string; text: string; strip: string; bg: string }> = {
-  cyan: { border: "border-cyan-300/40", glow: "hover:shadow-[0_0_34px_rgba(34,211,238,0.22)]", text: "text-cyan-200", strip: "from-cyan-300 via-blue-400 to-purple-400", bg: "bg-cyan-300/10" },
-  blue: { border: "border-blue-300/40", glow: "hover:shadow-[0_0_34px_rgba(96,165,250,0.22)]", text: "text-blue-200", strip: "from-blue-300 via-cyan-300 to-emerald-300", bg: "bg-blue-300/10" },
-  purple: { border: "border-purple-300/40", glow: "hover:shadow-[0_0_34px_rgba(216,180,254,0.22)]", text: "text-purple-200", strip: "from-purple-300 via-fuchsia-300 to-cyan-300", bg: "bg-purple-300/10" },
-  magenta: { border: "border-fuchsia-300/40", glow: "hover:shadow-[0_0_34px_rgba(217,70,239,0.22)]", text: "text-fuchsia-200", strip: "from-fuchsia-300 via-pink-400 to-red-300", bg: "bg-fuchsia-300/10" },
-  red: { border: "border-red-300/40", glow: "hover:shadow-[0_0_34px_rgba(248,113,113,0.22)]", text: "text-red-200", strip: "from-red-300 via-fuchsia-400 to-amber-300", bg: "bg-red-300/10" },
-  gold: { border: "border-amber-300/40", glow: "hover:shadow-[0_0_34px_rgba(251,191,36,0.22)]", text: "text-amber-200", strip: "from-amber-200 via-yellow-300 to-cyan-300", bg: "bg-amber-300/10" },
-  emerald: { border: "border-emerald-300/40", glow: "hover:shadow-[0_0_34px_rgba(52,211,153,0.22)]", text: "text-emerald-200", strip: "from-emerald-300 via-cyan-300 to-blue-300", bg: "bg-emerald-300/10" },
+const topPriorities = [
+  "Decide AR-001: approve, decline, or request revision.",
+  "Select the first revenue lane using evidence, operator fit, and compliance risk.",
+  "Keep all unknown KPI values marked as N/A until real records exist.",
+  "Preserve Mission Records and Decision Records as institutional memory.",
+  "Preserve Founding Day and new lessons inside The Academy.",
+];
+
+const programStatus = [
+  { name: "APEX", state: "Research", signal: "No current status feed connected to this repo.", boundary: "No live trading integration in THE GRID." },
+  { name: "CLU", state: "Research", signal: "No current status feed connected to this repo.", boundary: "No autonomous execution in THE GRID." },
+  { name: "Hermes", state: "Prepared", signal: "Agent profiles are documented for future activation.", boundary: "No Telegram or account actions connected." },
+  { name: "Revenue Architect", state: "Advisory Only", signal: "Income lane scoring is awaiting approval.", boundary: "No publishing, spending, or scraping." },
+];
+
+const eventTone: Record<MissionEvent["status"], "success" | "manual" | "beta" | "danger" | "muted"> = {
+  active: "success",
+  awaiting_commander: "manual",
+  blocked: "danger",
+  completed: "success",
+  pending_evidence: "beta",
+  research: "muted",
 };
 
 export function MissionControl() {
-  const { snapshot, bridgeState, bridgeError } = useMissionSnapshot();
-  const generatedAt = snapshot?.generated_at ? new Date(snapshot.generated_at) : null;
-  const ageSeconds = generatedAt ? Math.max(0, Math.round((Date.now() - generatedAt.getTime()) / 1000)) : null;
-  const connectionTone = bridgeState === "connected" ? "success" : bridgeState === "stale" ? "manual" : "beta";
-  return <div className="space-y-7"><OperationFirstRevenueBanner /><section className="space-y-4"><SectionHeader eyebrow="Local Data Bridge" title="Read-only mission snapshot" description="Mission Control refreshes /mission-snapshot.json every 5 seconds. Snapshots older than 60 seconds are marked stale." /><BridgeStatusCard state={bridgeState} tone={connectionTone} generatedAt={generatedAt} ageSeconds={ageSeconds} error={bridgeError} version={textValue(snapshot?.bridge_version)} /></section><section className="space-y-4"><SectionHeader eyebrow="Systems Architect" title="ZENITH coordinates the grid" description="ChatGPT's command profile inside THE GRID. This is strategic coordination and architecture, not autonomous execution." /><ZenithProfileCard profile={zenithProfile} /></section><section className="space-y-4"><SectionHeader eyebrow="Live Company Layer" title="Evidence status by mission area" description="Snapshot fields are displayed as unknown when data is missing. Unknown is better than invented." /><div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-5"><SystemSnapshotCard title="APEX" data={snapshot?.apex} /><SystemSnapshotCard title="CLU" data={snapshot?.clu} /><SystemSnapshotCard title="Commerce" data={snapshot?.commerce} /><SystemSnapshotCard title="Backtester" data={snapshot?.backtester} /><SystemSnapshotCard title="THE GRID" data={snapshot?.grid} /></div></section><section className="space-y-4"><SectionHeader eyebrow="Mission Bus" title="Department status publishers" description="Optional status.json files let each project publish a small high-level status for Mission Control to aggregate." /><SnapshotList empty="No Mission Bus status files are connected yet." items={snapshot?.mission_bus} render={(status) => <MissionBusCard key={status.mission} status={status} />} /></section><section className="space-y-4"><SectionHeader eyebrow="War Room" title="Watcher summaries" description="Read-only role cards generated from snapshot state. Watchers observe and recommend; they do not act." /><SnapshotList empty="Run the mission snapshot generator to populate watcher summaries." items={snapshot?.watcher_summaries} render={(watcher) => <WatcherSummaryCard key={watcher.name} watcher={watcher} />} /></section><section className="grid gap-4 xl:grid-cols-[1fr_1fr]"><div className="space-y-4"><SectionHeader eyebrow="Tickets" title="Open evidence gaps" description="Automatically generated from missing or incomplete read-only sources." /><SnapshotList empty="No open tickets in the current snapshot." items={snapshot?.open_tickets} render={(ticket) => <TicketCard key={ticket.id} ticket={ticket} />} /></div><div className="space-y-4"><SectionHeader eyebrow="R&D Lab" title="Proposals awaiting validation" description="Research suggestions remain proposals until evidence supports them." /><SnapshotList empty="No R&D proposals in the current snapshot." items={snapshot?.research_and_development_proposals} render={(proposal) => <ProposalCard key={proposal.id} proposal={proposal} />} /></div></section><section className="space-y-4"><SectionHeader eyebrow="Council Briefing" title="Read-only recommendations" description="Briefings are generated from current evidence and missing data. They are not execution orders." /><SnapshotList empty="No council briefing in the current snapshot." items={snapshot?.council_briefing} render={(item) => <CouncilCard key={item.role} item={item} />} /></section><section className="space-y-4"><SectionHeader eyebrow="Safety Flags" title="Bridge constraints" description="These constraints keep v0.3 a visibility layer instead of a control surface." /><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{(snapshot?.safety_flags ?? ["Mission data bridge not running."]).map((flag) => <div key={flag} className="rounded-md border border-red-300/25 bg-red-300/10 p-3 text-sm leading-6 text-red-100">{flag}</div>)}</div></section><section className="space-y-4"><SectionHeader eyebrow="Hermes Agent Layer" title="Live agent profiles prepared, not connected" description="Hermes profiles define roles, autonomy boundaries, Telegram/SOUL/playbook placeholders, recurring job placeholders, and approval gates. No accounts or actions are connected." /><Card className="border-cyan-300/35 bg-cyan-950/15"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">v0.9 preparation layer</p><CardTitle className="mt-2 text-2xl text-cyan-100">Hermes Agents</CardTitle></div><StatusBadge label="READ-ONLY" tone="success" /></div><CardDescription>No autonomous publishing, customer messaging, spending, trading, account automation, or live Telegram connection.</CardDescription></CardHeader><CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4"><MetricLine label="Profiles" value={String(hermesAgentProfiles.length)} /><MetricLine label="Autonomy levels" value={String(hermesAutonomyLevels.length)} /><MetricLine label="Max active boundary" value="Level 3 Build" /><MetricLine label="Money/actions" value="Forbidden" /></CardContent></Card></section><section className="space-y-4"><SectionHeader eyebrow="Revenue Intelligence Snapshot" title="Read-only opportunity intelligence" description="Tracks opportunity candidates, Unknown-first scoring, experiment decisions, and dashboard values without fabricating metrics." /><Card className="border-emerald-300/35 bg-emerald-950/15"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Unknown-first intelligence</p><CardTitle className="mt-2 text-2xl text-emerald-100">Revenue Intelligence Engine</CardTitle></div><StatusBadge label="READ-ONLY" tone="success" /></div><CardDescription>No autonomous publishing, marketplace interaction, account automation, purchasing, customer messaging, or fabricated metrics.</CardDescription></CardHeader><CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4"><MetricLine label="Candidates" value={String(marketScannerCandidates.length)} /><MetricLine label="Unknown scores" value={String(revenueScores.filter((item) => item.score === "Unknown").length)} /><MetricLine label="Experiments" value={String(experimentTracker.length)} /><MetricLine label="Unknown metrics" value={String(revenueDashboardMetrics.filter((item) => item.value === "Unknown").length)} /></CardContent></Card></section><section className="space-y-4"><SectionHeader eyebrow="Income Factory Snapshot" title="Assisted revenue workflow foundation" description="Operational planning layer for original offers, prepared publishing, compliance gates, and real-result tracking. No autonomous publishing or fake metrics." /><Card className="border-emerald-300/35 bg-emerald-950/15"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{incomeFactoryGoal.currentPhase}</p><CardTitle className="mt-2 text-2xl text-emerald-100">{incomeFactoryGoal.goal}</CardTitle></div><StatusBadge label="Manual only" tone="manual" /></div><CardDescription>{incomeFactoryGoal.safety}</CardDescription></CardHeader><CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4"><MetricLine label="Opportunities" value={String(marketOpportunities.length)} /><MetricLine label="Prepared items" value={String(publishingQueue.length)} /><MetricLine label="Experiments" value={String(revenueExperiments.length)} /><MetricLine label="Compliance gates" value={String(complianceGates.length)} /></CardContent></Card></section><section className="space-y-4"><SectionHeader eyebrow="Income Division Planning" title="Original income systems foundation" description="Planning rooms for Etsy, Fiverr, affiliate, digital product, and creative workflows. No scraping, bots, live integrations, copied products, or autonomous posting." /><IncomeDivisionPanel /><div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">{incomeRooms.map((room) => <IncomeRoomCard key={room.id} room={room} />)}</div><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{incomeAgentProfiles.map((profile) => <IncomeAgentCard key={profile.id} profile={profile} />)}</div></section><section className="space-y-4"><SectionHeader eyebrow="Foundation Missions" title="Static v0.2 mission cards" description="Static handoff data remains visible while v0.3 local snapshot wiring matures." /><div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-5">{missionStatuses.map((mission) => <MissionCard key={mission.id} mission={mission} />)}</div></section><section className="space-y-4"><SectionHeader eyebrow="Watcher Team" title="Read-only workstation monitors" description="These Watchers give the command center personality and visibility. They are not autonomous agents and cannot act on their own." /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{watcherStatuses.map((watcher) => <WatcherCard key={watcher.id} watcher={watcher} />)}</div></section></div>;
+  const openApprovals = approvalQueue.filter((approval) => approval.status === "Awaiting Commander");
+
+  return (
+    <div className="space-y-7">
+      <OperationsHero />
+
+      <section className="grid gap-4 xl:grid-cols-4">
+        <CompanyHealthPanel />
+        <BridgePreview />
+        <CampaignPatch />
+        <ExecutiveBrief />
+      </section>
+
+      <section className="grid gap-4 xl:grid-cols-[1.25fr_0.75fr]">
+        <OperationsFeed />
+        <div className="space-y-4">
+          <ApprovalQueue approvals={openApprovals} />
+          <DecisionRecords records={decisionRecords} />
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <SectionHeader
+          eyebrow="Officer Presence"
+          title="Who is watching the floor"
+          description="Presence cards describe current assignments and reports waiting. They do not imply autonomous action."
+        />
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {officerPresence.map((officer) => (
+            <OfficerPresenceCard key={officer.id} officer={officer} />
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-4 xl:grid-cols-[0.85fr_1.15fr]">
+        <MissionPipelineSnapshot />
+        <ProgramStatusPanel />
+      </section>
+
+      <ScoutLayerSnapshot />
+
+      <section className="space-y-4">
+        <SectionHeader
+          eyebrow="Operations Intelligence"
+          title="Standardized division KPIs"
+          description="Every division reports through the same pattern. Unknown values stay N/A until real evidence exists."
+        />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {divisionKpiReports.map((report) => (
+            <DivisionKpiCard key={report.id} report={report} />
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-4 xl:grid-cols-3">
+        <CompletedExperiments />
+        <AcademySnapshot />
+        <TopPriorities />
+      </section>
+    </div>
+  );
 }
 
-const firstRevenueOperation = {
-  title: "Operation First Revenue",
-  commander: "Maximus Titus Antony",
-  daysRemaining: 31,
-  status: "ACTIVE",
-  progressPercent: 25,
-  objective: "$10,000 Monthly Recurring Revenue",
-  currentSignal: "Manual validation and offer execution only",
-  nextAction: "Choose the first revenue lane, define the smallest validated offer, and track real buyer evidence.",
-};
+function OperationsHero() {
+  return (
+    <section className="relative overflow-hidden rounded-lg border border-cyan-300/30 bg-card/85 p-6 shadow-[0_0_90px_rgba(34,211,238,0.14)] md:p-8">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(34,211,238,0.18),transparent_24rem),linear-gradient(rgba(34,211,238,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.04)_1px,transparent_1px)] bg-[size:auto,34px_34px,34px_34px] opacity-90" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300 to-transparent" />
+      <div className="relative grid gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:items-end">
+        <div className="space-y-5">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-300/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-cyan-100">
+              v2.0 Nervous System / Phase II
+            </div>
+            <StatusBadge label="Read-only command center" tone="success" />
+          </div>
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">Operation First Revenue</p>
+            <h1 className="font-display text-4xl font-semibold leading-tight md:text-6xl">Mission Control</h1>
+            <p className="max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">
+              The homepage is now the operations floor: event timeline, officer presence, approvals, decision records, pipeline state, program status, and company KPIs.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <CommandStat label="Commander" value="Maximus Titus Antony" />
+            <CommandStat label="Days Remaining" value={String(companyHealth.daysRemaining)} />
+            <CommandStat label="MRR Goal" value={companyHealth.mrrGoal} />
+            <CommandStat label="Revenue" value={companyHealth.revenue} />
+          </div>
+        </div>
+        <Card className="border-amber-300/35 bg-amber-950/15">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Mission Countdown</p>
+                <CardTitle className="mt-2 text-2xl text-amber-100">{companyHealth.daysRemaining} days remaining</CardTitle>
+              </div>
+              <Clock3 className="h-5 w-5 text-amber-200" />
+            </div>
+            <CardDescription>
+              Countdown is mission state, not a claim of revenue progress. Real money values only appear after evidence exists.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                <span>Mission Progress</span>
+                <span>{companyHealth.missionProgress}</span>
+              </div>
+              <div className="h-3 overflow-hidden rounded-full border border-amber-300/20 bg-background/70">
+                <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-amber-300 via-cyan-300 to-emerald-300 shadow-[0_0_22px_rgba(251,191,36,0.42)]" />
+              </div>
+            </div>
+            <div className="rounded-md border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-cyan-100">
+              Evidence informs. Officers advise. Mission Commander decides.
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}
 
-function OperationFirstRevenueBanner() {
-  return <section className="relative overflow-hidden rounded-lg border border-amber-300/30 bg-card/85 p-6 shadow-[0_0_90px_rgba(251,191,36,0.14)] md:p-8"><div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,191,36,0.2),transparent_24rem),linear-gradient(rgba(251,191,36,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.05)_1px,transparent_1px)] bg-[size:auto,34px_34px,34px_34px] opacity-90" /><div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" /><div className="relative grid gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:items-end"><div className="space-y-5"><div className="flex flex-wrap items-center gap-3"><div className="inline-flex items-center gap-2 rounded-full border border-amber-300/35 bg-amber-300/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-amber-100"><span className="text-sm">⚔</span> v1.1 Command Center</div><StatusBadge label={firstRevenueOperation.status} tone="manual" /></div><div className="space-y-3"><p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-200">{firstRevenueOperation.title}</p><h1 className="font-display text-4xl font-semibold leading-tight md:text-6xl">Mission Control</h1><p className="max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">Objective: {firstRevenueOperation.objective}. This command banner tracks the declared campaign target without inventing revenue, users, customers, or automation.</p></div><div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"><CommandStat label="Commander" value={firstRevenueOperation.commander} /><CommandStat label="Days Remaining" value={String(firstRevenueOperation.daysRemaining)} /><CommandStat label="Current Signal" value={firstRevenueOperation.currentSignal} /><CommandStat label="Safety" value="Manual first" /></div></div><Card className="border-amber-300/35 bg-amber-950/15"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Campaign Progress</p><CardTitle className="mt-2 text-2xl text-amber-100">Early validation stage</CardTitle></div><ShieldCheck className="h-5 w-5 text-amber-200" /></div><CardDescription>Progress is a campaign-state marker, not claimed revenue. Real results must be entered only after evidence exists.</CardDescription></CardHeader><CardContent className="space-y-4"><div className="space-y-2"><div className="flex items-center justify-between text-xs uppercase tracking-[0.14em] text-muted-foreground"><span>Progress</span><span>{firstRevenueOperation.progressPercent}%</span></div><div className="h-3 overflow-hidden rounded-full border border-amber-300/20 bg-background/70"><div className="h-full rounded-full bg-gradient-to-r from-amber-300 via-cyan-300 to-emerald-300 shadow-[0_0_22px_rgba(251,191,36,0.42)]" style={{ width: firstRevenueOperation.progressPercent + "%" }} /></div></div><div className="rounded-md border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-cyan-100">{firstRevenueOperation.nextAction}</div></CardContent></Card></div></section>;
+function CompanyHealthPanel() {
+  return (
+    <Card className="border-emerald-300/35 bg-emerald-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Company Health</p>
+            <CardTitle className="mt-2 text-2xl text-emerald-100">{companyHealth.mission}</CardTitle>
+          </div>
+          <BarChart3 className="h-5 w-5 text-emerald-200" />
+        </div>
+        <CardDescription>Company-wide health is derived from local typed state. Unknown metrics remain N/A.</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <MetricLine label="Approvals Pending" value={String(companyHealth.approvalsPending)} />
+        <MetricLine label="Active Experiments" value={String(companyHealth.activeExperiments)} />
+        <MetricLine label="Revenue" value={companyHealth.revenue} />
+        <MetricLine label="MRR Goal" value={companyHealth.mrrGoal} />
+        <MetricLine label="Days Remaining" value={String(companyHealth.daysRemaining)} />
+        <MetricLine label="Mission Progress" value={companyHealth.missionProgress} />
+      </CardContent>
+    </Card>
+  );
+}
+
+function BridgePreview() {
+  return (
+    <Card className="border-cyan-300/30 bg-cyan-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">The Bridge doctrine</p>
+            <CardTitle className="mt-2 text-2xl text-cyan-100">{bridgeOverview.phase}</CardTitle>
+          </div>
+          <RadioTower className="h-5 w-5 text-cyan-200" />
+        </div>
+        <CardDescription>{bridgeOverview.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-2">
+        <MetricLine label="Events" value={String(bridgeMetrics.events)} />
+        <MetricLine label="Channels" value={String(bridgeMetrics.eventChannels)} />
+        <MetricLine label="Connected Officers" value={String(bridgeMetrics.connectedOfficers)} />
+        <MetricLine label="Chronicles" value={String(bridgeMetrics.chronicleEntries)} />
+      </CardContent>
+    </Card>
+  );
+}
+
+function ExecutiveBrief() {
+  return (
+    <Card className="border-blue-300/30 bg-blue-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">Current Executive Brief</p>
+            <CardTitle className="mt-2 text-2xl text-blue-100">Single command summary</CardTitle>
+          </div>
+          <BrainCircuit className="h-5 w-5 text-blue-200" />
+        </div>
+        <CardDescription>Future Operations Officer briefings can aggregate officer reports into this panel.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        {executiveBrief.map((item) => (
+          <p key={item} className="rounded-md border border-blue-300/20 bg-blue-300/10 p-3 text-sm leading-6 text-blue-100">
+            {item}
+          </p>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function OperationsFeed() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader
+        eyebrow="Mission Event Bus"
+        title="Live Operations Feed"
+        description="A chronological feed from local typed events. No networking, polling, or fabricated live activity."
+      />
+      <Card className="border-cyan-300/30 bg-card/85">
+        <CardContent className="space-y-3 p-4">
+          {missionEvents.map((event) => (
+            <EventRow key={event.type + "-" + event.id} event={event} />
+          ))}
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+function EventRow({ event }: { event: MissionEvent }) {
+  return (
+    <div className="rounded-md border border-border/70 bg-background/50 p-4">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="space-y-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <StatusBadge label={event.status.replace(/_/g, " ")} tone={eventTone[event.status]} />
+            <span className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{event.type.replace(/_/g, " ")}</span>
+          </div>
+          <h3 className="text-base font-semibold text-foreground">{event.title}</h3>
+        </div>
+        <div className="text-right text-xs leading-5 text-muted-foreground">
+          <p>{event.id}</p>
+          <p>{event.timestamp}</p>
+        </div>
+      </div>
+      <div className="mt-3 grid gap-3 md:grid-cols-[0.8fr_1.2fr]">
+        <InfoLine label="Source" value={event.source} icon={RadioTower} />
+        <InfoLine label="Evidence" value={event.evidenceRef} icon={FileText} />
+      </div>
+      <p className="mt-3 text-sm leading-6 text-foreground/85">{event.summary}</p>
+    </div>
+  );
+}
+
+function ApprovalQueue({ approvals }: { approvals: ApprovalRequest[] }) {
+  return (
+    <Card className="border-amber-300/35 bg-amber-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Approval Queue</p>
+            <CardTitle className="mt-2 text-xl text-amber-100">Awaiting Commander</CardTitle>
+          </div>
+          <StatusBadge label={String(approvals.length)} tone="manual" />
+        </div>
+        <CardDescription>Everything irreversible must flow through this queue.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        {approvals.length ? approvals.map((approval) => <ApprovalCard key={approval.id} approval={approval} />) : <EmptyState text="No approvals awaiting Commander." />}
+      </CardContent>
+    </Card>
+  );
+}
+
+function ApprovalCard({ approval }: { approval: ApprovalRequest }) {
+  return (
+    <div className="rounded-md border border-amber-300/20 bg-background/50 p-3">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{approval.id} / {approval.requester}</p>
+          <h3 className="mt-1 text-sm font-semibold text-amber-100">{approval.title}</h3>
+        </div>
+        <StatusBadge label={approval.risk} tone="manual" />
+      </div>
+      <div className="mt-3 space-y-2">
+        <MetricLine label="Cost" value={approval.cost} />
+        <MetricLine label="Status" value={approval.status} />
+      </div>
+      <p className="mt-3 text-sm leading-6 text-foreground/85">{approval.summary}</p>
+    </div>
+  );
+}
+
+function DecisionRecords({ records }: { records: DecisionRecord[] }) {
+  return (
+    <Card className="border-purple-300/30 bg-purple-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">Decision Records</p>
+            <CardTitle className="mt-2 text-xl text-purple-100">Why choices were made</CardTitle>
+          </div>
+          <FileText className="h-5 w-5 text-purple-200" />
+        </div>
+        <CardDescription>Mission Records answer what happened. Decision Records answer why.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        {records.map((record) => (
+          <div key={record.id} className="rounded-md border border-purple-300/20 bg-background/50 p-3">
+            <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{record.id} / {record.date}</p>
+            <h3 className="mt-1 text-sm font-semibold text-purple-100">{record.decision}</h3>
+            <p className="mt-2 text-sm leading-6 text-foreground/85">{record.reason}</p>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function OfficerPresenceCard({ officer }: { officer: OfficerPresence }) {
+  const tone = officer.status === "Active" ? "success" : officer.status === "Advisory Only" ? "manual" : "beta";
+
+  return (
+    <Card className="border-cyan-300/25 bg-card/80">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{officer.homeDivision}</p>
+            <CardTitle className="mt-2 text-lg">{officer.name}</CardTitle>
+          </div>
+          <StatusBadge label={officer.status} tone={tone} />
+        </div>
+        <CardDescription>{officer.currentAssignment}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <MetricLine label="Reports waiting" value={String(officer.reportsWaiting)} />
+        <InfoLine label="Last completed action" value={officer.lastCompletedAction} icon={CheckCircle2} />
+      </CardContent>
+    </Card>
+  );
+}
+
+function MissionPipelineSnapshot() {
+  return (
+    <Card className="border-cyan-300/30 bg-cyan-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Mission Pipeline Snapshot</p>
+            <CardTitle className="mt-2 text-2xl text-cyan-100">Nothing skips the pipeline</CardTitle>
+          </div>
+          <GitBranch className="h-5 w-5 text-cyan-200" />
+        </div>
+        <CardDescription>Ideas move through evidence, approval, experiment, revenue, scale, playbook, automation, division, program, and institutional knowledge.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <div className="grid gap-3 md:grid-cols-3">
+          <MetricLine label="Stages" value={String(missionPipelineStages.length)} />
+          <MetricLine label="Tracked items" value={String(missionPipelineItems.length)} />
+          <MetricLine label="Lead item" value={missionPipelineItems[0]?.id ?? "N/A"} />
+        </div>
+        {missionPipelineItems.map((item) => (
+          <div key={item.id} className="rounded-md border border-cyan-300/20 bg-background/50 p-3">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{item.id} / {item.owner}</p>
+                <h3 className="mt-1 text-sm font-semibold text-cyan-100">{item.title}</h3>
+              </div>
+              <StatusBadge label={item.currentStage} tone={item.status === "Awaiting Commander" ? "manual" : "beta"} />
+            </div>
+            <p className="mt-2 text-sm leading-6 text-foreground/85">{item.nextGate}</p>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function ScoutLayerSnapshot() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Scout Agent Layer" title="Opportunity discovery reports to Revenue Architect" description="Scouts are planned research/advisory officers. They gather public evidence and create reports only." />
+      <div className="grid gap-4 md:grid-cols-3">
+        {scoutOfficers.map((scout) => (
+          <Card key={scout.id} className="border-emerald-300/25 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-md border border-emerald-300/30 bg-emerald-300/10 text-2xl">{scout.emoji}</span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Reports to {scout.reportsTo}</p>
+                    <CardTitle className="mt-1 text-lg">{scout.name}</CardTitle>
+                  </div>
+                </div>
+                <StatusBadge label={scout.status} tone="beta" />
+              </div>
+              <CardDescription>{scout.role}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <MetricLine label="Output" value={scout.output} />
+              <MetricLine label="Boundary" value="Public evidence reports only" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ProgramStatusPanel() {
+  return (
+    <Card className="border-blue-300/30 bg-blue-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">Program Status</p>
+            <CardTitle className="mt-2 text-2xl text-blue-100">Arenas and officers</CardTitle>
+          </div>
+          <Activity className="h-5 w-5 text-blue-200" />
+        </div>
+        <CardDescription>Status is informational only. Programs are not connected to execution controls.</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-2">
+        {programStatus.map((program) => (
+          <div key={program.name} className="rounded-md border border-blue-300/20 bg-background/50 p-3">
+            <div className="flex items-start justify-between gap-3">
+              <h3 className="text-sm font-semibold text-blue-100">{program.name}</h3>
+              <StatusBadge label={program.state} tone={program.state === "Advisory Only" ? "manual" : "beta"} />
+            </div>
+            <p className="mt-2 text-sm leading-6 text-foreground/85">{program.signal}</p>
+            <p className="mt-2 text-xs leading-5 text-muted-foreground">{program.boundary}</p>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function DivisionKpiCard({ report }: { report: DivisionKpiReport }) {
+  return (
+    <Card className="border-emerald-300/25 bg-card/80">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{report.status}</p>
+            <CardTitle className="mt-2 text-xl">{report.division}</CardTitle>
+          </div>
+          <CircleDollarSign className="h-5 w-5 text-emerald-200" />
+        </div>
+        <CardDescription>KPI values cite their evidence source. Missing records stay N/A.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        {report.kpis.map((kpi) => (
+          <div key={kpi.label} className="rounded-md border border-border/70 bg-background/50 p-3">
+            <div className="flex items-center justify-between gap-3 text-sm">
+              <span className="text-muted-foreground">{kpi.label}</span>
+              <span className="text-right font-medium text-foreground">{String(kpi.value)}</span>
+            </div>
+            <p className="mt-2 text-xs leading-5 text-muted-foreground">{kpi.evidence}</p>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function CompletedExperiments() {
+  return (
+    <Card className="border-emerald-300/25 bg-card/80">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Recently Completed Experiments</p>
+            <CardTitle className="mt-2 text-xl">Evidence results</CardTitle>
+          </div>
+          <CheckCircle2 className="h-5 w-5 text-emerald-200" />
+        </div>
+        <CardDescription>Only completed experiments with real results appear here.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        {recentlyCompletedExperiments.length ? (
+          recentlyCompletedExperiments.map((experiment) => (
+            <div key={experiment.id} className="rounded-md border border-emerald-300/20 bg-background/50 p-3">
+              <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{experiment.id}</p>
+              <p className="mt-1 text-sm leading-6 text-foreground/85">{experiment.result}</p>
+            </div>
+          ))
+        ) : (
+          <EmptyState text="No completed experiments recorded." />
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+function AcademySnapshot() {
+  return (
+    <Card className="border-amber-300/25 bg-card/80">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">The Academy</p>
+            <CardTitle className="mt-2 text-xl">Institutional learning campus</CardTitle>
+          </div>
+          <Landmark className="h-5 w-5 text-amber-200" />
+        </div>
+        <CardDescription>{academyOverview.mission}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <MetricLine label="Status" value={academyOverview.status} />
+        <MetricLine label="Wings" value={String(academyWings.length)} />
+        <MetricLine label="Founding Day" value={foundingDay.date} />
+        <div className="rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-sm leading-6 text-amber-100">
+          {academyOverview.safety}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function TopPriorities() {
+  return (
+    <Card className="border-amber-300/25 bg-card/80">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Current Top Priorities</p>
+            <CardTitle className="mt-2 text-xl">Next commander decisions</CardTitle>
+          </div>
+          <AlertTriangle className="h-5 w-5 text-amber-200" />
+        </div>
+        <CardDescription>Priorities are review prompts, not automated tasks.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        {topPriorities.map((priority) => (
+          <p key={priority} className="rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-sm leading-6 text-amber-100">
+            {priority}
+          </p>
+        ))}
+      </CardContent>
+    </Card>
+  );
 }
 
 function CommandStat({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-md border border-amber-300/20 bg-background/50 p-3"><p className="mb-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">{label}</p><p className="text-sm font-medium leading-6 text-foreground/90">{value}</p></div>;
+  return (
+    <div className="rounded-md border border-cyan-300/20 bg-background/50 p-3">
+      <p className="mb-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
+      <p className="text-sm font-medium leading-6 text-foreground/90">{value}</p>
+    </div>
+  );
 }
 
-function useMissionSnapshot() {
-  const [snapshot, setSnapshot] = useState<MissionSnapshot | null>(null);
-  const [bridgeState, setBridgeState] = useState<BridgeState>("loading");
-  const [bridgeError, setBridgeError] = useState<string | null>(null);
-  useEffect(() => { let cancelled = false; const load = async () => { try { const response = await fetch("/mission-snapshot.json?ts=" + Date.now(), { cache: "no-store" }); if (!response.ok) throw new Error("HTTP " + response.status); const data = (await response.json()) as MissionSnapshot; if (cancelled) return; setSnapshot(data); setBridgeError(null); const generated = data.generated_at ? Date.parse(data.generated_at) : 0; setBridgeState(generated && Date.now() - generated <= 60000 ? "connected" : "stale"); } catch (error) { if (cancelled) return; setBridgeState("missing"); setBridgeError(error instanceof Error ? error.message : "Mission data bridge not running."); } }; void load(); const timer = window.setInterval(load, 5000); return () => { cancelled = true; window.clearInterval(timer); }; }, []);
-  return { snapshot, bridgeState, bridgeError };
+function InfoLine({ label, value, icon: Icon }: { label: string; value: string; icon: ElementType }) {
+  return (
+    <div className="flex gap-3">
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+      <div>
+        <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
+        <p className="mt-1 leading-6 text-foreground/90">{value}</p>
+      </div>
+    </div>
+  );
 }
-function BridgeStatusCard({ state, tone, generatedAt, ageSeconds, error, version }: { state: BridgeState; tone: "success" | "manual" | "beta"; generatedAt: Date | null; ageSeconds: number | null; error: string | null; version: string }) { const stateLabel = state === "connected" ? "Connected" : state === "stale" ? "STALE DATA" : state === "missing" ? "Mission data bridge not running" : "Loading"; const Icon = state === "missing" ? WifiOff : state === "stale" ? Clock3 : CheckCircle2; return <Card className="border-cyan-300/30 bg-card/80"><CardHeader className="flex-row items-start justify-between gap-4"><div className="space-y-2"><StatusBadge label={stateLabel} tone={tone} /><CardTitle className="text-2xl">Snapshot status</CardTitle><CardDescription>{error ?? "Static frontend is reading the latest local sanitized JSON snapshot."}</CardDescription></div><div className="flex h-11 w-11 items-center justify-center rounded-md border border-cyan-300/30 bg-cyan-300/10"><Icon className="h-5 w-5 text-cyan-200" /></div></CardHeader><CardContent className="grid gap-3 md:grid-cols-3"><InfoBlock label="Generated" value={generatedAt ? generatedAt.toLocaleString() : "Unknown"} icon={Clock3} /><InfoBlock label="Age" value={ageSeconds === null ? "Unknown" : ageSeconds + " seconds"} icon={Activity} /><InfoBlock label="Bridge version" value={version || "Unknown"} icon={DatabaseZap} /></CardContent></Card>; }
-function SystemSnapshotCard({ title, data }: { title: string; data?: Record<string, unknown> }) { const connected = data?.connected === true; const status = textValue(data?.status) || "Unknown"; const metrics = useMemo(() => importantMetrics(data), [data]); return <Card className={cn("border-border/80 bg-card/80", connected ? "border-emerald-300/35" : "border-amber-300/25")}><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{connected ? "Connected" : "Unknown / missing"}</p><CardTitle className="mt-2 text-lg">{title}</CardTitle></div>{connected ? <CheckCircle2 className="h-5 w-5 text-emerald-200" /> : <FileWarning className="h-5 w-5 text-amber-200" />}</div><CardDescription>{status}</CardDescription></CardHeader><CardContent className="space-y-2">{metrics.map(([label, value]) => <MetricLine key={label} label={label} value={value} />)}</CardContent></Card>; }
-function importantMetrics(data?: Record<string, unknown>): [string, string][] { if (!data) return [["State", "No snapshot data"]]; const keys = ["closed_trades", "closed_shots", "wins", "losses", "win_rate", "total_pnl_usd", "last_trade_time", "current_goal_progress", "version"]; const metrics = keys.filter((key) => data[key] !== undefined && data[key] !== null).map((key) => [labelize(key), textValue(data[key])] as [string, string]); return metrics.length ? metrics.slice(0, 6) : [["State", "No metrics reported"]]; }
-function SnapshotList<T>({ items, empty, render }: { items?: T[]; empty: string; render: (item: T) => JSX.Element }) { if (!items?.length) return <Card className="border-border/80 bg-card/80"><CardContent className="p-4 text-sm text-muted-foreground">{empty}</CardContent></Card>; return <div className="grid gap-4">{items.map(render)}</div>; }
-function MissionBusCard({ status }: { status: MissionBusStatus }) { return <Card className={cn("border-border/80 bg-card/80", status.connected ? "border-emerald-300/35" : "border-amber-300/25")}><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{status.connected ? "Published" : "Waiting for status.json"}</p><CardTitle className="mt-2 text-lg">{status.mission}</CardTitle></div>{status.connected ? <CheckCircle2 className="h-5 w-5 text-emerald-200" /> : <FileWarning className="h-5 w-5 text-amber-200" />}</div><CardDescription>{status.status}</CardDescription></CardHeader><CardContent className="space-y-2"><MetricLine label="Phase" value={status.phase ?? "Unknown"} /><MetricLine label="Next" value={status.next_action ?? "Unknown"} /><MetricLine label="Tickets" value={status.tickets === null ? "Unknown" : String(status.tickets)} /><MetricLine label="Last Update" value={status.last_update ?? "Unknown"} /></CardContent></Card>; }
-function WatcherSummaryCard({ watcher }: { watcher: WatcherSummary }) { return <Card className="border-cyan-300/25 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{watcher.status}</p><CardTitle className="mt-2 text-lg">{watcher.name}</CardTitle></div><Eye className="h-5 w-5 text-cyan-200" /></div><CardDescription>{watcher.role}</CardDescription></CardHeader><CardContent><p className="text-sm leading-6 text-foreground/90">{watcher.signal}</p></CardContent></Card>; }
-function TicketCard({ ticket }: { ticket: SnapshotTicket }) { return <Card className="border-amber-300/25 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">{ticket.id} / {ticket.severity}</p><CardTitle className="mt-2 text-lg">{ticket.title}</CardTitle></div><Ticket className="h-5 w-5 text-amber-200" /></div><CardDescription>{ticket.owner} / {ticket.status}</CardDescription></CardHeader><CardContent className="space-y-3 text-sm leading-6"><p>{ticket.evidence}</p><p className="rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-amber-100">{ticket.recommendation}</p></CardContent></Card>; }
-function ProposalCard({ proposal }: { proposal: ResearchProposal }) { return <Card className="border-purple-300/25 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{proposal.id} / {proposal.status}</p><CardTitle className="mt-2 text-lg">{proposal.title}</CardTitle></div><FlaskConical className="h-5 w-5 text-purple-200" /></div><CardDescription>{proposal.owner}</CardDescription></CardHeader><CardContent className="space-y-3 text-sm leading-6"><p>{proposal.evidence_basis}</p><p className="rounded-md border border-purple-300/20 bg-purple-300/10 p-3 text-purple-100">{proposal.recommendation}</p></CardContent></Card>; }
-function CouncilCard({ item }: { item: CouncilBriefing }) { return <Card className="border-blue-300/25 bg-card/80"><CardHeader className="flex-row items-start gap-3"><BrainCircuit className="mt-1 h-5 w-5 text-blue-200" /><div><CardTitle className="text-lg">{item.role}</CardTitle><CardDescription>{item.briefing}</CardDescription></div></CardHeader></Card>; }
-function IncomeDivisionPanel() { return <Card className="border-emerald-300/35 bg-emerald-950/15"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Planning only</p><CardTitle className="mt-2 text-2xl text-emerald-100">{incomeDivisionGoal.currentGoal}</CardTitle></div><StatusBadge label="Research + workflow design" tone="success" /></div><CardDescription>{incomeDivisionGoal.safetyState}</CardDescription></CardHeader><CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">{incomeDivisionGoal.doctrine.map((item) => <div key={item} className="rounded-md border border-emerald-300/20 bg-emerald-300/10 p-3 text-sm leading-6 text-emerald-100">{item}</div>)}</CardContent></Card>; }
-function IncomeRoomCard({ room }: { room: IncomeRoom }) { return <Card className="border-emerald-300/25 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{room.status}</p><CardTitle className="mt-2 text-lg">{room.name}</CardTitle></div><Sparkles className="h-5 w-5 text-emerald-200" /></div><CardDescription>{room.purpose}</CardDescription></CardHeader><CardContent className="space-y-3 text-sm leading-6"><InfoBlock label="Manual workflow" value={room.manualWorkflow} icon={RadioTower} /><InfoBlock label="Safety boundary" value={room.safetyBoundary} icon={ShieldCheck} /></CardContent></Card>; }
-function IncomeAgentCard({ profile }: { profile: IncomeAgentProfile }) { return <Card className="border-blue-300/20 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">{profile.status}</p><CardTitle className="mt-2 text-lg">{profile.name}</CardTitle></div><BrainCircuit className="h-5 w-5 text-blue-200" /></div><CardDescription>{profile.role}</CardDescription></CardHeader><CardContent><p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Future profile files</p><p className="mt-2 text-sm leading-6 text-foreground/90">{profile.futureFiles.join(" / ")}</p></CardContent></Card>; }
-function ZenithProfileCard({ profile }: { profile: ArchitectProfile }) { const accent = accentClasses[profile.accent]; return <Card className={cn("relative overflow-hidden border-purple-300/40 bg-purple-950/20 shadow-[0_0_58px_rgba(168,85,247,0.18)]", accent.glow)}><div className={cn("h-1 bg-gradient-to-r", accent.strip)} /><CardHeader className="relative grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-start"><div className="space-y-3"><div className="flex items-center gap-3"><span className="flex h-12 w-12 items-center justify-center rounded-md border border-purple-300/35 bg-purple-300/10 text-2xl shadow-[0_0_28px_rgba(168,85,247,0.2)]">{profile.emoji}</span><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{profile.title}</p><CardTitle className="mt-1 text-2xl text-purple-100">{profile.name}</CardTitle></div></div><StatusBadge label={profile.status} tone="success" /><CardDescription>{profile.mission}</CardDescription></div><div className="grid gap-3 md:grid-cols-2"><InfoBlock label="Current focus" value={profile.currentFocus} icon={Compass} /><InfoBlock label="Data source" value={profile.dataSource} icon={DatabaseZap} /></div></CardHeader><CardContent className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]"><div className="rounded-md border border-border/70 bg-background/50 p-4"><div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-muted-foreground"><BrainCircuit className="h-3.5 w-3.5 text-primary" />Responsibilities</div><div className="grid gap-2 sm:grid-cols-2">{profile.responsibilities.map((item) => <span key={item} className="rounded-md border border-purple-300/20 bg-purple-300/10 px-3 py-2 text-sm text-purple-100">{item}</span>)}</div></div><div className="rounded-md border border-border/70 bg-background/50 p-4"><div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-muted-foreground"><ShieldCheck className="h-3.5 w-3.5 text-primary" />Safety doctrine</div><div className="space-y-2">{profile.safety.map((item) => <p key={item} className="rounded-md border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-sm text-cyan-100">{item}</p>)}</div></div></CardContent></Card>; }
-function SafetyBanner() { return <Card className="border-red-300/35 bg-red-950/20 shadow-[0_0_44px_rgba(248,113,113,0.14)]"><CardHeader className="flex-row items-start gap-3 pb-3"><div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-red-300/30 bg-red-300/10"><ShieldCheck className="h-5 w-5 text-red-200" /></div><div><CardTitle className="text-red-100">Safety Lock Active</CardTitle><CardDescription className="text-red-100/75">THE GRID is monitoring paper/research systems only. No live trading, wallet signing, inventory purchase, supplier spend, or autonomous execution is authorized.</CardDescription></div></CardHeader></Card>; }
-function MissionCard({ mission }: { mission: MissionStatus }) { const accent = accentClasses[mission.accent]; return <Card className={cn("group relative overflow-hidden transition duration-300", accent.border, accent.glow)}><div className={cn("h-1 bg-gradient-to-r", accent.strip)} /><CardHeader className="space-y-3"><div className="flex items-start justify-between gap-3"><div><p className={cn("text-xs font-semibold uppercase tracking-[0.16em]", accent.text)}>{mission.callsign}</p><CardTitle className="mt-2 text-xl">{mission.name}</CardTitle></div><span className={cn("rounded-full px-2.5 py-1 text-xs font-medium", accent.bg, accent.text)}>{mission.riskLevel}</span></div><StatusBadge label={mission.status} tone={mission.safetyState === "Inventory blocked" ? "manual" : "beta"} /></CardHeader><CardContent className="space-y-4 text-sm"><InfoLine label="Phase" value={mission.phase} icon={Activity} /><InfoLine label="Objective" value={mission.currentObjective} icon={RadioTower} /><InfoLine label="Safety" value={mission.safetyState} icon={ShieldCheck} /><InfoLine label="Next" value={mission.nextAction} icon={Sparkles} /><div className="rounded-md border border-border/70 bg-background/50 p-3"><p className="mb-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">Truth</p><p className="leading-6 text-foreground/90">{mission.truth}</p></div><div className="flex items-center justify-between gap-3 border-t border-border/70 pt-3 text-xs text-muted-foreground"><span>{mission.lastKnownUpdate}</span><span>{mission.dataSource}</span></div></CardContent></Card>; }
-function WatcherCard({ watcher }: { watcher: WatcherStatus }) { const accent = accentClasses[watcher.accent]; return <Card className={cn("relative overflow-hidden transition duration-300", accent.border, accent.glow)}><div className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full border border-current text-xl opacity-80 shadow-[0_0_28px_rgba(34,211,238,0.12)]">{watcher.emoji}</div><CardHeader className="pr-20"><div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground"><span className={cn("h-2 w-2 animate-pulse rounded-full", accent.bg)} />{watcher.statusBadge}</div><CardTitle className={cn("text-lg", accent.text)}>{watcher.name}</CardTitle><CardDescription>{watcher.role}</CardDescription></CardHeader><CardContent className="space-y-4 text-sm"><InfoBlock label="Watches" value={watcher.watches} icon={Eye} /><InfoBlock label="Current signal" value={watcher.currentSignal} icon={DatabaseZap} /><InfoBlock label="Promotion status" value={watcher.promotionStatus} icon={AlertTriangle} /><p className="border-t border-border/70 pt-3 text-xs text-muted-foreground">Last update: {watcher.lastUpdate}</p></CardContent></Card>; }
-function InfoLine({ label, value, icon: Icon }: { label: string; value: string; icon: ElementType }) { return <div className="flex gap-3"><Icon className="mt-0.5 h-4 w-4 shrink-0 text-primary" /><div><p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{label}</p><p className="mt-1 leading-6 text-foreground/90">{value}</p></div></div>; }
-function InfoBlock({ label, value, icon: Icon }: { label: string; value: string; icon: ElementType }) { return <div className="rounded-md border border-border/70 bg-background/50 p-3"><div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-muted-foreground"><Icon className="h-3.5 w-3.5 text-primary" />{label}</div><p className="leading-6 text-foreground/90">{value}</p></div>; }
-function MetricLine({ label, value }: { label: string; value: string }) { return <div className="flex items-center justify-between gap-3 rounded-md border border-border/70 bg-background/50 px-3 py-2 text-sm"><span className="text-muted-foreground">{label}</span><span className="text-right text-foreground/90">{value}</span></div>; }
-function labelize(value: string) { return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()); }
-function textValue(value: unknown): string { if (value === null || value === undefined) return "Unknown"; if (typeof value === "string") return value; if (typeof value === "number" || typeof value === "boolean") return String(value); return JSON.stringify(value); }
+
+function MetricLine({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between gap-3 rounded-md border border-border/70 bg-background/50 px-3 py-2 text-sm">
+      <span className="text-muted-foreground">{label}</span>
+      <span className="text-right text-foreground/90">{value}</span>
+    </div>
+  );
+}
+
+function EmptyState({ text }: { text: string }) {
+  return (
+    <div className="rounded-md border border-border/70 bg-background/50 p-3 text-sm leading-6 text-muted-foreground">
+      {text}
+    </div>
+  );
+}

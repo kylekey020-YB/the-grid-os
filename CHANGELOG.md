@@ -2,7 +2,208 @@
 
 All notable changes to THE GRID will be documented in this file.
 
-Current Version: v0.9.0
+Current Version: v2.1.0
+
+## v2.1.0 - Identity System + Scout Agent Layer
+
+### Added
+
+- src/data/identitySystem.ts
+- src/components/identity/GridIdentity.tsx
+- src/data/scoutOfficers.ts
+- IDENTITY_SYSTEM_STATUS.md
+- SCOUT_OFFICER_STATUS.md
+- Company Seal
+- Founding Day Plaque
+- Campaign Patch: Operation First Revenue
+- Division Insignias
+- Officer Badge shell
+- Mission Ribbons
+- Market Scout
+- Demand Scout
+- Risk Scout
+- Scout surfaces in Mission Control, The Bridge, Council, Revenue Intelligence, World Map, and Officer Network
+
+### Changed
+
+- Canonical documentation version updated to v2.1.0
+- The Academy now includes the reusable identity system section
+- The Bridge includes company seal and scout network panel
+- Revenue Intelligence and Council include the Scout Officer layer
+
+### Safety Boundary
+
+- Typed data and UI only
+- No publishing, customer messaging, spending, account automation, scraping against platform rules, copied listings/products/designs/reviews, or fake metrics
+
+## v2.0.0 - THE GRID Nervous System
+
+### Added
+
+- The Bridge page
+- src/data/eventRegistry.ts
+- src/data/officerNetwork.ts
+- src/data/bridge.ts
+- src/data/chronicle.ts
+- NERVOUS_SYSTEM_STATUS.md
+- Event Registry
+- Officer Network
+- Chronicle section in The Academy
+- Bridge/Nervous System entries in World Map
+- Phase II Bridge preview in Mission Control
+- Article 0 - The Mission in THE_GRID_CONSTITUTION.md
+
+### Changed
+
+- Canonical documentation version updated to v2.0.0
+- PROJECT_LOG now declares Phase I Foundation complete
+- README, PROJECT_LOG, VERSION, AI_HANDOFF, FOUNDING_COUNCIL_BRIEF, and THE_GRID_CONSTITUTION now reference Phase II Living Systems
+- Mission Control now frames the operating pattern as Officer -> Event -> Mission Bus -> Mission Control -> Executive Brief
+
+### Safety Boundary
+
+- Typed architecture only
+- No backend, networking, polling, external writes, account actions, autonomous execution, or fabricated live activity
+
+## v1.7.0 - The Academy
+
+### Added
+
+- The Academy page
+- src/data/academy.ts typed Academy data
+- Founding Hall
+- Playbooks
+- Master Classes
+- Hall of Wins
+- Hall of Failures
+- Evolution Lab
+- Hall of Command
+- Founding Day record for July 2, 2026
+- Academy navigation entry
+- Academy World Map district and world space
+- Mission Control Academy snapshot
+
+### Changed
+
+- Canonical documentation version updated to v1.7.0
+- README, PROJECT_LOG, VERSION, AI_HANDOFF, FOUNDING_COUNCIL_BRIEF, and THE_GRID_CONSTITUTION now reference The Academy
+- Mission Control now surfaces institutional learning alongside experiments and priorities
+
+### Safety Boundary
+
+- Typed static UI only
+- No backend, persistence, fake wins, invented failures, fake metrics, autonomous learning system, or claims that unvalidated playbooks are proven
+
+## v1.6.0 - Operations Intelligence Layer
+
+### Added
+
+- src/data/companyKpis.ts
+- Company Health panel in Mission Control
+- Standardized division KPI reports for Income Division, Commerce, APEX, CLU, and Operations
+- OPERATIONS_INTELLIGENCE.md
+
+### Changed
+
+- Mission Control now presents company performance through typed KPI data
+- Canonical documentation version updated to v1.6.0
+- README, PROJECT_LOG, VERSION, AI_HANDOFF, FOUNDING_COUNCIL_BRIEF, and THE_GRID_CONSTITUTION now reference Operations Intelligence
+
+### Safety Boundary
+
+- Typed static reporting only
+- Unknown values remain N/A
+- No external reads, account connections, jobs, automation, or fabricated metrics
+
+## v1.5.0 - The Operations Floor
+
+### Added
+
+- src/data/missionEvents.ts typed Mission Event Bus model
+- src/data/officerPresence.ts
+- Operations Feed in Mission Control
+- Officer Presence Cards
+- Current Executive Brief
+- Operations Floor layout with approvals, decisions, pipeline, and program status consolidated into Mission Control
+- OPERATIONS_FLOOR.md
+
+### Changed
+
+- Mission Control homepage is now the unified Operations Floor instead of a collection of isolated snapshots
+- Event rendering is driven by typed local data instead of page-specific coupling
+
+### Safety Boundary
+
+- Read-only command surface only
+- No backend, polling, networking, autonomous execution, live approvals, external integrations, or fabricated activity
+
+## v1.4.0 - Mission Pipeline
+
+### Added
+
+- Mission Pipeline page
+- src/data/missionPipeline.ts
+- MISSION_PIPELINE.md
+- Mission Pipeline navigation entry
+- Mission Control Mission Pipeline Snapshot
+- Typed pipeline stages from Idea through Institutional Knowledge
+- Current pipeline items for Operation First Revenue and Bambu A1 Rescue Kit
+
+### Changed
+
+- Canonical documentation version updated to v1.4.0
+- THE_GRID_CONSTITUTION.md now states that every idea enters the Mission Pipeline and nothing skips it
+- README, PROJECT_LOG, VERSION, and AI_HANDOFF now reference the Mission Pipeline doctrine
+
+### Safety Boundary
+
+- Read-only workflow architecture only
+- No backend, persistence, live stage advancement, account actions, publishing, spending, scraping, automation, or fabricated metrics
+
+## v1.3.0 - Approval System + Decision Records
+
+### Added
+
+- APPROVAL_SYSTEM.md
+- DECISION_RECORDS.md
+- src/data/approvalSystem.ts
+- First-class Approval Queue objects
+- First-class Decision Record objects
+- AR-001: Revenue Architect / Income Lane Scoring Sprint
+- DR-001: Income Division becomes primary offensive effort
+- Revenue Intelligence Approval Queue and Decision Records sections
+- Mission Control Approval Queue Snapshot
+
+### Changed
+
+- Canonical documentation version updated to v1.3.0
+- THE_GRID_CONSTITUTION.md now clarifies first-class approvals and Decision Records
+- README, PROJECT_LOG, VERSION, and AI_HANDOFF now reference the Approval System
+
+### Safety Boundary
+
+- Read-only governance/UI only
+- No backend, persistence, live approvals, account actions, publishing, spending, scraping, or automation
+
+## v1.2.0 - Founding Constitution
+
+### Added
+
+- THE_GRID_CONSTITUTION.md
+- FOUNDING_COUNCIL_BRIEF.md
+- Preamble, Founding Council, Mission Commander, Executive Council, Officer Doctrine, Program Doctrine, Mission Doctrine, Company Doctrine, Mission Lifecycle, Approval System, Institutional Memory, Promotion Rules, Activation Rules, Engineering Doctrine, Mission Records, Amendments, Officer Oath, and Mission Commander Oath sections
+- Governance reference in README, PROJECT_LOG, VERSION, and AI_HANDOFF
+- First-read onboarding packet for future AI and human contributors
+
+### Changed
+
+- Canonical documentation version updated to v1.2.0
+- Documentation now identifies the constitution as the governing project reference
+
+### Safety Boundary
+
+- Documentation/governance only
+- No automation, scraping, account actions, backend, live integrations, autonomous execution, or fabricated metrics
 
 ## v0.9.0 - Hermes Live Agent Integration Plan
 

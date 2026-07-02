@@ -1,75 +1,73 @@
 # THE GRID
 
-Current Version: v0.9.0
+Current Version: v2.1.0
 
 ## Status
 
-Hermes Live Agent Integration Plan
+Identity System + Scout Agent Layer
 
 ## Completed
 
-- React
-- TypeScript
-- Tailwind CSS
-- Vite
-- Responsive Navigation
-- Commerce Workstation
-- Manual Lifecycle
-- Documentation
-- GitHub Repository preparation
-- Mission Control foundation
-- Read-only mission data bridge
-- Mission Bus direction
-- Visual identity foundation
-- Income Division planning foundation
-- REVENUE ARCHITECT watcher
-- Income Division status document
-- World Map page
-- Council page
-- Typed world district data
-- Typed council officer data
-- Research/output gitignore protection
-- Income Division page
-- Income Factory typed data
-- Compliance Sentinel gates
-- Fiverr/Etsy/Publishing/Revenue workflow rooms
-- INCOME_FACTORY_STATUS.md
-- Revenue Intelligence page
-- Market Scanner
-- Opportunity Pipeline
-- Revenue Score
-- Experiment Tracker
-- Revenue Dashboard
-- Hall of Wins
-- Opportunity Radar
-- Playbook Library
-- The Senate
-- Unknown-first revenue intelligence data
-- Hermes Agents page
-- Hermes typed profile data
-- Hermes autonomy ladder
-- HERMES_AGENT_STATUS.md
-- Hermes architecture documentation
+- Phase I Foundation
+- Doctrine
+- Constitution
+- Founding Council
+- World Map
+- Mission Control
+- Revenue Intelligence
+- Approval System
+- Decision Records
+- Mission Pipeline
+- Academy
+- Institutional Memory
+- Operations Officer pattern
+- Revenue Architect
+- Mission Event Bus typed model
+- Event Registry
+- Officer Network
+- Operations Feed
+- Division Health
+- Company Health
+- The Bridge
+- Chronicle
+- Article 0 - The Mission
+- NERVOUS_SYSTEM_STATUS.md
+- Identity System
+- Company Seal
+- Founding Day Plaque
+- Operation First Revenue Campaign Patch
+- Division Insignias
+- Officer Badge shell
+- Mission Ribbons
+- Scout Officer Layer
+- Market Scout
+- Demand Scout
+- Risk Scout
+- IDENTITY_SYSTEM_STATUS.md
+- SCOUT_OFFICER_STATUS.md
 
 ## Current Focus
 
-- Hermes agent profile preparation
-- Autonomy boundaries
-- Approval gates
-- Future profile documentation
-- Documentation
+- THE GRID Nervous System
+- The Bridge
+- Event Registry
+- Officer Network
+- Chronicle
+- Mission Bus architecture
+- Executive Brief pattern
+- Operation First Revenue
 
 ## Next Version
 
-v1.0.0
+v2.2.0
 
 Planned focus:
 
-- Living Company integration
-- Cross-division status flow
-- Evidence synthesis
-- Decision history
-- Production-ready operating system polish
+- Mission Records data model expansion
+- After Action Review structure
+- Executive Brief composition
+- Evidence-backed Chronicle updates
+- Real status publishers when approved
 
 ## Known Limitations
 
@@ -77,6 +75,9 @@ Planned focus:
 - No persistence
 - No APIs
 - No authentication
+- No networking
+- No polling
+- No external writes
 - No AI automation
 - No autonomous Programs
 - No real trading integration
@@ -85,3 +86,16 @@ Planned focus:
 - No connected Hermes agents
 - No autonomous publishing or messaging
 - No spending, trading, or account automation
+- No marketplace scraping
+- No live autonomous agents
+- No live approval execution
+- No decision persistence
+- No live stage advancement
+- No external KPI feeds
+- No fake Academy wins
+- No invented Academy failures
+- No fabricated live activity
+- No Scout publishing
+- No Scout customer messaging
+- No Scout spending
+- No Scout scraping against platform rules

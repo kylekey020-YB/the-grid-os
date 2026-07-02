@@ -31,7 +31,10 @@ export const gridDistricts: GridDistrict[] = [
   { id: "gauntlet-lab", emoji: "🧪", name: "Gauntlet Lab", purpose: "Research and backtesting surfaces for honest validation.", currentStatus: "Research", connectedWatcher: "GAUNTLET", accent: "emerald" },
   { id: "war-room", emoji: "⚔️", name: "War Room", purpose: "Mission decisions, strategic reviews, and doctrine checkpoints.", currentStatus: "Read-Only", connectedWatcher: "ZENITH", accent: "purple" },
   { id: "grid-core", emoji: "🌐", name: "Grid Core", purpose: "System health, shell integrity, documentation, and version awareness.", currentStatus: "Active", connectedWatcher: "GRID CORE", accent: "cyan" },
+  { id: "scout-outpost", emoji: "🕵️", name: "Scout Outpost", purpose: "Research-only officer layer for marketplace opportunities, demand evidence, and risk signals reporting to Revenue Architect.", currentStatus: "Planned", connectedWatcher: "MARKET SCOUT / DEMAND SCOUT / RISK SCOUT", accent: "emerald" },
   { id: "revenue-intelligence", emoji: "📈", name: "Revenue Intelligence", purpose: "Read-only market scanner, opportunity pipeline, revenue scoring, experiment tracking, Senate advice, and playbook library.", currentStatus: "Research", connectedWatcher: "REVENUE ARCHITECT / GAUNTLET / SENTINEL", accent: "emerald" },
+  { id: "bridge-district", emoji: "🌉", name: "The Bridge", purpose: "Primary Phase II operations surface for officer network, event registry, mission feed, approvals, division health, and executive brief state.", currentStatus: "Active", connectedWatcher: "GRID CORE / ZENITH", accent: "cyan" },
+  { id: "academy-district", emoji: "🏛", name: "The Academy", purpose: "Institutional learning campus for doctrine, playbooks, lessons, after-action reviews, evolution records, and command history.", currentStatus: "Active", connectedWatcher: "ARCHIVIST / ZENITH", accent: "gold" },
   { id: "the-lounge", emoji: "🍸", name: "The Lounge", purpose: "Wins, milestones, completed missions, and honest retrospectives.", currentStatus: "Planned", connectedWatcher: "ARCHIVIST", accent: "magenta" },
   { id: "strategy-table", emoji: "🎲", name: "Strategy Table", purpose: "Business, trading, and AI scenario planning before ticket creation.", currentStatus: "Planned", connectedWatcher: "ZENITH", accent: "purple" },
 ];
@@ -41,6 +44,9 @@ export const worldSpaces: WorldSpace[] = [
   { id: "strategy-table", emoji: "🎲", name: "Strategy Table", purpose: "Explore new business, trading, and AI scenarios before turning them into tickets.", status: "Planned", safetyNote: "Brainstorming does not authorize implementation.", accent: "purple" },
   { id: "hall-of-fame", emoji: "🏆", name: "Hall of Fame", purpose: "Track major validated wins once they happen.", status: "Parked", safetyNote: "Only validated wins belong here; no fabricated revenue, trades, or milestones.", accent: "gold" },
   { id: "innovation-lab", emoji: "🧪", name: "Innovation Lab", purpose: "Store experimental concepts not ready for implementation.", status: "Planned", safetyNote: "Ideas remain parked until a mission prompt authorizes a milestone.", accent: "emerald" },
+  { id: "identity-forge", emoji: "🛡️", name: "Identity Forge", purpose: "Company Seal, campaign patches, division insignias, officer badges, and mission ribbons.", status: "Active", safetyNote: "Identity assets are presentation and history only; they do not claim business performance.", accent: "gold" },
+  { id: "nervous-system", emoji: "🛰", name: "Nervous System", purpose: "Typed architecture for Officer -> Event -> Mission Bus -> Mission Control -> Executive Brief.", status: "Active", safetyNote: "No backend, networking, polling, account action, or autonomous execution is connected.", accent: "cyan" },
+  { id: "academy-wing", emoji: "🏛", name: "The Academy", purpose: "Convert lessons into permanent institutional knowledge.", status: "Active", safetyNote: "The Academy records lessons, not fake wins, invented failures, or unearned playbooks.", accent: "gold" },
 ];
 
 export const worldMapDoctrine = "Districts organize the world. Officers advise. Programs execute. Mission Commander decides.";

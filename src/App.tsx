@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { AppShell } from "@/components/layout/AppShell";
+import { Academy } from "@/pages/Academy";
+import { Bridge } from "@/pages/Bridge";
 import { Commerce } from "@/pages/Commerce";
 import { Dashboard } from "@/pages/Dashboard";
 import { HermesAgents } from "@/pages/HermesAgents";
 import { IncomeDivision } from "@/pages/IncomeDivision";
 import { KnowledgeVault } from "@/pages/KnowledgeVault";
 import { MissionControl } from "@/pages/MissionControl";
+import { MissionPipeline } from "@/pages/MissionPipeline";
 import { Programs } from "@/pages/Programs";
 import { Research } from "@/pages/Research";
 import { RevenueIntelligence } from "@/pages/RevenueIntelligence";
@@ -18,6 +21,9 @@ import { Council } from "@/pages/Council";
 export type PageId =
   | "dashboard"
   | "mission-control"
+  | "bridge"
+  | "mission-pipeline"
+  | "academy"
   | "world-map"
   | "council"
   | "trading"
@@ -34,6 +40,9 @@ export type PageId =
 const pages: Record<PageId, JSX.Element> = {
   dashboard: <Dashboard />,
   "mission-control": <MissionControl />,
+  bridge: <Bridge />,
+  "mission-pipeline": <MissionPipeline />,
+  academy: <Academy />,
   "world-map": <WorldMap />,
   council: <Council />,
   trading: <Trading />,
