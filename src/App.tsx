@@ -3,6 +3,7 @@ import { AppShell } from "@/components/layout/AppShell";
 import { Commerce } from "@/pages/Commerce";
 import { Dashboard } from "@/pages/Dashboard";
 import { KnowledgeVault } from "@/pages/KnowledgeVault";
+import { MissionControl } from "@/pages/MissionControl";
 import { Programs } from "@/pages/Programs";
 import { Research } from "@/pages/Research";
 import { SettingsPage } from "@/pages/Settings";
@@ -11,6 +12,7 @@ import { WarRoom } from "@/pages/WarRoom";
 
 export type PageId =
   | "dashboard"
+  | "mission-control"
   | "trading"
   | "commerce"
   | "research"
@@ -21,6 +23,7 @@ export type PageId =
 
 const pages: Record<PageId, JSX.Element> = {
   dashboard: <Dashboard />,
+  "mission-control": <MissionControl />,
   trading: <Trading />,
   commerce: <Commerce />,
   research: <Research />,

@@ -53,9 +53,16 @@ This build is intentionally only the shell. It includes navigation, responsive l
     git add .
     git commit -m "Harden THE GRID UI foundation"
 
+## v0.2 Planning
+
+- Mission Control monitor foundation is being added as a read-only command center.
+- Watchers are read-only workstation monitors, not autonomous agents or Programs.
+- COMMERCE_MISSION_STATUS.md is the Commerce handoff doc for Gate A and future validation work.
+
 ## Documentation
 
 - [PROJECT_LOG.md](PROJECT_LOG.md)
 - [AI_HANDOFF.md](AI_HANDOFF.md)
 - [VERSION.md](VERSION.md)
 - [CHANGELOG.md](CHANGELOG.md)
+- [COMMERCE_MISSION_STATUS.md](COMMERCE_MISSION_STATUS.md)

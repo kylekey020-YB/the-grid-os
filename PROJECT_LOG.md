@@ -50,6 +50,17 @@ Completed:
 - Build validation target
 - GitHub repository preparation
 
+### v0.2.0 - Mission Control Planning
+
+Planned / in progress:
+
+- Mission Control monitor foundation
+- Read-only Watcher team for APEX1, CLU, Commerce, Backtester, and THE GRID
+- Commerce mission status handoff doc
+- No autonomous execution, backend services, trading execution, or inventory actions
+
+Watchers are read-only workstation monitors. They are not Programs and cannot execute actions.
+
 ## Validation
 
 Current validation target:

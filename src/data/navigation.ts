@@ -4,6 +4,7 @@ import {
   BrainCircuit,
   FlaskConical,
   Home,
+  Radar,
   Settings,
   ShoppingCart,
   Swords,
@@ -19,6 +20,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { id: "dashboard", label: "Dashboard", icon: Home },
+  { id: "mission-control", label: "Mission Control", icon: Radar },
   { id: "trading", label: "Trading", icon: BarChart3 },
   { id: "commerce", label: "Commerce", icon: ShoppingCart },
   { id: "research", label: "Research", icon: FlaskConical },
@@ -29,5 +31,5 @@ export const navItems: NavItem[] = [
 ];
 
 export const mobileNavItems = navItems.filter((item) =>
-  ["dashboard", "commerce", "trading", "knowledge-vault", "settings"].includes(item.id),
+  ["dashboard", "mission-control", "commerce", "trading", "settings"].includes(item.id),
 );
