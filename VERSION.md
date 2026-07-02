@@ -1,10 +1,10 @@
 # THE GRID
 
-Current Version: v0.1.1
+Current Version: v0.5.0
 
 ## Status
 
-Foundation Hardening
+Income Division Planning Foundation
 
 ## Completed
 
@@ -17,22 +17,31 @@ Foundation Hardening
 - Manual Lifecycle
 - Documentation
 - GitHub Repository preparation
+- Mission Control foundation
+- Read-only mission data bridge
+- Mission Bus direction
+- Visual identity foundation
+- Income Division planning foundation
+- REVENUE ARCHITECT watcher
+- Income Division status document
 
 ## Current Focus
 
-- Knowledge
+- Income Division workflow design
+- Original product research
+- Manual publishing doctrine
 - Commerce Validation
 - Documentation
 
 ## Next Version
 
-v0.2.0
+v0.6.0
 
 Planned focus:
 
-- Knowledge Vault
-- Mission Logs
-- Prompt Library
+- Mission Bus status publishers
+- status.json contracts
+- Division-level status aggregation
 
 ## Known Limitations
 

@@ -1,6 +1,6 @@
 # THE GRID Project Log
 
-Current Version: v0.1.1
+Current Version: v0.5.0
 
 ## Vision
 
@@ -60,6 +60,83 @@ Planned / in progress:
 - No autonomous execution, backend services, trading execution, or inventory actions
 
 Watchers are read-only workstation monitors. They are not Programs and cannot execute actions.
+
+### v0.3.0 - Live Company Layer Planning
+
+Planned / in progress:
+
+- Read-only local mission data bridge
+- Mission Control snapshot refresh from public/mission-snapshot.json
+- Mission Bus direction with optional status.json publishers per project
+- War Room watcher summaries generated from local evidence
+- Open ticket generation for missing data sources
+- R&D proposal panel for evidence-based future work
+- Council briefing panel for read-only recommendations
+
+Safety boundary:
+
+- No backend control surface
+- No autonomous agents
+- No live trading
+- No wallet signing
+- No supplier outreach or inventory action
+- No fake metrics
+
+### v0.4.0 - Visual Identity Foundation
+
+Completed / in progress:
+
+- Tron-inspired layered animated background
+- Perspective grid environment
+- Division RGB glow system
+- Design token system
+- Officer badge/icon system
+- Global color palette refinement
+- Typography and glass panel refinement
+- Ambient animation timing
+- Shared UI primitives for future pages
+- Design-system documentation
+
+Safety boundary:
+
+- Presentation only
+- No backend
+- No mission logic changes
+- No data architecture changes
+- No APEX or CLU changes
+- No placeholder autonomy
+
+### v0.5.0 - Income Division Planning Foundation
+
+Completed / in progress:
+
+- Income Division concept added as a planned division
+- INCOME_DIVISION_STATUS.md created
+- Market Lab planning room
+- Design Forge planning room
+- Copy Room planning room
+- Publishing Room planning room
+- Revenue War Room planning room
+- Archives / Obsidian Vault planning room
+- Agent Profiles planning room
+- REVENUE ARCHITECT read-only watcher
+
+Approved lanes:
+
+- Etsy digital products
+- Fiverr productized services
+- Affiliate / SEO content assets
+
+Safety boundary:
+
+- No scraping bots
+- No marketplace integrations
+- No Telegram bots
+- No copied listings or products
+- No trademark or copyrighted-character use
+- No fake reviews
+- No autonomous posting without review
+- No fabricated revenue or analytics
 
 ## Validation
 

@@ -1,0 +1,291 @@
+{
+  "generated_at": "2026-07-02T06:49:21.936Z",
+  "bridge_version": "v0.3.0",
+  "apex": {
+    "label": "APEX",
+    "source_dir": "C:/Users/NovaI/APEX1v3/V4",
+    "connected": false,
+    "status": "APEX log not connected yet.",
+    "log_path": null,
+    "parse_errors": [],
+    "closed_trades": null,
+    "wins": null,
+    "losses": null,
+    "win_rate": null,
+    "total_pnl_usd": null,
+    "entry_source_breakdown": null,
+    "exit_reason_breakdown": null,
+    "boost_source_breakdown": null,
+    "latest_5_trades": [],
+    "last_trade_time": null,
+    "handoff_truths": [
+      "Prior sample showed negative expectancy.",
+      "Post-fix sample is required before rule changes become doctrine.",
+      "early_momentum and bonding_curve signals remain unproven.",
+      "PAPER=True is required."
+    ]
+  },
+  "clu": {
+    "label": "CLU",
+    "source_dir": "C:/Users/NovaI/OneDrive/CLU",
+    "connected": true,
+    "status": "Paper only - no wallet/signing authorized.",
+    "log_path": "C:\\Users\\NovaI\\OneDrive\\CLU\\clu_trade_log.jsonl",
+    "parse_errors": [],
+    "mission_status_connected": true,
+    "closed_shots": 46,
+    "wins": null,
+    "losses": null,
+    "win_rate": null,
+    "total_pnl_usd": null,
+    "avg_win_pct": null,
+    "avg_loss_pct": null,
+    "best_winner_pct": null,
+    "worst_loss_pct": null,
+    "current_goal_progress": "19/100",
+    "mode_breakdown": null,
+    "exit_reason_breakdown": null,
+    "last_trade_time": null,
+    "latest_5_closed_shots": [
+      {
+        "token": "GFuxoJ4XGvKgFSYHLS3NHtiw3BZgx4613GtKLi31pump",
+        "result": "unknown",
+        "pnl_usd": null,
+        "pnl_pct": null,
+        "exit_reason": null,
+        "timestamp": null
+      },
+      {
+        "token": "F12gpd6JRrBnuEzhBfsTamTq5QPnNaHEcsefQ8N3pump",
+        "result": "unknown",
+        "pnl_usd": null,
+        "pnl_pct": null,
+        "exit_reason": null,
+        "timestamp": null
+      },
+      {
+        "token": "8vExdwvPa6YN6BWZ2encM73G4rZhuH9kpzEr6gXjpump",
+        "result": "unknown",
+        "pnl_usd": null,
+        "pnl_pct": null,
+        "exit_reason": null,
+        "timestamp": null
+      },
+      {
+        "token": "F4i5ygoFKKjgbGK1U9tBDxd4uZaJu3XDRoehUhoCpump",
+        "result": "unknown",
+        "pnl_usd": null,
+        "pnl_pct": null,
+        "exit_reason": null,
+        "timestamp": null
+      },
+      {
+        "token": "UCMHbKtxiUVJLxTTbx74FQtCg6e3pU61t98dL4tpump",
+        "result": "unknown",
+        "pnl_usd": null,
+        "pnl_pct": null,
+        "exit_reason": null,
+        "timestamp": null
+      }
+    ]
+  },
+  "commerce": {
+    "label": "Commerce",
+    "connected": true,
+    "status": "Gate A public-data validation status available.",
+    "active_record": "Commerce Validation Record #003 - Gate A Phase A1",
+    "safety": "No supplier contact, inventory purchase, or wholesale pricing assumptions are authorized in Phase A1.",
+    "document_length": 2005
+  },
+  "backtester": {
+    "label": "Backtester",
+    "connected": false,
+    "status": "Backtester state not copied into GRID root yet.",
+    "document_length": 0
+  },
+  "grid": {
+    "label": "THE GRID",
+    "connected": true,
+    "version": "v0.1.1",
+    "project_log_connected": true,
+    "version_doc_connected": true,
+    "status": "Read-only local mission data bridge foundation."
+  },
+  "mission_bus": [
+    {
+      "mission": "APEX",
+      "connected": false,
+      "source": "C:\\Users\\NovaI\\APEX1v3\\V4\\status.json",
+      "status": "No status.json published yet.",
+      "phase": null,
+      "last_update": null,
+      "next_action": null,
+      "tickets": null
+    },
+    {
+      "mission": "CLU",
+      "connected": false,
+      "source": "C:\\Users\\NovaI\\OneDrive\\CLU\\status.json",
+      "status": "No status.json published yet.",
+      "phase": null,
+      "last_update": null,
+      "next_action": null,
+      "tickets": null
+    },
+    {
+      "mission": "Commerce",
+      "connected": false,
+      "source": "C:\\Users\\NovaI\\Documents\\Codex\\2026-06-30\\mission-create-the-first-version-of\\commerce\\status.json",
+      "status": "No status.json published yet.",
+      "phase": null,
+      "last_update": null,
+      "next_action": null,
+      "tickets": null
+    },
+    {
+      "mission": "Backtester",
+      "connected": false,
+      "source": "C:\\Users\\NovaI\\Documents\\Codex\\2026-06-30\\mission-create-the-first-version-of\\backtester\\status.json",
+      "status": "No status.json published yet.",
+      "phase": null,
+      "last_update": null,
+      "next_action": null,
+      "tickets": null
+    }
+  ],
+  "safety_flags": [
+    "Read-only local snapshot generation only.",
+    "No backend control surface is exposed.",
+    "No wallet signing, live trading, supplier outreach, or inventory action is authorized.",
+    "No .env or secret files are read.",
+    "Missing data is reported as unknown instead of fabricated."
+  ],
+  "open_tickets": [
+    {
+      "id": "TICKET-APEX-001",
+      "title": "Connect APEX paper trade log",
+      "owner": "APEX WARDEN",
+      "severity": "High",
+      "status": "Open",
+      "evidence": "No supported APEX JSONL trade log was found in the configured APEX directory.",
+      "recommendation": "Point THE_GRID_APEX_DIR to the folder containing the paper trade log or copy a supported JSONL log into the default location."
+    },
+    {
+      "id": "TICKET-BACKTESTER-001",
+      "title": "Add backtester state handoff",
+      "owner": "GAUNTLET",
+      "severity": "Medium",
+      "status": "Open",
+      "evidence": "APEX_BACKTESTER_STATE.md is not present in THE GRID root.",
+      "recommendation": "Copy the current backtester state summary into the GRID root when available."
+    }
+  ],
+  "research_and_development_proposals": [
+    {
+      "id": "RD-APEX-ENTRY-TIMING",
+      "title": "APEX Entry Timing v1",
+      "owner": "APEX WARDEN",
+      "status": "Proposed",
+      "evidence_basis": "Waiting for APEX paper log connection.",
+      "recommendation": "Compare winners and losers by token age, discovery-to-entry lag, 5m pump, mcap bucket, re-entry status, and confidence boost source before changing live rules."
+    },
+    {
+      "id": "RD-COMMERCE-GATE-A2",
+      "title": "Commerce Gate A Phase A2 Quote Plan",
+      "owner": "MERCHANT FORGE",
+      "status": "Proposed",
+      "evidence_basis": "Phase A1 public-data status is available.",
+      "recommendation": "Prepare exact supplier quote questions only after the public-data model remains plausible."
+    },
+    {
+      "id": "RD-KNOWLEDGE-VAULT",
+      "title": "Knowledge Vault Data Shape",
+      "owner": "ARCHIVIST",
+      "status": "Proposed",
+      "evidence_basis": "Project documentation exists, but persistence is intentionally not built.",
+      "recommendation": "Define mission logs, decision history, and prompt library schemas before persistence work begins."
+    }
+  ],
+  "watcher_summaries": [
+    {
+      "name": "ZENITH",
+      "role": "Systems Architect",
+      "signal": "Coordinates architecture and cross-project doctrine.",
+      "status": "Active"
+    },
+    {
+      "name": "SENTINEL",
+      "role": "Safety Monitor",
+      "signal": "Read-only local snapshot generation only. No backend control surface is exposed. No wallet signing, live trading, supplier outreach, or inventory action is authorized. No .env or secret files are read. Missing data is reported as unknown instead of fabricated.",
+      "status": "Active"
+    },
+    {
+      "name": "APEX WARDEN",
+      "role": "Trading Research Monitor",
+      "signal": "APEX log not connected yet.",
+      "status": "Waiting for log"
+    },
+    {
+      "name": "CLU STRIKER",
+      "role": "Paper Shot Monitor",
+      "signal": "Paper only - no wallet/signing authorized.",
+      "status": "Connected"
+    },
+    {
+      "name": "GAUNTLET",
+      "role": "Backtest Monitor",
+      "signal": "Backtester state not copied into GRID root yet.",
+      "status": "Waiting for handoff"
+    },
+    {
+      "name": "MERCHANT FORGE",
+      "role": "Commerce Validation Monitor",
+      "signal": "Gate A public-data validation status available.",
+      "status": "Connected"
+    },
+    {
+      "name": "QUARTERMASTER",
+      "role": "Resource Constraint Monitor",
+      "signal": "Tracks missing local artifacts and quote dependencies only.",
+      "status": "Active"
+    },
+    {
+      "name": "ARCHIVIST",
+      "role": "Knowledge Monitor",
+      "signal": "Documentation and handoff artifacts remain the source of truth until persistence exists.",
+      "status": "Active"
+    },
+    {
+      "name": "GRID CORE",
+      "role": "UI Foundation",
+      "signal": "Read-only local mission data bridge foundation.",
+      "status": "Active"
+    }
+  ],
+  "council_briefing": [
+    {
+      "role": "ZENITH",
+      "briefing": "v0.3 should remain a read-only visibility layer. The bridge can reveal gaps without becoming a control system."
+    },
+    {
+      "role": "SENTINEL",
+      "briefing": "Safety locks remain active: no autonomous execution, no wallet signing, no live trading, no supplier spend."
+    },
+    {
+      "role": "ARCHIVIST",
+      "briefing": "Project log is available for context."
+    },
+    {
+      "role": "MERCHANT FORGE",
+      "briefing": "Commerce status can be reviewed from the root handoff doc."
+    },
+    {
+      "role": "APEX WARDEN",
+      "briefing": "APEX log is not connected; entry-timing claims must wait for evidence."
+    },
+    {
+      "role": "CLU STRIKER",
+      "briefing": "CLU log exists for paper-only review."
+    }
+  ]
+}

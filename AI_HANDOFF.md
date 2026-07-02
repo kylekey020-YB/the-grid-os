@@ -1,6 +1,6 @@
 # THE GRID AI Handoff
 
-Current Version: v0.1.1
+Current Version: v0.5.0
 
 ## Purpose
 
@@ -63,6 +63,37 @@ Current Commerce purpose:
 - Keep the workflow grounded until repeatable value is demonstrated.
 
 Trading remains research only. APEX is Beta and focused on data collection and research. No fake trades, fake PnL, or live execution metrics should be added.
+
+## Income Division v0.5
+
+THE GRID now includes an Income Division planning foundation. It is for future Etsy digital products, Fiverr productized services, affiliate / SEO assets, digital products, and creative workflow experiments.
+
+Current source of truth:
+
+- INCOME_DIVISION_STATUS.md
+- src/data/incomeDivision.ts
+- Mission Control Income Division planning section
+
+Approved lanes:
+
+- Etsy digital products
+- Fiverr productized services
+- Affiliate / SEO content assets
+
+Do not build scraping bots, live marketplace integrations, Telegram bots, copied product systems, fake review systems, or autonomous posting. The doctrine is: study patterns, create original products, validate demand, publish manually first, automate only repeated workflows.
+
+## Visual Identity v0.4
+
+THE GRID now has a reusable visual identity foundation. Future UI work should use:
+
+- src/data/designTokens.ts for division accents and officer identity
+- DesignBackdrop for the global layered background
+- OfficerBadge for officer identity surfaces
+- DivisionGlow for status LEDs
+- GlassPanel for accent-aware glass surfaces
+- design-system/ docs for color, typography, glow, cards, backgrounds, iconography, and status LEDs
+
+v0.4 is presentation only. Do not infer new business capabilities from the visual upgrade.
 
 ## Forbidden Additions
 

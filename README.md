@@ -1,6 +1,6 @@
 # THE GRID UI Foundation
 
-Current Version: v0.1.1
+Current Version: v0.5.0
 
 THE GRID is a frontend foundation for an AI operating system interface that coordinates validated business workflows. It is intentionally grounded: workstations are manual first, and automation is deferred until workflows show repeatable value.
 
@@ -59,6 +59,28 @@ This build is intentionally only the shell. It includes navigation, responsive l
 - Watchers are read-only workstation monitors, not autonomous agents or Programs.
 - COMMERCE_MISSION_STATUS.md is the Commerce handoff doc for Gate A and future validation work.
 
+## v0.3 Planning
+
+- Mission Control now targets a read-only local mission data bridge.
+- npm run snapshot writes sanitized local state to public/mission-snapshot.json.
+- npm run snapshot:watch refreshes the snapshot every 5 seconds for local review.
+- The Mission Bus direction lets each project publish a small status.json file instead of forcing THE GRID to parse every log directly.
+- The bridge reports missing data as unknown or as tickets; it does not fabricate metrics or control external systems.
+
+## v0.4 Visual Identity
+
+- Added the reusable visual operating system foundation.
+- Added layered animated background, perspective grid environment, division glow tokens, officer badge primitives, glass panel refinement, and design-system documentation.
+- This milestone is presentation only and does not add mission logic, backend behavior, APEX/CLU changes, or autonomous systems.
+
+## v0.5 Income Division
+
+- Added Income Division planning foundation for Etsy digital products, Fiverr productized services, and affiliate / SEO content assets.
+- Added Market Lab, Design Forge, Copy Room, Publishing Room, Revenue War Room, Archives / Obsidian Vault, and Agent Profiles as planned rooms.
+- Added REVENUE ARCHITECT as a read-only watcher.
+- Added INCOME_DIVISION_STATUS.md as the source-of-truth status document.
+- This milestone is planning + UI foundation only: no scraping, marketplace integrations, Telegram bots, autonomous posting, copied products, fake reviews, or fake revenue metrics.
+
 ## Documentation
 
 - [PROJECT_LOG.md](PROJECT_LOG.md)
@@ -66,3 +88,5 @@ This build is intentionally only the shell. It includes navigation, responsive l
 - [VERSION.md](VERSION.md)
 - [CHANGELOG.md](CHANGELOG.md)
 - [COMMERCE_MISSION_STATUS.md](COMMERCE_MISSION_STATUS.md)
+- [docs/MISSION_DATA_BRIDGE.md](docs/MISSION_DATA_BRIDGE.md)
+- [design-system/README.md](design-system/README.md)
