@@ -1,8 +1,8 @@
 export type UnknownValue = "Unknown";
 export type RevenuePlatform = "Etsy" | "Fiverr" | "Gumroad" | "Affiliate" | "YouTube" | "Assets";
-export type RadarStatus = "Research" | "Watching" | "Active" | "Rejected" | "Validated";
-export type PipelineStage = "Research" | "Validate" | "Prototype" | "Publish" | "Scale" | "Systematize";
-export type Decision = "Scale" | "Kill" | "Retry" | "Pending Evidence";
+export type RadarStatus = "Research" | "Watching" | "Active" | "Rejected" | "Validated" | "Live";
+export type PipelineStage = "Research" | "Validate" | "Prototype" | "Publish" | "Live" | "Scale" | "Systematize";
+export type Decision = "Scale" | "Kill" | "Retry" | "Pending Evidence" | "Live Monitoring";
 export type Confidence = "Unknown" | "Low" | "Medium" | "High";
 export type FactorValue = "Unknown" | "Low" | "Medium" | "High";
 
@@ -82,14 +82,16 @@ export const revenueIntelligenceDoctrine = [
 ];
 
 export const marketScannerCandidates: OpportunityCandidate[] = [
+  { id: "scanner-000", opportunity: "Fiverr AI Automation Consulting", platform: "Fiverr", category: "AI automation consulting", demand: "Unknown", competition: "Unknown", margin: "Unknown", operatorFit: "High", recurringRevenue: "Unknown", automationPotential: "Medium", confidence: "Medium", status: "Live" },
   { id: "scanner-001", opportunity: "Original YouTube thumbnail productized service", platform: "YouTube", category: "Creative services", demand: "Unknown", competition: "Unknown", margin: "Unknown", operatorFit: "Medium", recurringRevenue: "Unknown", automationPotential: "Medium", confidence: "Low", status: "Research" },
   { id: "scanner-002", opportunity: "Etsy digital workflow template bundle", platform: "Etsy", category: "Digital products", demand: "Unknown", competition: "Unknown", margin: "Unknown", operatorFit: "High", recurringRevenue: "Unknown", automationPotential: "Medium", confidence: "Low", status: "Watching" },
   { id: "scanner-003", opportunity: "2D game UI asset pack", platform: "Assets", category: "Game assets", demand: "Unknown", competition: "Unknown", margin: "Unknown", operatorFit: "Medium", recurringRevenue: "Unknown", automationPotential: "Low", confidence: "Low", status: "Research" },
 ];
 
-export const pipelineStages: PipelineStage[] = ["Research", "Validate", "Prototype", "Publish", "Scale", "Systematize"];
+export const pipelineStages: PipelineStage[] = ["Research", "Validate", "Prototype", "Publish", "Live", "Scale", "Systematize"];
 
 export const opportunityPipeline: PipelineItem[] = [
+  { id: "pipe-000", opportunity: "Fiverr AI Automation Consulting", stage: "Live", nextGate: "Let Fiverr index the gig while collecting real post-launch KPIs", evidenceRequired: "Impressions, CTR, messages, consultations, orders, reviews, and revenue" },
   { id: "pipe-001", opportunity: "Thumbnail service lane", stage: "Research", nextGate: "Collect compliant public demand notes", evidenceRequired: "Manual demand evidence and differentiation angle" },
   { id: "pipe-002", opportunity: "Etsy template lane", stage: "Validate", nextGate: "Validate buyer problem and original bundle concept", evidenceRequired: "Manual keyword/category notes and original design brief" },
   { id: "pipe-003", opportunity: "Affiliate/SEO content asset lane", stage: "Research", nextGate: "Define topic cluster and review compliance", evidenceRequired: "Manual topic evidence and no fabricated claims" },
@@ -109,14 +111,15 @@ export const revenueScores: RevenueScore[] = marketScannerCandidates.map((candid
 }));
 
 export const experimentTracker: RevenueExperimentIntel[] = [
+  { id: "EXP-1", hypothesis: "A Fiverr AI Automation Consulting service can create real customer conversations for Operation First Revenue.", evidence: "Live Fiverr service published July 2, 2026; post-launch platform metrics not recorded yet.", decision: "Live Monitoring", owner: "REVENUE ARCHITECT", result: "LIVE - awaiting impressions, CTR, messages, consultations, orders, reviews, and revenue." },
   { id: "exp-001", hypothesis: "A narrowly scoped thumbnail service can validate demand before building assets at scale.", evidence: "Unknown - no manually published experiment yet.", decision: "Pending Evidence", owner: "REVENUE ARCHITECT", result: "Unknown" },
   { id: "exp-002", hypothesis: "Original workflow templates can differentiate from generic Etsy printables.", evidence: "Unknown - needs manual demand validation.", decision: "Pending Evidence", owner: "DESIGN FORGE", result: "Unknown" },
   { id: "exp-003", hypothesis: "Affiliate/SEO assets can become repeatable once topic evidence exists.", evidence: "Unknown - topic research not validated.", decision: "Pending Evidence", owner: "COPY ROOM", result: "Unknown" },
 ];
 
 export const revenueDashboardMetrics: RevenueDashboardMetric[] = [
-  { label: "Products", value: "Unknown", note: "No manually approved product count yet." },
-  { label: "Published", value: "Unknown", note: "No autonomous or manual publishing metrics recorded." },
+  { label: "Products", value: "1", note: "EXP-1 Fiverr AI Automation Consulting is live." },
+  { label: "Published", value: "1", note: "First Fiverr service published manually on July 2, 2026." },
   { label: "Revenue", value: "Unknown", note: "No revenue is claimed without evidence." },
   { label: "Profit", value: "Unknown", note: "No profit is claimed without cost and revenue records." },
   { label: "Time Invested", value: "Unknown", note: "Time tracking has not started." },

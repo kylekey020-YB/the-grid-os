@@ -139,6 +139,13 @@ export const academyWings: AcademyWing[] = [
 export const hallOfCommandTimeline: AcademyTimelineEntry[] = [
   foundingDay,
   {
+    id: "HC-004",
+    date: "July 2, 2026",
+    title: "First marketplace launch",
+    summary: "THE GRID entered the marketplace when Operation First Revenue moved from preparation to execution with the first Fiverr AI Automation Consulting service.",
+    evidence: "EXP-1 recorded in Launch Center as LIVE.",
+  },
+  {
     id: "HC-002",
     date: "July 2, 2026",
     title: "Operation First Revenue declared active",

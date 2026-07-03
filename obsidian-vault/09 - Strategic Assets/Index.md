@@ -1,0 +1,3 @@
+# Strategic Assets
+
+Backlinks: [[DealFlow]]

@@ -54,11 +54,11 @@ export const approvalQueue: ApprovalRequest[] = [
 export const decisionRecords: DecisionRecord[] = [
   {
     id: "DR-001",
-    decision: "Income Division becomes primary offensive effort.",
+    decision: "Revenue Corps becomes primary offensive effort.",
     reason: "Operation First Revenue has a 31-day urgency window while Commerce remains in Gate A validation.",
     evidence: "Revenue Architect assessment, active Operation First Revenue objective, and current Commerce gate status.",
     approvedBy: "Mission Commander",
     date: "July 2, 2026",
-    outcome: "Revenue Architect activated as ACTIVE / ADVISORY ONLY and the income board became the first operating department surface.",
+    outcome: "Revenue Architect activated as ACTIVE / ADVISORY ONLY and the Revenue Corps board became the first operating department surface.",
   },
 ];

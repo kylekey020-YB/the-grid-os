@@ -16,6 +16,10 @@ import {
   type AcademyWing,
 } from "@/data/academy";
 import { chronicleDoctrine, chronicleEntries } from "@/data/chronicle";
+import { scoutReportMetrics, scoutReports, scoutReportsDoctrine } from "@/data/scoutReports";
+import { tradingResearchCorpsSummary, tradingResearchMetrics, tradingResearchPrograms } from "@/data/tradingResearchCorps";
+import { quantResearchMetrics, quantResearchScoutsSummary, quantScoutReports } from "@/data/quantResearchScouts";
+import { obsidianBridgeSummary, obsidianVaultFolders } from "@/data/obsidianBridge";
 import { cn } from "@/lib/utils";
 
 const accentClasses: Record<AcademyAccent, { border: string; text: string; bg: string; glow: string; line: string }> = {
@@ -99,6 +103,14 @@ export function Academy() {
         <HallOfCommand />
         <EvolutionLab />
       </section>
+
+      <ScoutReportsAcademy />
+
+      <TradingResearchAcademy />
+
+      <QuantResearchAcademy />
+
+      <ObsidianAcademyBridge />
 
       <ChronicleSection />
     </div>
@@ -214,6 +226,149 @@ function EvolutionLab() {
         ))}
       </CardContent>
     </Card>
+  );
+}
+
+
+function ScoutReportsAcademy() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Scout Reports" title="Demand research becomes institutional memory" description={scoutReportsDoctrine} />
+      <div className="grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
+        <Card className="border-cyan-300/30 bg-cyan-950/15">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Revenue Corps</p>
+                <CardTitle className="mt-2 text-2xl text-cyan-100">Report archive pattern</CardTitle>
+              </div>
+              <StatusBadge label="Manual Only" tone="manual" />
+            </div>
+            <CardDescription>Scout Reports can later become case studies, playbooks, after-action reviews, or Hall of Failures entries after evidence exists.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-3 md:grid-cols-2">
+            <AcademyStat label="Reports" value={String(scoutReportMetrics.totalReports)} />
+            <AcademyStat label="Ready" value={String(scoutReportMetrics.readyForReview)} />
+          </CardContent>
+        </Card>
+        <Card className="border-emerald-300/30 bg-emerald-950/15">
+          <CardHeader>
+            <CardTitle className="text-emerald-100">Report lanes</CardTitle>
+            <CardDescription>No report becomes a lesson until it records real evidence and an outcome.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-2 md:grid-cols-4">
+            {scoutReports.map((report) => (
+              <div key={report.id} className="rounded-md border border-emerald-300/20 bg-background/50 px-3 py-2 text-sm text-foreground/90">{report.emoji} {report.lane}</div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}
+
+
+
+function TradingResearchAcademy() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Trading Research Corps" title="Research lessons before trading claims" description={tradingResearchCorpsSummary.doctrine} />
+      <div className="grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
+        <Card className="border-blue-300/30 bg-blue-950/15">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">{tradingResearchCorpsSummary.version}</p>
+                <CardTitle className="mt-2 text-2xl text-blue-100">Trading research archive pattern</CardTitle>
+              </div>
+              <StatusBadge label="Research Only" tone="manual" />
+            </div>
+            <CardDescription>{tradingResearchCorpsSummary.safety}</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-3 md:grid-cols-2">
+            <AcademyStat label="Programs" value={String(tradingResearchMetrics.programs)} />
+            <AcademyStat label="Scouts" value={String(tradingResearchMetrics.scouts)} />
+            <AcademyStat label="Live Trading" value={String(tradingResearchMetrics.liveTradingConnections)} />
+            <AcademyStat label="Expectancy Proven" value={String(tradingResearchMetrics.strategiesWithProvenExpectancy)} />
+          </CardContent>
+        </Card>
+        <Card className="border-cyan-300/30 bg-cyan-950/15">
+          <CardHeader>
+            <CardTitle className="text-cyan-100">Programs</CardTitle>
+            <CardDescription>Backtest and paper-only research may later become case studies if evidence exists.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-2 md:grid-cols-3">
+            {tradingResearchPrograms.map((program) => (
+              <div key={program.id} className="rounded-md border border-cyan-300/20 bg-background/50 px-3 py-2 text-sm text-foreground/90">{program.emoji} {program.name}</div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}
+
+function QuantResearchAcademy() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Quant Research Scouts" title="Trading research becomes institutional knowledge" description={quantResearchScoutsSummary.doctrine} />
+      <div className="grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
+        <Card className="border-blue-300/30 bg-blue-950/15">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">{quantResearchScoutsSummary.version}</p>
+                <CardTitle className="mt-2 text-2xl text-blue-100">Research reports before backtests</CardTitle>
+              </div>
+              <StatusBadge label="Research Only" tone="manual" />
+            </div>
+            <CardDescription>{quantResearchScoutsSummary.safety}</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-3 md:grid-cols-2">
+            <AcademyStat label="Scouts" value={String(quantResearchMetrics.scouts)} />
+            <AcademyStat label="Reports" value={String(quantResearchMetrics.reports)} />
+            <AcademyStat label="Sources" value={String(quantResearchMetrics.sources)} />
+            <AcademyStat label="Prototype Candidates" value={String(quantResearchMetrics.prototypeCandidates)} />
+          </CardContent>
+        </Card>
+        <Card className="border-cyan-300/30 bg-cyan-950/15">
+          <CardHeader>
+            <CardTitle className="text-cyan-100">Current report archive</CardTitle>
+            <CardDescription>Research reports can become case studies after backtest evidence exists.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-2 md:grid-cols-2">
+            {quantScoutReports.map((report) => (
+              <div key={report.id} className="rounded-md border border-cyan-300/20 bg-background/50 px-3 py-2 text-sm text-foreground/90">{report.id} / {report.targetBot} / {report.recommendation}</div>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}
+
+function ObsidianAcademyBridge() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Obsidian Bridge" title="The Academy exports durable knowledge" description={obsidianBridgeSummary.mission} />
+      <Card className="border-purple-300/30 bg-purple-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{obsidianBridgeSummary.rootFolder}</p>
+              <CardTitle className="mt-2 text-2xl text-purple-100">Markdown second brain</CardTitle>
+            </div>
+            <StatusBadge label="No sync automation" tone="manual" />
+          </div>
+          <CardDescription>{obsidianBridgeSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {obsidianVaultFolders.slice(0, 8).map((folder) => (
+            <AcademyStat key={folder.id} label={folder.path} value={folder.status} />
+          ))}
+        </CardContent>
+      </Card>
+    </section>
   );
 }
 

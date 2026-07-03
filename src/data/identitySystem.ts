@@ -40,7 +40,7 @@ export const operationFirstRevenuePatch = {
 
 export const divisionInsignias: DivisionInsignia[] = [
   { id: "operations", name: "Operations", symbol: "⚕", motto: "Coordinate the company.", accent: "cyan" },
-  { id: "income", name: "Income Division", symbol: "💸", motto: "Evidence before revenue claims.", accent: "emerald" },
+  { id: "income", name: "Revenue Corps", symbol: "💸", motto: "Evidence before revenue claims.", accent: "emerald" },
   { id: "commerce", name: "Commerce", symbol: "🛒", motto: "Validate before inventory.", accent: "amber" },
   { id: "academy", name: "The Academy", symbol: "🏛", motto: "Every lesson becomes knowledge.", accent: "purple" },
   { id: "bridge", name: "The Bridge", symbol: "🌉", motto: "Everything publishes. Nothing directly controls.", accent: "cyan" },

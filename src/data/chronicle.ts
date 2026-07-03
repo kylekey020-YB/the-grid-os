@@ -32,12 +32,15 @@ export const chronicleEntries: ChronicleEntry[] = [
     status: "Draft",
     whatHappened: [
       "THE GRID established Founding Day.",
+      "THE GRID entered the marketplace with EXP-1 Fiverr AI Automation Consulting.",
       "Phase I Foundation was declared complete.",
       "The Academy became the institutional learning division.",
+      "Launch Center became the customer-facing execution tracker.",
       "Phase II Living Systems began as typed architecture only.",
     ],
     majorVictories: [
-      "Doctrine, Constitution, Mission Control, Mission Pipeline, Approval System, Decision Records, Revenue Intelligence, Operations Floor, and The Academy now exist as the operating headquarters foundation.",
+      "Doctrine, Constitution, Mission Control, Mission Pipeline, Approval System, Decision Records, Revenue Intelligence, Operations Floor, The Academy, and Launch Center now exist as the operating headquarters foundation.",
+      "EXP-1 moved Operation First Revenue from preparation into live marketplace execution.",
     ],
     majorFailures: ["N/A - no failed experiment has been formally recorded in The Academy yet."],
     lessons: [
@@ -50,7 +53,7 @@ export const chronicleEntries: ChronicleEntry[] = [
       "Introduced the Event Registry and Officer Network as Phase II typed architecture.",
       "Prepared The Bridge as the primary operations surface.",
     ],
-    revenue: "$0 recorded; no revenue is claimed without evidence.",
+    revenue: "N/A - first marketplace service is live, but no revenue evidence is recorded yet.",
     newOfficers: ["Hermes role clarified for institutional memory and executive operations."],
     programsImproved: ["N/A - no Program improvement record has evidence yet."],
     missionStatus: "Operation First Revenue active; AR-001 awaiting Mission Commander decision.",

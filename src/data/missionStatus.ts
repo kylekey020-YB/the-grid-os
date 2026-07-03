@@ -12,7 +12,7 @@ export type ExperimentPhase =
   | "Sourcing economics"
   | "Regime-switching hypothesis"
   | "v0.2 planning"
-  | "Income workflow design";
+  | "Revenue Corps design";
 
 export type MissionSource =
   | "Last known from handoff"
@@ -20,7 +20,7 @@ export type MissionSource =
   | "Pending live integration"
   | "Static typed data"
   | "Commerce handoff doc"
-  | "Income status doc";
+  | "Revenue Corps status doc";
 
 export type MissionRiskLevel = "Low" | "Medium" | "High" | "Controlled";
 
@@ -82,7 +82,7 @@ export const zenithProfile: ArchitectProfile = {
     "Trading doctrine",
     "AI ecosystem design",
   ],
-  currentFocus: "Income Division v0.5 planning",
+  currentFocus: "Revenue Corps v0.5 planning",
   safety: [
     "Reality before automation",
     "Architecture before complexity",
@@ -140,15 +140,15 @@ export const missionStatuses: MissionStatus[] = [
   },
   {
     id: "income",
-    name: "Income Division",
+    name: "Revenue Corps",
     callsign: "Revenue systems lab",
     status: "Planning Foundation",
-    phase: "Income workflow design",
-    lastKnownUpdate: "INCOME_DIVISION_STATUS.md",
+    phase: "Revenue Corps design",
+    lastKnownUpdate: "REVENUE_CORPS_STATUS.md",
     currentObjective: "Design ethical manual workflows for Etsy, Fiverr, affiliate, digital product, and creative income experiments.",
     safetyState: "Manual publishing only",
     nextAction: "Research patterns, create original concepts, and validate demand before any automation.",
-    dataSource: "Income status doc",
+    dataSource: "Revenue Corps status doc",
     truth: "No scraping, platform integrations, Telegram bots, autonomous posting, copied listings, or fake metrics are implemented.",
     riskLevel: "Controlled",
     accent: "emerald",
@@ -241,7 +241,7 @@ export const watcherStatuses: WatcherStatus[] = [
     role: "Income systems strategist",
     watches: "Etsy, Fiverr, affiliate, digital product, and creative workflow experiments",
     currentSignal: "Planning stage",
-    lastUpdate: "INCOME_DIVISION_STATUS.md",
+    lastUpdate: "REVENUE_CORPS_STATUS.md",
     statusBadge: "READ-ONLY WATCHER",
     promotionStatus: "Workstation Monitor, not Program",
     accent: "emerald",
@@ -276,7 +276,7 @@ export const watcherStatuses: WatcherStatus[] = [
     emoji: "🌐",
     role: "System Watcher",
     watches: "THE GRID version, roadmap, mission control status",
-    currentSignal: "v0.5 Income Division planning",
+    currentSignal: "v0.5 Revenue Corps planning",
     lastUpdate: "Static typed data",
     statusBadge: "READ-ONLY WATCHER",
     promotionStatus: "Workstation Monitor, not Program",

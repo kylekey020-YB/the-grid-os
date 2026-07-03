@@ -1,6 +1,6 @@
 # Founding Council Brief
 
-Current Version: v2.1.0
+Current Version: v2.7.0
 
 ## Purpose
 
@@ -198,6 +198,30 @@ Current decision record:
 - DR-001: Income Division becomes primary offensive effort because Operation First Revenue has a 31-day urgency window while Commerce remains in Gate A validation.
 
 Mission Records answer what happened. Decision Records answer why.
+
+## Launch Center
+
+THE GRID entered the marketplace on July 2, 2026.
+
+Current launch:
+
+- EXP-1 - Fiverr AI Automation Consulting.
+- Status: LIVE.
+- Mission: Operation First Revenue.
+
+Launch Center tracks:
+
+- Live Products.
+- Revenue Timeline.
+- Orders.
+- Reviews.
+- Milestones.
+- Launch Log.
+- Marketing Queue.
+
+The next KPI is no longer publish. The next KPIs are impressions, click-through rate, messages, consultations, orders, reviews, and revenue.
+
+Unknown values remain N/A until real platform evidence exists.
 
 ## Identity System + Scout Layer
 
@@ -397,6 +421,38 @@ Current blockers and constraints:
 - Constitution and governance alignment.
 - Knowledge Vault and mission records when justified.
 
+## Trading Research Corps
+
+The Trading Division includes research-only programs for PAIRFORGE, VOLTA, ATLAS, ORION, and WRAITH. Quant Scout Mission 001 recommends ORION as the first prototype target and SPY/QQQ Opening Range Breakout as the first signal to test. These programs expand strategy research without adding live trading capability. Every strategy must pass historical validation before paper mode. No brokerage connection, options execution, money at risk, fake PnL, or fake expectancy is allowed.
+
+## Venture Scouts
+
+Revenue Corps now includes Venture Scouts under Revenue Architect. Their role is to continuously discover lawful business models using public/manual evidence before ideas enter Opportunity Radar or the Mission Pipeline.
+
+Divisions:
+
+- Marketplace Division: Etsy, Fiverr, Gumroad, Amazon, Shopify.
+- Media Division: YouTube, Shorts, TikTok, Instagram, Newsletter.
+- Software Division: GitHub, SaaS, Open Source, API, AI SaaS.
+- Opportunity Division: Bounty, Grant, Competition, Affiliate, Partnership, DealFlow.
+- Asset Division: Game Asset, eBook, Template, Prompt, Design.
+
+Every scout uses the Opportunity Scorecard. Scores remain N/A until evidence exists. Venture Scouts do not publish, message customers, spend money, automate accounts, scrape against platform rules, copy protected work, or trigger experiments without Mission Commander approval.
+
+
+
+## Quant Research Scouts
+
+Current version: v2.7.1
+
+Trading Research Corps now has a Quant Research Scout Engine. Its role is to gather and score trading research before engineering, backtesting, paper trading, or live-risk approval is considered.
+
+Scout roles include GitHub Quant, QuantConnect, Reddit Quant, Academic Paper, Options Strategy, ICT Mechanics, Data Vendor, and Backtest Feasibility Scouts.
+
+Current first signal: ORION / SPY/QQQ Opening Range Breakout.
+
+Current recommendation: create a backtest specification only. No profitability is claimed. No live trading, broker connection, wallet connection, options execution, paper mode, autonomous execution, or money at risk is authorized.
+
 ## Current Repositories
 
 Canonical active workspace:
@@ -483,3 +539,73 @@ Validation requirement:
 - Do not commit until approval.
 
 If sandbox blocks npm commands, report the block clearly and run a TypeScript compiler fallback when possible.
+
+
+## Revenue Corps Operating Department
+
+Current version: v2.3.0
+
+Revenue Corps is the official name for the former Income Division. Revenue Architect commands the department, Revenue Intelligence ranks evidence, Scout Corps finds opportunities, Product Corps builds original assets after approval, and Launch Corps prepares manual launch packages.
+
+Wave 1 focus:
+
+- Marketplace Scout
+- Publishing Scout
+- Bounty Hunter
+
+Every opportunity must clear the Score to Beat before it enters production:
+
+- Evidence that people are buying.
+- Ability to create an original high-quality version.
+- Fit with current resources.
+- Direct contribution to Operation First Revenue.
+
+All metrics remain N/A until real evidence exists.
+
+
+## Scout Reports
+
+Current version: v2.4.0
+
+Scout Reports are the Revenue Corps evidence intake layer. They organize public/manual opportunity research before Revenue Architect ranking, Mission Commander approval, and Mission Pipeline advancement.
+
+Current scout teams:
+
+- Etsy Scout
+- Fiverr Scout
+- Gumroad Scout
+- Asset Scout
+- Bounty Scout
+- Trend Scout
+- Review Scout
+- Pricing Scout
+
+Unknown values remain N/A. No report is allowed to claim demand, margin, conversion, revenue, or confidence without evidence.
+
+
+## Obsidian Knowledge Vault Bridge
+
+Current version: v2.5.0
+
+THE GRID now includes an Obsidian-ready Markdown vault under obsidian-vault/.
+
+Relationship:
+
+- Hermes remembers and files records.
+- Obsidian stores durable knowledge.
+- THE GRID visualizes operational state.
+- Codex builds the bridge.
+- ZENITH governs the architecture.
+
+The bridge is manual/export-only. There is no Obsidian API, sync automation, account connection, or external write integration.
+
+
+## Opportunity Radar
+
+Current version: v2.6.0
+
+Opportunity Radar is the permanent Revenue Corps opportunity queue and ranking board.
+
+It contains opportunities, Experiment Lab, Forecasting, Flywheel, Product Foundry, Marketplace Intelligence, DealFlow Incubator, and Queue views.
+
+It is typed/manual only. No fake data or automated marketplace action is connected.

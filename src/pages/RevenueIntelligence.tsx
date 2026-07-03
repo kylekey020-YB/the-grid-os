@@ -6,13 +6,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { approvalDoctrine, approvalQueue, decisionRecords, type ApprovalRequest, type ApprovalRisk, type ApprovalStatus, type DecisionRecord } from "@/data/approvalSystem";
 import { hermesAgentProfiles } from "@/data/hermesAgents";
 import { revenueArchitectBoard, revenueArchitectMission, type RevenueArchitectBoardItem, type RevenueArchitectBoardStatus } from "@/data/revenueArchitect";
+import { opportunityIntelligenceQueue, revenueCorpsSummary, revenueCorpsUnits, revenueCorpsWaves, scoreToBeatQuestions } from "@/data/revenueCorps";
 import { experimentTracker, hallOfWins, opportunityPipeline, opportunityRadar, pipelineStages, playbookLibrary, revenueDashboardMetrics, revenueIntelligenceDoctrine, revenueScores, marketScannerCandidates, type Confidence, type FactorValue, type PipelineStage, type RadarStatus } from "@/data/revenueIntelligence";
 import { senateDoctrine, senateRecommendations, type SenateConfidence } from "@/data/senate";
 import { scoutDoctrine, scoutOfficers } from "@/data/scoutOfficers";
+import { scoutReportMetrics, scoutReports, scoutReportsDoctrine } from "@/data/scoutReports";
+import { opportunityRadarItems, opportunityRadarSummary, rankOpportunities } from "@/data/opportunityRadar";
+import { opportunityScorecard, ventureScoutMetrics, ventureScouts, ventureScoutsSummary } from "@/data/ventureScouts";
 
 const confidenceTone: Record<Confidence | SenateConfidence, "success" | "manual" | "beta" | "muted"> = { Unknown: "muted", Low: "beta", Medium: "manual", High: "success" };
-const radarTone: Record<RadarStatus, "success" | "manual" | "beta" | "muted" | "danger"> = { Research: "manual", Watching: "beta", Active: "success", Rejected: "danger", Validated: "success" };
-const stageTone: Record<PipelineStage, "success" | "manual" | "beta" | "muted"> = { Research: "manual", Validate: "beta", Prototype: "beta", Publish: "manual", Scale: "success", Systematize: "success" };
+const radarTone: Record<RadarStatus, "success" | "manual" | "beta" | "muted" | "danger"> = { Research: "manual", Watching: "beta", Active: "success", Rejected: "danger", Validated: "success", Live: "success" };
+const stageTone: Record<PipelineStage, "success" | "manual" | "beta" | "muted"> = { Research: "manual", Validate: "beta", Prototype: "beta", Publish: "manual", Live: "success", Scale: "success", Systematize: "success" };
 const approvalStatusTone: Record<ApprovalStatus, "success" | "manual" | "danger" | "beta"> = { "Awaiting Commander": "manual", Approved: "success", Declined: "danger", "Revision Requested": "beta" };
 const approvalRiskTone: Record<ApprovalRisk, "success" | "manual" | "danger"> = { LOW: "success", MEDIUM: "manual", HIGH: "danger" };
 
@@ -22,17 +26,25 @@ export function RevenueIntelligence() {
       <section className="relative overflow-hidden rounded-lg border border-emerald-300/25 bg-card/80 p-6 shadow-[0_0_80px_rgba(52,211,153,0.12)] md:p-8">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(52,211,153,0.18),transparent_26rem),linear-gradient(rgba(52,211,153,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.04)_1px,transparent_1px)] bg-[size:auto,42px_42px,42px_42px]" />
         <div className="relative grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-          <div className="space-y-4"><div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-300/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-emerald-200"><CircleDollarSign className="h-3.5 w-3.5" /> v0.9 Revenue Intelligence</div><div className="space-y-3"><h1 className="font-display text-4xl font-semibold leading-tight md:text-6xl">Revenue Intelligence</h1><p className="max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">Read-only intelligence for identifying, validating, prioritizing, and systematizing profitable digital business workflows. Unknown values stay Unknown.</p></div></div>
+          <div className="space-y-4"><div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-300/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-emerald-200"><CircleDollarSign className="h-3.5 w-3.5" /> v0.9 Revenue Intelligence</div><div className="space-y-3"><h1 className="font-display text-4xl font-semibold leading-tight md:text-6xl">Revenue Intelligence</h1><p className="max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">Read-only intelligence command for ranking Revenue Corps reports, validating opportunities, and deciding what earns entry into the Mission Pipeline. Unknown values stay Unknown.</p></div></div>
           <Card className="border-red-300/30 bg-red-950/15"><CardHeader className="flex-row items-start gap-3"><ShieldCheck className="mt-1 h-5 w-5 text-red-200" /><div><CardTitle className="text-red-100">Read-Only Intelligence</CardTitle><CardDescription>No autonomous publishing, marketplace interaction, ToS-violating scraping, account automation, purchasing, customer messaging, or fabricated metrics.</CardDescription></div></CardHeader></Card>
         </div>
       </section>
 
       <section className="space-y-4"><SectionHeader eyebrow="Doctrine" title="Evidence-first revenue system" description="The engine prioritizes evidence quality over activity theater." /><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">{revenueIntelligenceDoctrine.map((item) => <div key={item} className="rounded-md border border-emerald-300/20 bg-emerald-300/10 p-3 text-sm leading-6 text-emerald-100">{item}</div>)}</div></section>
+      <RevenueCorpsCommand />
+
       <section className="space-y-4"><SectionHeader eyebrow="Scout Evidence Layer" title="Opportunity discovery officers" description="Market Scout, Demand Scout, and Risk Scout prepare research reports for Revenue Architect. No publishing, messaging, spending, or platform-rule scraping." /><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">{scoutDoctrine.map((item) => <div key={item} className="rounded-md border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-cyan-100">{item}</div>)}</div><div className="grid gap-4 md:grid-cols-3">{scoutOfficers.map((scout) => <Card key={scout.id} className="border-cyan-300/25 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-md border border-cyan-300/30 bg-cyan-300/10 text-2xl">{scout.emoji}</span><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Reports to {scout.reportsTo}</p><CardTitle className="mt-1 text-lg">{scout.name}</CardTitle></div></div><StatusBadge label={scout.status} tone="beta" /></div><CardDescription>{scout.mission}</CardDescription></CardHeader><CardContent className="space-y-3 text-sm"><Info label="Watches" value={scout.watches.join(" / ")} /><Info label="Evidence Rule" value={scout.evidenceRules.join(" / ")} /></CardContent></Card>)}</div></section>
 
       <section className="space-y-4"><SectionHeader eyebrow="Revenue Architect" title="Operation First Revenue board" description="A manual operating board for the first revenue campaign: priorities, queues, evidence, experiments, approvals, and wins without fake metrics or autonomous marketplace action." /><Card className="border-emerald-300/35 bg-emerald-950/15"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{revenueArchitectMission.officer}</p><CardTitle className="mt-2 text-2xl text-emerald-100">{revenueArchitectMission.objective}</CardTitle></div><StatusBadge label="Manual Only" tone="manual" /></div><CardDescription>{revenueArchitectMission.mission}</CardDescription></CardHeader><CardContent className="grid gap-3 lg:grid-cols-2"><Info label="Doctrine" value={revenueArchitectMission.doctrine} /><Info label="Safety" value={revenueArchitectMission.safety} /></CardContent></Card><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{revenueArchitectBoard.map((item) => <RevenueArchitectCard key={item.id} item={item} />)}</div></section>
       <section className="space-y-4"><SectionHeader eyebrow="Approval System" title="First-class approval queue" description="Everything irreversible flows through this queue. Current buttons are review placeholders only; no backend, persistence, or external action is connected." /><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">{approvalDoctrine.map((item) => <div key={item} className="rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-sm leading-6 text-amber-100">{item}</div>)}</div><div className="grid gap-4 xl:grid-cols-2">{approvalQueue.map((request) => <ApprovalCard key={request.id} request={request} />)}</div></section>
       <section className="space-y-4"><SectionHeader eyebrow="Decision Records" title="Why decisions were made" description="Mission Records answer what happened. Decision Records answer why THE GRID chose a direction." /><div className="grid gap-4 xl:grid-cols-2">{decisionRecords.map((record) => <DecisionRecordCard key={record.id} record={record} />)}</div></section>
+      <ScoutReportIntelligence />
+
+      <OpportunityRadarIntelligence />
+
+      <VentureScoutIntelligence />
+
       <section className="space-y-4"><SectionHeader eyebrow="Market Scanner" title="Opportunity candidates" description="Tracks opportunity, platform, category, demand, competition, margin, operator fit, recurring potential, automation potential, confidence, and status." /><div className="grid gap-4 xl:grid-cols-3">{marketScannerCandidates.map((candidate) => <MarketScannerCard key={candidate.id} candidate={candidate} />)}</div></section>
       <section className="space-y-4"><SectionHeader eyebrow="Opportunity Pipeline" title="Stage gates" description="Research, Validate, Prototype, Publish, Scale, and Systematize remain explicit gates." /><div className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">{pipelineStages.map((stage) => <div key={stage} className="rounded-md border border-border/70 bg-background/50 p-3 text-center"><StatusBadge label={stage} tone={stageTone[stage]} /></div>)}</div><div className="grid gap-4 lg:grid-cols-3">{opportunityPipeline.map((item) => <PipelineCard key={item.id} item={item} />)}</div></section>
       <section className="space-y-4"><SectionHeader eyebrow="Revenue Score" title="Composite score readiness" description="Scores stay Unknown until all score inputs have evidence." /><div className="grid gap-4 lg:grid-cols-3">{revenueScores.map((score) => <ScoreCard key={score.id} score={score} />)}</div></section>
@@ -43,6 +55,188 @@ export function RevenueIntelligence() {
       <section className="space-y-4"><SectionHeader eyebrow="Hermes Support" title="Revenue specialists prepared for future workflows" description="Revenue Architect, Design Forge, Copy Room, Sentinel, and ZENITH are represented as read-only profiles with approval gates before any live integration exists." /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">{hermesAgentProfiles.map((profile) => <Card key={profile.id} className="border-cyan-300/20"><CardHeader><div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-md border border-cyan-300/30 bg-cyan-300/10 text-xl">{profile.emoji}</span><div><CardTitle className="text-base">{profile.name}</CardTitle><CardDescription>{profile.allowedAutonomyLevel}</CardDescription></div></div></CardHeader><CardContent><Info label="Gate" value={profile.approvalGates[0]} /></CardContent></Card>)}</div></section>
       <section className="space-y-4"><SectionHeader eyebrow="The Senate" title="Decision support" description={senateDoctrine} /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{senateRecommendations.map((item) => <SenateCard key={item.id} item={item} />)}</div></section>
     </div>
+  );
+}
+
+
+function VentureScoutIntelligence() {
+  const active = ventureScouts.filter((scout) => scout.status === "Manual Research" || scout.status === "Research Only");
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Venture Scouts" title="Business-model intelligence layer" description={ventureScoutsSummary.doctrine} />
+      <Card className="border-emerald-300/30 bg-emerald-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{ventureScoutsSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-emerald-100">Comparable scout reports</CardTitle>
+            </div>
+            <StatusBadge label="Read-Only" tone="manual" />
+          </div>
+          <CardDescription>{ventureScoutsSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <Info label="Divisions" value={String(ventureScoutMetrics.divisions)} />
+          <Info label="Scouts" value={String(ventureScoutMetrics.scouts)} />
+          <Info label="Active Research" value={String(active.length)} />
+          <Info label="Scored" value={String(ventureScoutMetrics.scored)} />
+        </CardContent>
+      </Card>
+      <div className="grid gap-4 lg:grid-cols-3">
+        {active.slice(0, 3).map((scout) => (
+          <Card key={scout.id} className="border-cyan-300/25 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{scout.id} / {scout.division}</p>
+                  <CardTitle className="mt-2 text-lg">{scout.emoji} {scout.name}</CardTitle>
+                </div>
+                <StatusBadge label={scout.status} tone="manual" />
+              </div>
+              <CardDescription>{scout.mission}</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 md:grid-cols-2">
+              <Info label="Score" value={String(scout.opportunityScore)} />
+              <Info label="Pipeline" value={scout.missionPipelineLink} />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      <div className="grid gap-3 md:grid-cols-3">
+        {opportunityScorecard.map((question) => <Info key={question.id} label={question.field} value={question.question} />)}
+      </div>
+    </section>
+  );
+}
+
+function OpportunityRadarIntelligence() {
+  const ranked = rankOpportunities("All");
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Opportunity Radar" title="Ranked opportunity board" description={opportunityRadarSummary.doctrine} />
+      <div className="grid gap-4 lg:grid-cols-3">
+        {ranked.slice(0, 3).map((item) => (
+          <Card key={item.id} className="border-emerald-300/25 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{item.id} / {item.marketplace}</p>
+                  <CardTitle className="mt-2 text-lg">{item.name}</CardTitle>
+                </div>
+                <StatusBadge label={item.pipeline} tone="manual" />
+              </div>
+              <CardDescription>{item.rankReason}</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 md:grid-cols-2">
+              <Info label="Estimated MRR" value={item.estimatedMonthlyRevenue} />
+              <Info label="Confidence" value={item.confidence} />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ScoutReportIntelligence() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Scout Reports" title="Revenue Architect ranking input" description={scoutReportsDoctrine} />
+      <Card className="border-cyan-300/30 bg-cyan-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Manual report intake</p>
+              <CardTitle className="mt-2 text-2xl text-cyan-100">Unknown-first evidence board</CardTitle>
+            </div>
+            <StatusBadge label="N/A until evidence" tone="muted" />
+          </div>
+          <CardDescription>Revenue Intelligence can compare scout reports only after evidence exists. This panel does not fabricate demand, margin, competition, or confidence.</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <Info label="Reports" value={String(scoutReportMetrics.totalReports)} />
+          <Info label="Manual Research" value={String(scoutReportMetrics.manualResearch)} />
+          <Info label="Awaiting Evidence" value={String(scoutReportMetrics.awaitingEvidence)} />
+          <Info label="Ready for Review" value={String(scoutReportMetrics.readyForReview)} />
+        </CardContent>
+      </Card>
+      <div className="grid gap-4 lg:grid-cols-4">
+        {scoutReports.slice(0, 4).map((report) => (
+          <Card key={report.id} className="border-cyan-300/20 bg-card/80">
+            <CardHeader>
+              <CardTitle className="text-lg">{report.emoji} {report.scoutName}</CardTitle>
+              <CardDescription>{report.lane} / {report.currentStatus}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <Info label="Confidence" value={report.confidence} />
+              <Info label="Recommendation" value={report.recommendation} />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RevenueCorpsCommand() {
+  const waveOne = revenueCorpsWaves[0];
+  const scoutCount = revenueCorpsUnits.filter((unit) => unit.branch === "Scout Corps").length;
+
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Revenue Corps" title="Revenue Intelligence becomes the general staff" description={revenueCorpsSummary.doctrine} />
+      <div className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
+        <Card className="border-emerald-300/35 bg-emerald-950/15">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{revenueCorpsSummary.version}</p>
+                <CardTitle className="mt-2 text-2xl text-emerald-100">Reports ranked before action</CardTitle>
+              </div>
+              <StatusBadge label="Read-Only" tone="manual" />
+            </div>
+            <CardDescription>{revenueCorpsSummary.safety}</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-3 md:grid-cols-3">
+            <Info label="Commander" value={revenueCorpsSummary.commander} />
+            <Info label="Scout Units" value={String(scoutCount)} />
+            <Info label="Active Wave" value={waveOne.name} />
+          </CardContent>
+        </Card>
+        <Card className="border-amber-300/30 bg-amber-950/15">
+          <CardHeader>
+            <CardTitle className="text-2xl text-amber-100">Score to Beat</CardTitle>
+            <CardDescription>Every opportunity must clear these questions before build, launch, scale, or automation.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-3 md:grid-cols-2">
+            {scoreToBeatQuestions.map((question) => (
+              <Info key={question.id} label={question.question} value={question.passCondition} />
+            ))}
+          </CardContent>
+        </Card>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-3">
+        {opportunityIntelligenceQueue.map((item) => (
+          <Card key={item.id} className="border-cyan-300/25 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{item.id} / {item.owner}</p>
+                  <CardTitle className="mt-2 text-lg">{item.opportunity}</CardTitle>
+                </div>
+                <StatusBadge label={item.currentGate} tone={item.currentGate === "Experiment" ? "success" : "manual"} />
+              </div>
+              <CardDescription>{item.nextAction}</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-3 md:grid-cols-3">
+              <Info label="Confidence" value={String(item.confidence)} />
+              <Info label="Time" value={item.timeToLaunch} />
+              <Info label="Potential" value={item.revenuePotential} />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
   );
 }
 

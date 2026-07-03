@@ -7,9 +7,16 @@ import { bridgeMetrics, bridgeOverview, bridgePanels, type BridgePanelStatus } f
 import { companyHealth, divisionKpiReports } from "@/data/companyKpis";
 import { chronicleEntries } from "@/data/chronicle";
 import { eventChannels, eventRegistrySummary, type EventRegistryStatus } from "@/data/eventRegistry";
+import { launchCenterSummary, liveProducts } from "@/data/launchCenter";
 import { missionEvents } from "@/data/missionEvents";
 import { officerNetwork, officerNetworkDoctrine, type OfficerNetworkState } from "@/data/officerNetwork";
-import { scoutOfficers } from "@/data/scoutOfficers";
+import { revenueCorpsSummary, revenueCorpsUnits, revenueCorpsWaves } from "@/data/revenueCorps";
+import { scoutReportMetrics, scoutReportsDoctrine } from "@/data/scoutReports";
+import { obsidianBridgeSummary, obsidianVaultFolders } from "@/data/obsidianBridge";
+import { opportunityRadarItems, opportunityRadarSummary } from "@/data/opportunityRadar";
+import { ventureScoutMetrics, ventureScoutsSummary } from "@/data/ventureScouts";
+import { tradingResearchCorpsSummary, tradingResearchMetrics } from "@/data/tradingResearchCorps";
+import { quantResearchMetrics, quantResearchScoutsSummary } from "@/data/quantResearchScouts";
 
 const panelTone: Record<BridgePanelStatus, "success" | "manual" | "beta" | "muted"> = {
   Active: "success",
@@ -77,8 +84,22 @@ export function Bridge() {
 
       <section className="grid gap-4 xl:grid-cols-[0.75fr_1.25fr]">
         <CompanySeal />
-        <ScoutNetworkPanel />
+        <RevenueCorpsNetworkPanel />
       </section>
+
+      <LaunchPanel />
+
+      <ScoutReportsBridgePanel />
+
+      <OpportunityRadarBridgePanel />
+
+      <TradingResearchBridgePanel />
+
+      <QuantResearchBridgePanel />
+
+      <VentureScoutsBridgePanel />
+
+      <ObsidianBridgePanel />
 
       <section className="space-y-4">
         <SectionHeader eyebrow="Bridge Panels" title="Operations floor, compressed" description="The Bridge gathers current mission state, officer network, event registry, division health, approvals, and Academy memory without controlling external systems." />
@@ -133,23 +154,193 @@ export function Bridge() {
   );
 }
 
-function ScoutNetworkPanel() {
+function LaunchPanel() {
+  const liveProduct = liveProducts[0];
+
   return (
     <Card className="border-emerald-300/30 bg-emerald-950/15">
       <CardHeader>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Scout Agent Layer</p>
-            <CardTitle className="mt-2 text-2xl text-emerald-100">Opportunity discovery network</CardTitle>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Launch Center</p>
+            <CardTitle className="mt-2 text-2xl text-emerald-100">THE GRID entered the marketplace</CardTitle>
+          </div>
+          <StatusBadge label={liveProduct.status} tone="success" />
+        </div>
+        <CardDescription>{liveProduct.name} went live on {liveProduct.launchDate}. The Bridge now tracks launch state without fabricating metrics.</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Products" value={String(launchCenterSummary.liveProducts)} />
+        <MetricLine label="Milestones" value={String(launchCenterSummary.recordedMilestones)} />
+        <MetricLine label="Revenue" value={launchCenterSummary.revenue} />
+        <MetricLine label="Next KPI" value={launchCenterSummary.nextKpis[0]} />
+      </CardContent>
+    </Card>
+  );
+}
+
+function RevenueCorpsNetworkPanel() {
+  return (
+    <Card className="border-emerald-300/30 bg-emerald-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Revenue Corps</p>
+            <CardTitle className="mt-2 text-2xl text-emerald-100">Opportunity discovery command</CardTitle>
           </div>
           <StatusBadge label="Research Only" tone="manual" />
         </div>
-        <CardDescription>Scouts report to Revenue Architect. They do not publish, message, spend, or scrape against platform rules.</CardDescription>
+        <CardDescription>{revenueCorpsSummary.doctrine}</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-3 md:grid-cols-3">
-        {scoutOfficers.map((scout) => (
-          <OfficerBadgeShell key={scout.id} emoji={scout.emoji} name={scout.name} role={scout.role} status={scout.status} />
+        {revenueCorpsUnits.filter((unit) => unit.activationWave === "Wave 1").map((unit) => (
+          <OfficerBadgeShell key={unit.id} emoji={unit.emoji} name={unit.name} role={unit.branch} status={unit.status} />
         ))}
+      </CardContent>
+      <CardContent className="grid gap-3 border-t border-emerald-300/15 pt-3 md:grid-cols-2">
+        <MetricLine label="Current Wave" value={revenueCorpsWaves[0].name} />
+        <MetricLine label="Safety" value={revenueCorpsSummary.safety} />
+      </CardContent>
+    </Card>
+  );
+}
+
+
+function ScoutReportsBridgePanel() {
+  return (
+    <Card className="border-cyan-300/30 bg-cyan-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Scout Reports</p>
+            <CardTitle className="mt-2 text-2xl text-cyan-100">Manual demand intelligence</CardTitle>
+          </div>
+          <StatusBadge label="Manual Only" tone="manual" />
+        </div>
+        <CardDescription>{scoutReportsDoctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Reports" value={String(scoutReportMetrics.totalReports)} />
+        <MetricLine label="Manual Research" value={String(scoutReportMetrics.manualResearch)} />
+        <MetricLine label="Awaiting Evidence" value={String(scoutReportMetrics.awaitingEvidence)} />
+        <MetricLine label="Ready" value={String(scoutReportMetrics.readyForReview)} />
+      </CardContent>
+    </Card>
+  );
+}
+
+
+
+function OpportunityRadarBridgePanel() {
+  return (
+    <Card className="border-emerald-300/30 bg-emerald-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Opportunity Radar</p>
+            <CardTitle className="mt-2 text-2xl text-emerald-100">Permanent opportunity function</CardTitle>
+          </div>
+          <StatusBadge label="Typed Only" tone="manual" />
+        </div>
+        <CardDescription>{opportunityRadarSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-3">
+        <MetricLine label="Opportunities" value={String(opportunityRadarItems.length)} />
+        <MetricLine label="Live Monitoring" value={String(opportunityRadarItems.filter((item) => item.status === "Live Monitoring").length)} />
+        <MetricLine label="Fake Data" value="0" />
+      </CardContent>
+    </Card>
+  );
+}
+
+
+
+function TradingResearchBridgePanel() {
+  return (
+    <Card className="border-blue-300/30 bg-blue-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">Trading Research Corps</p>
+            <CardTitle className="mt-2 text-2xl text-blue-100">Research programs, not live systems</CardTitle>
+          </div>
+          <StatusBadge label="No money at risk" tone="manual" />
+        </div>
+        <CardDescription>{tradingResearchCorpsSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Programs" value={String(tradingResearchMetrics.programs)} />
+        <MetricLine label="Scouts" value={String(tradingResearchMetrics.scouts)} />
+        <MetricLine label="Live Trading" value={String(tradingResearchMetrics.liveTradingConnections)} />
+        <MetricLine label="Expectancy Proven" value={String(tradingResearchMetrics.strategiesWithProvenExpectancy)} />
+      </CardContent>
+    </Card>
+  );
+}
+
+function QuantResearchBridgePanel() {
+  return (
+    <Card className="border-blue-300/30 bg-blue-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">Quant Research Scouts</p>
+            <CardTitle className="mt-2 text-2xl text-blue-100">Trading research intake</CardTitle>
+          </div>
+          <StatusBadge label="No execution" tone="manual" />
+        </div>
+        <CardDescription>{quantResearchScoutsSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Scouts" value={String(quantResearchMetrics.scouts)} />
+        <MetricLine label="Reports" value={String(quantResearchMetrics.reports)} />
+        <MetricLine label="Queue" value={String(quantResearchMetrics.queueItems)} />
+        <MetricLine label="Rejected" value={String(quantResearchMetrics.rejected)} />
+      </CardContent>
+    </Card>
+  );
+}
+
+function VentureScoutsBridgePanel() {
+  return (
+    <Card className="border-cyan-300/30 bg-cyan-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Venture Scouts</p>
+            <CardTitle className="mt-2 text-2xl text-cyan-100">Business-model discovery network</CardTitle>
+          </div>
+          <StatusBadge label="Typed Only" tone="manual" />
+        </div>
+        <CardDescription>{ventureScoutsSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Divisions" value={String(ventureScoutMetrics.divisions)} />
+        <MetricLine label="Scouts" value={String(ventureScoutMetrics.scouts)} />
+        <MetricLine label="Scored" value={String(ventureScoutMetrics.scored)} />
+        <MetricLine label="Automation" value="None" />
+      </CardContent>
+    </Card>
+  );
+}
+
+function ObsidianBridgePanel() {
+  return (
+    <Card className="border-purple-300/30 bg-purple-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">Obsidian Bridge</p>
+            <CardTitle className="mt-2 text-2xl text-purple-100">Second-brain export layer</CardTitle>
+          </div>
+          <StatusBadge label={obsidianBridgeSummary.status} tone="manual" />
+        </div>
+        <CardDescription>{obsidianBridgeSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-3">
+        <MetricLine label="Vault" value={obsidianBridgeSummary.rootFolder} />
+        <MetricLine label="Folders" value={String(obsidianVaultFolders.length)} />
+        <MetricLine label="Automation" value="None" />
       </CardContent>
     </Card>
   );

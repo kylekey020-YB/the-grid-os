@@ -1,6 +1,6 @@
 # THE GRID UI Foundation
 
-Current Version: v2.1.0
+Current Version: v2.7.1
 
 THE GRID is a frontend foundation for an AI operating system interface that coordinates validated business workflows. It is intentionally grounded: workstations are manual first, and automation is deferred until workflows show repeatable value.
 
@@ -195,11 +195,107 @@ This build is intentionally only the shell. It includes navigation, responsive l
 - Scouts report to Revenue Architect; Risk Scout also reports risk signals to Sentinel.
 - This milestone is UI and typed data only: no scraping against platform rules, no publishing, no customer messaging, no spending, no account actions, and no fake metrics.
 
+## v2.2 Launch Center
+
+- Added Launch Center for live products, revenue timeline, orders, reviews, milestones, launch log, and marketing queue.
+- Added src/data/launchCenter.ts and src/pages/LaunchCenter.tsx.
+- Recorded EXP-1 - Fiverr AI Automation Consulting as LIVE on July 2, 2026.
+- Updated Mission Pipeline and Revenue Intelligence to show Operation First Revenue in live monitoring.
+- Added Launch Center references to Mission Control, The Bridge, World Map, Chronicle, Academy, and Mission Events.
+- Added LAUNCH_CENTER_STATUS.md.
+- Updated THE_GRID_CONSTITUTION.md with the historical Marketplace Entry Record.
+- Metrics remain N/A until real Fiverr/platform evidence exists.
+
+## v2.3 Revenue Corps
+
+- Renamed Income Division as Revenue Corps.
+- Added Revenue Corps page as the official revenue operating department.
+- Added typed Revenue Corps data in src/data/revenueCorps.ts.
+- Added Scout Corps, Product Corps, and Launch Corps structure under Revenue Architect.
+- Added Score to Beat questions for opportunity advancement.
+- Integrated Revenue Corps into Mission Control, The Bridge, Revenue Intelligence, Council, World Map, and KPI reporting.
+- This milestone is read-only architecture/UI only: no scraping, no autonomous publishing, no customer messaging, no spending, no account automation, and no fake revenue metrics.
+
+## v2.4 Scout Reports
+
+- Added Scout Reports as the structured manual evidence intake for Revenue Corps.
+- Added src/data/scoutReports.ts.
+- Added src/pages/ScoutReports.tsx.
+- Added SCOUT_REPORTS_STATUS.md.
+- Added Etsy, Fiverr, Gumroad, Asset, Bounty, Trend, Review, and Pricing Scout report templates.
+- Integrated Scout Reports into Mission Control, The Bridge, Revenue Corps, Revenue Intelligence, The Academy, World Map, and Mission Pipeline.
+- Doctrine: Scouts discover demand. Product Corps creates original assets. Launch Corps publishes only after Mission Commander approval.
+- This milestone is read-only and manual/public-evidence only: no scraping integrations, account automation, fake marketplace data, autonomous publishing, customer messaging, or fabricated scores.
+
+## v2.5 Obsidian Knowledge Vault Bridge
+
+- Added an Obsidian-ready knowledge vault structure under obsidian-vault/.
+- Added src/data/obsidianBridge.ts.
+- Added OBSIDIAN_VAULT_STATUS.md.
+- Added docs/OBSIDIAN_BRIDGE.md.
+- Added scripts/exportObsidianVault.js.
+- Added Markdown folders for Command, Doctrine, Mission Records, Decision Records, Approval Records, Revenue Corps, Commerce, Trading, Academy, Strategic Assets, and Officers.
+- Integrated Obsidian Bridge into Mission Control, The Bridge, and The Academy.
+- Doctrine: Hermes remembers and files records. Obsidian stores durable knowledge. THE GRID visualizes operational state. Codex builds the bridge. ZENITH governs the architecture.
+- This milestone is manual Markdown export only: no Obsidian API, no sync automation, no secrets, no .env files, no API keys, and no raw logs unless sanitized.
+
+## v2.6 Opportunity Radar
+
+- Added Opportunity Radar page.
+- Added src/data/opportunityRadar.ts.
+- Added src/pages/OpportunityRadar.tsx.
+- Added OPPORTUNITY_RADAR_STATUS.md.
+- Added typed opportunity fields, ranking filters, Experiment Lab, Revenue Forecasting, Revenue Flywheel, Product Foundry, Marketplace Intelligence, DealFlow Incubator, and Opportunity Queue.
+- Integrated Opportunity Radar into Mission Control, The Bridge, Revenue Corps, Revenue Intelligence, World Map, and Mission Pipeline.
+- This milestone is typed/manual only: no backend, no fake data, no scraping integrations, no account automation, no autonomous publishing, no spending, and no fabricated forecasts.
+
+## v2.7 Venture Scouts
+
+Revenue Corps now includes a typed Venture Scout layer for business-model discovery, not just marketplace product scouting. The scout network is organized into Marketplace, Media, Software, Opportunity, and Asset divisions. Every scout uses the same Opportunity Scorecard before any idea can enter the Mission Pipeline.
+
+This is manual/read-only architecture only: no scraping integrations, no account automation, no autonomous publishing, no customer messaging, no spending, and no fabricated opportunity scores. Unknown scores remain N/A until public/manual evidence exists.
+
+## v2.6 Trading Research Corps
+
+The Trading Division now includes a research-only Trading Research Corps for PAIRFORGE, VOLTA, and ATLAS. These are backtest and paper-only architecture objects, not live trading systems. Every strategy must pass historical validation before paper mode.
+
+Doctrine: Trading programs are research programs until evidence proves expectancy. No brokerage connection, no options execution, no money at risk, no fake performance metrics, and no live trading are implemented.
+
+## Quant Scout Mission 001
+
+Trading Research Corps now includes ORION and WRAITH alongside PAIRFORGE, VOLTA, and ATLAS. Quant Scout Mission 001 ranks broad strategy candidates and recommends ORION as the first research prototype, specifically SPY/QQQ Opening Range Breakout.
+
+No live trading is authorized. No broker connection, options execution, wallet execution, or money at risk exists. WRAITH may only advance if discretionary ICT/FVG/liquidity concepts are converted into mechanical, code-definable rules.
+
+
+## v2.7.1 Quant Research Scout Engine
+
+- Added Quant Research Scouts as the research intake engine for Trading Research Corps.
+- Added src/data/quantResearchScouts.ts and src/pages/QuantResearchScouts.tsx.
+- Added QUANT_RESEARCH_SCOUTS_STATUS.md and docs/QUANT_RESEARCH_WORKFLOW.md.
+- Added QUANT_RESEARCH_TASK_001_ORION.md as the first ORION research task record.
+- Integrated Quant Scouts into Mission Control, The Bridge, World Map, The Academy, Trading Research Corps, and Mission Pipeline.
+- Doctrine: Quant Scouts research. Backtesters validate. Programs paper trade. Mission Commander approves live risk.
+- ORION first signal recommendation: prototype a SPY/QQQ Opening Range Breakout backtest specification. No profitability is claimed without historical test evidence.
+- This milestone is typed research architecture only: no live trading, broker connection, wallet connection, options execution, paper mode, autonomous execution, or money at risk.
+
 ## Documentation
 
 - [FOUNDING_COUNCIL_BRIEF.md](FOUNDING_COUNCIL_BRIEF.md)
 - [NERVOUS_SYSTEM_STATUS.md](NERVOUS_SYSTEM_STATUS.md)
 - [SCOUT_OFFICER_STATUS.md](SCOUT_OFFICER_STATUS.md)
+- [QUANT_SCOUT_MISSION_001.md](QUANT_SCOUT_MISSION_001.md)
+- [QUANT_RESEARCH_SCOUTS_STATUS.md](QUANT_RESEARCH_SCOUTS_STATUS.md)
+- [docs/QUANT_RESEARCH_WORKFLOW.md](docs/QUANT_RESEARCH_WORKFLOW.md)
+- [QUANT_RESEARCH_TASK_001_ORION.md](QUANT_RESEARCH_TASK_001_ORION.md)
+- [TRADING_RESEARCH_CORPS_STATUS.md](TRADING_RESEARCH_CORPS_STATUS.md)
+- [VENTURE_SCOUTS_STATUS.md](VENTURE_SCOUTS_STATUS.md)
+- [OPPORTUNITY_RADAR_STATUS.md](OPPORTUNITY_RADAR_STATUS.md)
+- [OBSIDIAN_VAULT_STATUS.md](OBSIDIAN_VAULT_STATUS.md)
+- [docs/OBSIDIAN_BRIDGE.md](docs/OBSIDIAN_BRIDGE.md)
+- [SCOUT_REPORTS_STATUS.md](SCOUT_REPORTS_STATUS.md)
+- [REVENUE_CORPS_STATUS.md](REVENUE_CORPS_STATUS.md)
+- [LAUNCH_CENTER_STATUS.md](LAUNCH_CENTER_STATUS.md)
 - [IDENTITY_SYSTEM_STATUS.md](IDENTITY_SYSTEM_STATUS.md)
 - [THE_GRID_CONSTITUTION.md](THE_GRID_CONSTITUTION.md)
 - [MISSION_PIPELINE.md](MISSION_PIPELINE.md)

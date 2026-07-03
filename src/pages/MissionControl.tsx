@@ -21,14 +21,22 @@ import { approvalQueue, decisionRecords, type ApprovalRequest, type DecisionReco
 import { bridgeMetrics, bridgeOverview } from "@/data/bridge";
 import { companyHealth, divisionKpiReports, type DivisionKpiReport } from "@/data/companyKpis";
 import { missionEvents, recentlyCompletedExperiments, type MissionEvent } from "@/data/missionEvents";
+import { launchCenterSummary, liveProducts } from "@/data/launchCenter";
 import { missionPipelineItems, missionPipelineStages } from "@/data/missionPipeline";
 import { officerPresence, type OfficerPresence } from "@/data/officerPresence";
+import { revenueCorpsSummary, revenueCorpsUnits, revenueCorpsWaves } from "@/data/revenueCorps";
 import { scoutOfficers } from "@/data/scoutOfficers";
+import { scoutReportMetrics, scoutReports, scoutReportsDoctrine } from "@/data/scoutReports";
+import { obsidianBridgeRules, obsidianBridgeSummary, obsidianVaultFolders } from "@/data/obsidianBridge";
+import { opportunityQueue, opportunityRadarItems, opportunityRadarSummary, rankOpportunities } from "@/data/opportunityRadar";
+import { ventureScoutDivisions, ventureScoutMetrics, ventureScouts, ventureScoutsSummary } from "@/data/ventureScouts";
+import { tradingResearchCorpsSummary, tradingResearchMetrics, tradingResearchPrograms } from "@/data/tradingResearchCorps";
+import { quantResearchMetrics, quantResearchScoutsSummary, strategyCandidateQueue } from "@/data/quantResearchScouts";
 
 const executiveBrief = [
   "Operation First Revenue remains the primary offensive mission.",
   "Revenue Architect is active in advisory-only mode.",
-  "AR-001 is awaiting Mission Commander approval before the income lane scoring sprint begins.",
+  "AR-001 is awaiting Mission Commander approval before the Revenue Corps lane scoring sprint begins.",
   "Commerce remains research-only until live quote unknowns are resolved through an approved phase.",
 ];
 
@@ -44,7 +52,7 @@ const programStatus = [
   { name: "APEX", state: "Research", signal: "No current status feed connected to this repo.", boundary: "No live trading integration in THE GRID." },
   { name: "CLU", state: "Research", signal: "No current status feed connected to this repo.", boundary: "No autonomous execution in THE GRID." },
   { name: "Hermes", state: "Prepared", signal: "Agent profiles are documented for future activation.", boundary: "No Telegram or account actions connected." },
-  { name: "Revenue Architect", state: "Advisory Only", signal: "Income lane scoring is awaiting approval.", boundary: "No publishing, spending, or scraping." },
+  { name: "Revenue Architect", state: "Advisory Only", signal: "Revenue Corps scout reports are structured; completed evidence reports can be ranked next.", boundary: "No publishing, spending, or scraping." },
 ];
 
 const eventTone: Record<MissionEvent["status"], "success" | "manual" | "beta" | "danger" | "muted"> = {
@@ -96,7 +104,21 @@ export function MissionControl() {
         <ProgramStatusPanel />
       </section>
 
+      <TradingResearchSnapshot />
+
+      <QuantResearchScoutsSnapshot />
+
       <ScoutLayerSnapshot />
+
+      <RevenueCorpsSnapshot />
+
+      <ScoutReportsSnapshot />
+
+      <OpportunityRadarSnapshot />
+
+      <VentureScoutsSnapshot />
+
+      <ObsidianBridgeSnapshot />
 
       <section className="space-y-4">
         <SectionHeader
@@ -111,9 +133,10 @@ export function MissionControl() {
         </div>
       </section>
 
-      <section className="grid gap-4 xl:grid-cols-3">
+      <section className="grid gap-4 xl:grid-cols-4">
         <CompletedExperiments />
         <AcademySnapshot />
+        <LaunchCenterSnapshot />
         <TopPriorities />
       </section>
     </div>
@@ -420,6 +443,74 @@ function MissionPipelineSnapshot() {
   );
 }
 
+
+function TradingResearchSnapshot() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Trading Research Corps" title="Expectancy research before trading systems" description={tradingResearchCorpsSummary.doctrine} />
+      <Card className="border-cyan-300/35 bg-cyan-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{tradingResearchCorpsSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-cyan-100">PAIRFORGE / VOLTA / ATLAS</CardTitle>
+            </div>
+            <StatusBadge label="Research Only" tone="manual" />
+          </div>
+          <CardDescription>{tradingResearchCorpsSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <MetricLine label="Programs" value={String(tradingResearchMetrics.programs)} />
+          <MetricLine label="Scouts" value={String(tradingResearchMetrics.scouts)} />
+          <MetricLine label="Live Trading" value={String(tradingResearchMetrics.liveTradingConnections)} />
+          <MetricLine label="Proven Expectancy" value={String(tradingResearchMetrics.strategiesWithProvenExpectancy)} />
+        </CardContent>
+      </Card>
+      <div className="grid gap-4 md:grid-cols-3">
+        {tradingResearchPrograms.map((program) => (
+          <Card key={program.id} className="border-cyan-300/25 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-3">
+                <CardTitle className="text-lg">{program.emoji} {program.name}</CardTitle>
+                <StatusBadge label={program.currentStatus} tone={program.currentStatus === "Backtest Required" ? "beta" : "manual"} />
+              </div>
+              <CardDescription>{program.nextResearchTask}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function QuantResearchScoutsSnapshot() {
+  const lead = strategyCandidateQueue[0];
+
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Quant Research Scouts" title="Trading knowledge intake engine" description={quantResearchScoutsSummary.doctrine} />
+      <Card className="border-blue-300/35 bg-blue-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">{quantResearchScoutsSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-blue-100">Scouts research. Backtesters validate.</CardTitle>
+            </div>
+            <StatusBadge label="Research Only" tone="manual" />
+          </div>
+          <CardDescription>{quantResearchScoutsSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <MetricLine label="Scouts" value={String(quantResearchMetrics.scouts)} />
+          <MetricLine label="Reports" value={String(quantResearchMetrics.reports)} />
+          <MetricLine label="Prototype Candidates" value={String(quantResearchMetrics.prototypeCandidates)} />
+          <MetricLine label="Lead Candidate" value={lead?.strategy ?? "N/A"} />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
 function ScoutLayerSnapshot() {
   return (
     <section className="space-y-4">
@@ -445,6 +536,181 @@ function ScoutLayerSnapshot() {
               <MetricLine label="Boundary" value="Public evidence reports only" />
             </CardContent>
           </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RevenueCorpsSnapshot() {
+  const waveOne = revenueCorpsWaves[0];
+  const commandUnits = revenueCorpsUnits.filter((unit) => unit.branch === "Command").length;
+  const scoutUnits = revenueCorpsUnits.filter((unit) => unit.branch === "Scout Corps").length;
+
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Revenue Corps" title="Revenue Architect now leads operating teams" description={revenueCorpsSummary.doctrine} />
+      <Card className="border-emerald-300/35 bg-emerald-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{revenueCorpsSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-emerald-100">Scout reports feed the Mission Pipeline</CardTitle>
+            </div>
+            <StatusBadge label="Research Only" tone="manual" />
+          </div>
+          <CardDescription>{revenueCorpsSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <MetricLine label="Commander" value={revenueCorpsSummary.commander} />
+          <MetricLine label="Command Units" value={String(commandUnits)} />
+          <MetricLine label="Scout Units" value={String(scoutUnits)} />
+          <MetricLine label="Active Wave" value={waveOne.name} />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+
+function ScoutReportsSnapshot() {
+  const activeReports = scoutReports.filter((report) => report.currentStatus === "Manual Research");
+
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Scout Reports" title="Manual opportunity intelligence intake" description={scoutReportsDoctrine} />
+      <Card className="border-cyan-300/35 bg-cyan-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Revenue Corps</p>
+              <CardTitle className="mt-2 text-2xl text-cyan-100">Reports before product work</CardTitle>
+            </div>
+            <StatusBadge label="Manual Only" tone="manual" />
+          </div>
+          <CardDescription>No fake marketplace data. Unknowns remain N/A until a human records public evidence.</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <MetricLine label="Reports" value={String(scoutReportMetrics.totalReports)} />
+          <MetricLine label="Manual Research" value={String(scoutReportMetrics.manualResearch)} />
+          <MetricLine label="Awaiting Evidence" value={String(scoutReportMetrics.awaitingEvidence)} />
+          <MetricLine label="Ready for Review" value={String(scoutReportMetrics.readyForReview)} />
+        </CardContent>
+      </Card>
+      <div className="grid gap-4 md:grid-cols-3">
+        {activeReports.slice(0, 3).map((report) => (
+          <Card key={report.id} className="border-cyan-300/25 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{report.id} / {report.lane}</p>
+                  <CardTitle className="mt-2 text-lg">{report.emoji} {report.scoutName}</CardTitle>
+                </div>
+                <StatusBadge label={report.confidence} tone="muted" />
+              </div>
+              <CardDescription>{report.nextAction}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
+
+function OpportunityRadarSnapshot() {
+  const ranked = rankOpportunities("All");
+  const totalQueue = opportunityQueue.reduce((sum, item) => sum + item.count, 0);
+
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Opportunity Radar" title="Permanent opportunity hunting" description={opportunityRadarSummary.doctrine} />
+      <Card className="border-emerald-300/35 bg-emerald-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{opportunityRadarSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-emerald-100">Revenue Architect ranking board</CardTitle>
+            </div>
+            <StatusBadge label="Manual Evidence" tone="manual" />
+          </div>
+          <CardDescription>{opportunityRadarSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <MetricLine label="Opportunities" value={String(opportunityRadarItems.length)} />
+          <MetricLine label="Queue Total" value={String(totalQueue)} />
+          <MetricLine label="Top Item" value={ranked[0]?.id ?? "N/A"} />
+          <MetricLine label="Revenue Claims" value="0" />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+
+function VentureScoutsSnapshot() {
+  const activeScouts = ventureScouts.filter((scout) => scout.status === "Manual Research" || scout.status === "Research Only");
+
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Venture Scouts" title="Business-model discovery network" description={ventureScoutsSummary.doctrine} />
+      <Card className="border-cyan-300/35 bg-cyan-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{ventureScoutsSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-cyan-100">Revenue Corps expands beyond marketplaces</CardTitle>
+            </div>
+            <StatusBadge label="Manual Research" tone="manual" />
+          </div>
+          <CardDescription>{ventureScoutsSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <MetricLine label="Divisions" value={String(ventureScoutMetrics.divisions)} />
+          <MetricLine label="Scouts" value={String(ventureScoutMetrics.scouts)} />
+          <MetricLine label="Active Research" value={String(activeScouts.length)} />
+          <MetricLine label="Scored" value={String(ventureScoutMetrics.scored)} />
+        </CardContent>
+      </Card>
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        {ventureScoutDivisions.map((division) => (
+          <Card key={division.id} className="border-cyan-300/20 bg-card/80">
+            <CardHeader>
+              <CardTitle className="text-lg">{division.name}</CardTitle>
+              <CardDescription>{division.mission}</CardDescription>
+            </CardHeader>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ObsidianBridgeSnapshot() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Obsidian Bridge" title="Durable knowledge vault" description={obsidianBridgeSummary.doctrine} />
+      <Card className="border-purple-300/35 bg-purple-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{obsidianBridgeSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-purple-100">{obsidianBridgeSummary.rootFolder}</CardTitle>
+            </div>
+            <StatusBadge label={obsidianBridgeSummary.status} tone="manual" />
+          </div>
+          <CardDescription>{obsidianBridgeSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-3">
+          <MetricLine label="Vault folders" value={String(obsidianVaultFolders.length)} />
+          <MetricLine label="Script" value={obsidianBridgeSummary.script} />
+          <MetricLine label="Mode" value="Markdown export" />
+        </CardContent>
+      </Card>
+      <div className="grid gap-3 md:grid-cols-3">
+        {obsidianBridgeRules.slice(0, 3).map((rule) => (
+          <div key={rule} className="rounded-md border border-purple-300/20 bg-purple-300/10 p-3 text-sm leading-6 text-purple-100">{rule}</div>
         ))}
       </div>
     </section>
@@ -556,6 +822,33 @@ function AcademySnapshot() {
         <MetricLine label="Founding Day" value={foundingDay.date} />
         <div className="rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-sm leading-6 text-amber-100">
           {academyOverview.safety}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function LaunchCenterSnapshot() {
+  const liveProduct = liveProducts[0];
+
+  return (
+    <Card className="border-emerald-300/25 bg-card/80">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Launch Center</p>
+            <CardTitle className="mt-2 text-xl">{liveProduct.name}</CardTitle>
+          </div>
+          <StatusBadge label={liveProduct.status} tone="success" />
+        </div>
+        <CardDescription>{liveProduct.evidence}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <MetricLine label="Live Products" value={String(launchCenterSummary.liveProducts)} />
+        <MetricLine label="Revenue" value={launchCenterSummary.revenue} />
+        <MetricLine label="Next KPI" value={launchCenterSummary.nextKpis[0]} />
+        <div className="rounded-md border border-emerald-300/20 bg-emerald-300/10 p-3 text-sm leading-6 text-emerald-100">
+          Real marketplace data starts now. Unknown values remain N/A.
         </div>
       </CardContent>
     </Card>

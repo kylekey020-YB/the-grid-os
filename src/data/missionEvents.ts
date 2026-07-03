@@ -1,4 +1,5 @@
 import { approvalQueue, decisionRecords } from "@/data/approvalSystem";
+import { liveProducts, revenueTimeline } from "@/data/launchCenter";
 import { experimentTracker } from "@/data/revenueIntelligence";
 import { missionPipelineItems } from "@/data/missionPipeline";
 
@@ -62,6 +63,28 @@ const pipelineEvents: MissionEvent[] = missionPipelineItems.map((item) => ({
   evidenceRef: item.evidenceState,
 }));
 
+const launchEvents: MissionEvent[] = liveProducts.map((product) => ({
+  id: product.id,
+  type: "EXPERIMENT_STARTED",
+  source: "Revenue Architect",
+  timestamp: product.launchDate,
+  title: product.name + " is live",
+  status: "active",
+  summary: "THE GRID entered the marketplace; post-launch KPIs now require evidence.",
+  evidenceRef: product.evidence,
+}));
+
+const revenueTimelineEvents: MissionEvent[] = revenueTimeline.map((entry) => ({
+  id: entry.id,
+  type: "MISSION_RECORD",
+  source: "Hermes",
+  timestamp: entry.date,
+  title: entry.title,
+  status: "completed",
+  summary: entry.summary,
+  evidenceRef: entry.evidence,
+}));
+
 const experimentEvents: MissionEvent[] = experimentTracker.map((experiment) => ({
   id: experiment.id,
   type: "EXPERIMENT_STARTED",
@@ -77,6 +100,6 @@ function sortKey(event: MissionEvent) {
   return event.timestamp === "N/A" ? "" : event.timestamp;
 }
 
-export const missionEvents: MissionEvent[] = [...approvalEvents, ...decisionEvents, ...pipelineEvents, ...experimentEvents].sort((a, b) => sortKey(b).localeCompare(sortKey(a)));
+export const missionEvents: MissionEvent[] = [...launchEvents, ...revenueTimelineEvents, ...approvalEvents, ...decisionEvents, ...pipelineEvents, ...experimentEvents].sort((a, b) => sortKey(b).localeCompare(sortKey(a)));
 
 export const recentlyCompletedExperiments = experimentTracker.filter((experiment) => experiment.result !== "Unknown");

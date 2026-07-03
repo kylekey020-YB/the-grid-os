@@ -2,7 +2,226 @@
 
 All notable changes to THE GRID will be documented in this file.
 
-Current Version: v2.1.0
+Current Version: v2.7.1
+
+
+
+
+## v2.7.1 - Quant Research Scout Engine
+
+### Added
+
+- src/data/quantResearchScouts.ts
+- src/pages/QuantResearchScouts.tsx
+- QUANT_RESEARCH_SCOUTS_STATUS.md
+- docs/QUANT_RESEARCH_WORKFLOW.md
+- QUANT_RESEARCH_TASK_001_ORION.md
+- Quant Scout roles for GitHub, QuantConnect, Reddit, academic papers, options, ICT mechanics, data vendors, and backtest feasibility
+- Research Inbox, Strategy Candidate Queue, Source Library, Bot Assignment Matrix, Backtest Readiness Board, Rejected Strategy Graveyard, and Top Strategy Recommendations
+- ORION First Signal research task for SPY/QQQ Opening Range Breakout
+- Quant Scout integrations in Mission Control, The Bridge, World Map, The Academy, Trading Research Corps, and Mission Pipeline
+
+### Changed
+
+- Trading Research Corps now has a dedicated research intake engine before backtest work begins
+- Mission Pipeline now tracks Quant Research Scout Engine as a research-stage operating object
+- Canonical documentation version updated to v2.7.1
+
+### Safety Boundary
+
+- Research-only typed architecture
+- No live trading, broker connection, wallet connection, options execution, paper mode, autonomous execution, money at risk, fake PnL, fake expectancy, fake win rate, or profitability claims before historical validation
+
+## v2.7.0 - Venture Scouts
+
+### Added
+
+- src/data/ventureScouts.ts
+- VENTURE_SCOUTS_STATUS.md
+- Venture Scout divisions for Marketplace, Media, Software, Opportunity, and Asset research
+- Opportunity Scorecard shared across all scout reports
+- Venture Scout integrations in Mission Control, The Bridge, Revenue Corps, Revenue Intelligence, Scout Reports, Opportunity Radar, World Map, and Mission Pipeline
+- Obsidian vault copy for Venture Scouts status
+
+### Changed
+
+- Revenue Corps now treats business-model discovery as a permanent capability, not only marketplace product scouting
+- Mission Pipeline now tracks Venture Scouts as a research-stage operating object
+- Canonical documentation version updated to v2.7.0
+
+### Safety Boundary
+
+- Typed/manual architecture only
+- Scores remain N/A until public/manual evidence exists
+- No scraping integrations, account automation, autonomous publishing, customer messaging, spending, copied products, fake reviews, fabricated data, or fabricated opportunity scores
+
+
+## v2.6.2 - Quant Scout Mission 001
+
+### Added
+
+- QUANT_SCOUT_MISSION_001.md
+- ORION research program for SPY/QQQ chart research
+- WRAITH research program for mechanical ICT/FVG/liquidity-sweep testing
+- Top 20 broad strategy ranking across PAIRFORGE, VOLTA, ATLAS, ORION, and WRAITH
+- Top strategy shortlist per bot
+- Recommended first bot: ORION
+- Recommended first signal: SPY/QQQ Opening Range Breakout
+- Required data plan and backtest plan
+
+### Changed
+
+- Trading Research Corps now includes five research programs instead of three
+- Trading Research Corps page now displays Quant Scout Mission 001 rankings and prototype recommendation
+- Trading doctrine now explicitly requires discretionary concepts to become mechanical rules before being treated as research signals
+
+### Safety Boundary
+
+- No live trading, brokerage connection, options execution, wallet execution, money at risk, fake PnL, fake expectancy, fake win rate, or strategy promotion before historical validation
+
+
+## v2.6.1 - Trading Research Corps
+
+### Added
+
+- TRADING_RESEARCH_CORPS_STATUS.md
+- src/data/tradingResearchCorps.ts
+- src/pages/TradingResearchCorps.tsx
+- PAIRFORGE research program for pairs trading / statistical arbitrage
+- VOLTA research program for options / volatility research
+- ATLAS research program for long-term buy-and-hold / factor portfolio research
+- Research scout roles for GitHub Quant, Reddit Quant, QuantConnect, Academic Paper, Options Strategy, and Portfolio Strategy research
+- Trading Research Corps integrations in Mission Control, The Bridge, World Map, The Academy, Trading, Mission Pipeline, and navigation
+
+### Changed
+
+- Trading Division now distinguishes APEX/CLU research from PAIRFORGE, VOLTA, and ATLAS research programs
+- Mission Pipeline now tracks Trading Research Corps as a research-stage object
+
+### Safety Boundary
+
+- Research only
+- No live trading, brokerage connection, options execution, money at risk, fake PnL, fake expectancy, fake win rate, or strategy promotion before historical validation
+
+
+## v2.6.0 - Opportunity Radar
+
+### Added
+
+- Opportunity Radar page
+- src/data/opportunityRadar.ts
+- OPPORTUNITY_RADAR_STATUS.md
+- Typed opportunity scoring fields and Mission Commander filter presets
+- Experiment Lab, Revenue Forecasting, Revenue Flywheel, Product Foundry, Marketplace Intelligence, DealFlow Incubator, and Opportunity Queue sections
+- Opportunity Radar integrations in Mission Control, The Bridge, Revenue Corps, Revenue Intelligence, World Map, and Mission Pipeline
+
+### Changed
+
+- Canonical documentation version updated to v2.6.0
+- Revenue Corps opportunity hunting is now represented as a permanent operating function
+- Mission Pipeline now tracks Opportunity Radar as a research-stage operating object
+
+### Safety Boundary
+
+- No backend, fake data, scraping integrations, account automation, autonomous publishing, spending, copied products, fake reviews, fabricated forecasts, or fabricated opportunity scores
+
+## v2.5.0 - Obsidian Knowledge Vault Bridge
+
+### Added
+
+- Obsidian-ready vault structure under obsidian-vault/
+- src/data/obsidianBridge.ts
+- OBSIDIAN_VAULT_STATUS.md
+- docs/OBSIDIAN_BRIDGE.md
+- scripts/exportObsidianVault.js
+- Obsidian folder structure for Command, Doctrine, Mission Records, Decision Records, Approval Records, Revenue Corps, Commerce, Trading, Academy, Strategic Assets, and Officers
+- Initial Markdown index files, officer notes, Mission Commander note, Operation First Revenue note, and DealFlow placeholder
+- Obsidian Bridge panels in Mission Control, The Bridge, and The Academy
+
+### Changed
+
+- Canonical documentation version updated to v2.5.0
+- Institutional memory now has a durable Markdown export target
+- The Academy now treats Obsidian as the long-term second brain while THE GRID remains the visual command center
+
+### Safety Boundary
+
+- No Obsidian API
+- No sync automation
+- No secrets, .env files, API keys, or raw unsanitized logs
+- Export script never deletes files and backs up before overwrite
+
+## v2.4.0 - Scout Reports
+
+### Added
+
+- Scout Reports page
+- src/data/scoutReports.ts
+- SCOUT_REPORTS_STATUS.md
+- Etsy, Fiverr, Gumroad, Asset, Bounty, Trend, Review, and Pricing Scout report templates
+- Manual report metrics for total reports, manual research, awaiting evidence, and ready-for-review counts
+- Scout Reports integrations in Mission Control, The Bridge, Revenue Corps, Revenue Intelligence, The Academy, World Map, and Mission Pipeline
+
+### Changed
+
+- Canonical documentation version updated to v2.4.0
+- Revenue Corps now has a structured report intake layer before product creation or launch preparation
+- Mission Pipeline now tracks Revenue Corps Scout Reports as a research-stage operating object
+
+### Safety Boundary
+
+- Manual/public-evidence only
+- Unknown values remain N/A
+- No scraping integrations, account automation, fake marketplace data, autonomous publishing, customer messaging, copied products, fake reviews, fabricated revenue, or fabricated opportunity scores
+
+## v2.3.0 - Revenue Corps
+
+### Added
+
+- Revenue Corps page
+- src/data/revenueCorps.ts
+- REVENUE_CORPS_STATUS.md
+- Scout Corps / Product Corps / Launch Corps structure
+- Marketplace Scout, Publishing Scout, and Bounty Hunter as Wave 1 research-only scouts
+- Score to Beat opportunity gate
+- Revenue Corps snapshots in Mission Control, The Bridge, Revenue Intelligence, Council, World Map, and KPI reporting
+
+### Changed
+
+- Canonical documentation version updated to v2.3.0
+- Income Division is now officially renamed Revenue Corps
+- Revenue Architect now acts as Revenue Corps commander instead of a single overextended researcher
+- Revenue Intelligence now functions as the read-only general staff for ranking scout reports
+
+### Safety Boundary
+
+- No autonomous publishing, customer messaging, spending, account automation, platform-rule scraping, copied products, fake reviews, fake revenue, or fabricated opportunity scores
+
+## v2.2.0 - Launch Center
+
+### Added
+
+- Launch Center page
+- src/data/launchCenter.ts
+- LAUNCH_CENTER_STATUS.md
+- EXP-1 Fiverr AI Automation Consulting live product record
+- Revenue Timeline
+- Launch Log
+- Marketing Queue
+- Launch milestones
+- Launch Center navigation entry
+- Marketplace Entry Record in THE_GRID_CONSTITUTION.md
+
+### Changed
+
+- Canonical documentation version updated to v2.2.0
+- Mission Pipeline now records Operation First Revenue as live experiment monitoring
+- Revenue Intelligence now includes the live Fiverr AI Automation Consulting launch
+- Mission Control, The Bridge, World Map, Academy, Chronicle, and Mission Events now reference Launch Center
+
+### Safety Boundary
+
+- No fake metrics, fake revenue, fake orders, fake reviews, autonomous publishing, customer messaging automation, or unsupported performance claims
 
 ## v2.1.0 - Identity System + Scout Agent Layer
 

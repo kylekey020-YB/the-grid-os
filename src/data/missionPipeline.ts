@@ -30,7 +30,7 @@ export type MissionPipelineItem = {
   title: string;
   owner: string;
   currentStage: MissionPipelineStageName;
-  status: "Active" | "Awaiting Commander" | "Research" | "Parked";
+  status: "Active" | "Awaiting Commander" | "Research" | "Parked" | "Live";
   evidenceState: string;
   approvalState: string;
   nextGate: string;
@@ -173,11 +173,61 @@ export const missionPipelineItems: MissionPipelineItem[] = [
     id: "MP-001",
     title: "Operation First Revenue",
     owner: "Revenue Architect",
-    currentStage: "Approval",
-    status: "Awaiting Commander",
-    evidenceState: "AR-001 created for Income Lane Scoring Sprint; DR-001 records why Income Division became the primary offensive effort.",
-    approvalState: "Awaiting Mission Commander decision.",
-    nextGate: "Approve, decline, or request revision for manual lane scoring.",
+    currentStage: "Experiment",
+    status: "Live",
+    evidenceState: "EXP-1 Fiverr AI Automation Consulting is live; first marketplace service published July 2, 2026.",
+    approvalState: "Mission Commander launch action completed; post-launch metrics now require evidence.",
+    nextGate: "Track impressions, click-through rate, messages, consultations, orders, reviews, and revenue.",
+  },
+  {
+    id: "MP-007",
+    title: "Quant Research Scout Engine",
+    owner: "Trading Research Corps / GAUNTLET",
+    currentStage: "Research",
+    status: "Research",
+    evidenceState: "Typed Quant Scout architecture exists for GitHub, QuantConnect, Reddit, academic, options, ICT, data vendor, and backtest feasibility research. ORION Opening Range Breakout is the first prototype candidate, but no profitability is claimed.",
+    approvalState: "No live trading, broker connection, wallet connection, options execution, paper mode, or money at risk is authorized.",
+    nextGate: "Complete ORION first-signal research and convert it into a backtest specification with historical validation requirements.",
+  },
+  {
+    id: "MP-006",
+    title: "Trading Research Corps",
+    owner: "Trading Division / GAUNTLET",
+    currentStage: "Research",
+    status: "Research",
+    evidenceState: "PAIRFORGE, VOLTA, and ATLAS are research-only programs. No strategy has proven expectancy, no paper mode is active, and no live connection exists.",
+    approvalState: "No live trading, brokerage connection, options execution, or money at risk is authorized.",
+    nextGate: "Define data sources and backtest requirements before any strategy candidate can request paper-mode review.",
+  },
+  {
+    id: "MP-005",
+    title: "Venture Scouts",
+    owner: "Revenue Architect",
+    currentStage: "Research",
+    status: "Research",
+    evidenceState: "Typed Venture Scout architecture exists for marketplace, media, software, opportunity, and asset divisions. Scores remain N/A until public/manual evidence is recorded.",
+    approvalState: "No scout may publish, message customers, spend money, scrape against platform rules, or trigger experiments without Mission Commander approval.",
+    nextGate: "Create the first manually sourced venture report and score it through the Opportunity Scorecard.",
+  },
+  {
+    id: "MP-004",
+    title: "Opportunity Radar",
+    owner: "Revenue Architect",
+    currentStage: "Research",
+    status: "Research",
+    evidenceState: "Typed opportunity radar exists; scores remain N/A until public/manual evidence is recorded.",
+    approvalState: "No opportunity enters launch, revenue, scale, or automation without review and Mission Commander approval.",
+    nextGate: "Populate evidence, score assumptions, and select candidates for approval request.",
+  },
+  {
+    id: "MP-003",
+    title: "Revenue Corps Scout Reports",
+    owner: "Revenue Architect",
+    currentStage: "Research",
+    status: "Research",
+    evidenceState: "Scout Reports structure exists; individual report values remain N/A until manual public evidence is recorded.",
+    approvalState: "No experiment, product build, launch, spend, scraping, or account action authorized.",
+    nextGate: "Revenue Architect ranks completed reports; Mission Commander approves any experiment request.",
   },
   {
     id: "MP-002",

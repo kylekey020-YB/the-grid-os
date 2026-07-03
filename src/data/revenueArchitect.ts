@@ -11,7 +11,7 @@ export type RevenueArchitectBoardItem = {
 
 export const revenueArchitectMission = {
   officer: "REVENUE ARCHITECT",
-  mission: "Turn Operation First Revenue into one manual, evidence-backed income system before automation.",
+  mission: "Turn Operation First Revenue into one manual, evidence-backed revenue system before automation.",
   objective: "$10,000 Monthly Recurring Revenue",
   doctrine: "Study patterns. Create original offers. Validate demand. Publish manually. Automate only proven repeated workflows.",
   safety: "No scraping, no autonomous publishing, no fake metrics, no customer messaging, and no spending without approval.",

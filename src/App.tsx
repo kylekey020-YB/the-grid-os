@@ -5,15 +5,20 @@ import { Bridge } from "@/pages/Bridge";
 import { Commerce } from "@/pages/Commerce";
 import { Dashboard } from "@/pages/Dashboard";
 import { HermesAgents } from "@/pages/HermesAgents";
-import { IncomeDivision } from "@/pages/IncomeDivision";
+import { RevenueCorps } from "@/pages/RevenueCorps";
 import { KnowledgeVault } from "@/pages/KnowledgeVault";
+import { LaunchCenter } from "@/pages/LaunchCenter";
 import { MissionControl } from "@/pages/MissionControl";
 import { MissionPipeline } from "@/pages/MissionPipeline";
+import { OpportunityRadar } from "@/pages/OpportunityRadar";
 import { Programs } from "@/pages/Programs";
+import { QuantResearchScouts } from "@/pages/QuantResearchScouts";
 import { Research } from "@/pages/Research";
 import { RevenueIntelligence } from "@/pages/RevenueIntelligence";
+import { ScoutReports } from "@/pages/ScoutReports";
 import { SettingsPage } from "@/pages/Settings";
 import { Trading } from "@/pages/Trading";
+import { TradingResearchCorps } from "@/pages/TradingResearchCorps";
 import { WarRoom } from "@/pages/WarRoom";
 import { WorldMap } from "@/pages/WorldMap";
 import { Council } from "@/pages/Council";
@@ -22,13 +27,18 @@ export type PageId =
   | "dashboard"
   | "mission-control"
   | "bridge"
+  | "launch-center"
   | "mission-pipeline"
+  | "opportunity-radar"
   | "academy"
   | "world-map"
   | "council"
   | "trading"
+  | "trading-research-corps"
+  | "quant-research-scouts"
   | "commerce"
-  | "income-division"
+  | "revenue-corps"
+  | "scout-reports"
   | "revenue-intelligence"
   | "hermes-agents"
   | "research"
@@ -41,13 +51,18 @@ const pages: Record<PageId, JSX.Element> = {
   dashboard: <Dashboard />,
   "mission-control": <MissionControl />,
   bridge: <Bridge />,
+  "launch-center": <LaunchCenter />,
   "mission-pipeline": <MissionPipeline />,
+  "opportunity-radar": <OpportunityRadar />,
   academy: <Academy />,
   "world-map": <WorldMap />,
   council: <Council />,
   trading: <Trading />,
+  "trading-research-corps": <TradingResearchCorps />,
+  "quant-research-scouts": <QuantResearchScouts />,
   commerce: <Commerce />,
-  "income-division": <IncomeDivision />,
+  "revenue-corps": <RevenueCorps />,
+  "scout-reports": <ScoutReports />,
   "revenue-intelligence": <RevenueIntelligence />,
   "hermes-agents": <HermesAgents />,
   research: <Research />,

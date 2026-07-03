@@ -36,7 +36,7 @@ export const officerPresence: OfficerPresence[] = [
     currentAssignment: "Operation First Revenue lane scoring and evidence organization.",
     lastCompletedAction: "Created AR-001 and Revenue Architect operating board.",
     reportsWaiting: 1,
-    homeDivision: "Income Division",
+    homeDivision: "Revenue Corps",
   },
   {
     id: "revenue-intelligence",
@@ -45,7 +45,7 @@ export const officerPresence: OfficerPresence[] = [
     currentAssignment: "Opportunity candidates, evidence scoring, experiments, and decision support.",
     lastCompletedAction: "Published Approval Queue and Decision Records surfaces.",
     reportsWaiting: 0,
-    homeDivision: "Income Division",
+    homeDivision: "Revenue Corps",
   },
   {
     id: "claude",

@@ -1,6 +1,6 @@
 # THE GRID AI Handoff
 
-Current Version: v2.1.0
+Current Version: v2.7.1
 
 ## First Read
 
@@ -57,6 +57,8 @@ At v0.1.1, everything is manual. No Program is autonomous.
 - Revenue Intelligence
 - Hermes Agents
 - Trading
+- Trading Research Corps
+- Quant Research Scouts
 - Commerce
 - Research
 - War Room
@@ -75,6 +77,126 @@ Current Commerce purpose:
 - Keep the workflow grounded until repeatable value is demonstrated.
 
 Trading remains research only. APEX is Beta and focused on data collection and research. No fake trades, fake PnL, or live execution metrics should be added.
+
+
+## Quant Research Scouts v2.7.1
+
+Current source of truth:
+
+- QUANT_RESEARCH_SCOUTS_STATUS.md
+- docs/QUANT_RESEARCH_WORKFLOW.md
+- QUANT_RESEARCH_TASK_001_ORION.md
+- src/data/quantResearchScouts.ts
+- src/pages/QuantResearchScouts.tsx
+
+Quant Scouts turn Trading Research Corps into a research intake engine. Scouts collect, summarize, score, assign, and rank trading research before any backtest or paper trade is authorized.
+
+Scout roles:
+
+- GitHub Quant Scout.
+- QuantConnect Scout.
+- Reddit Quant Scout.
+- Academic Paper Scout.
+- Options Strategy Scout.
+- ICT Mechanics Scout.
+- Data Vendor Scout.
+- Backtest Feasibility Scout.
+
+Doctrine: Quant Scouts research. Backtesters validate. Programs paper trade. Mission Commander approves live risk.
+
+Current recommendation: ORION should be the first prototype candidate, focused on SPY/QQQ Opening Range Breakout. This is a recommendation to create a backtest specification only. Do not claim profitability without independent historical test evidence.
+
+Hard boundaries: no live trading, broker connection, wallet connection, options execution, paper mode, autonomous execution, money at risk, fake PnL, fake expectancy, fake win rate, or strategy promotion before validation.
+
+## Quant Scout Mission 001
+
+Current source of truth:
+
+- QUANT_SCOUT_MISSION_001.md
+- TRADING_RESEARCH_CORPS_STATUS.md
+- src/data/tradingResearchCorps.ts
+- src/pages/TradingResearchCorps.tsx
+
+Programs now include:
+
+- PAIRFORGE: pairs/statistical arbitrage research.
+- VOLTA: options/volatility research.
+- ATLAS: factor/buy-and-hold portfolio research.
+- ORION: SPY/QQQ-only chart research.
+- WRAITH: mechanical liquidity sweep / FVG research.
+
+Recommended first prototype: ORION.
+
+Recommended first signal: SPY/QQQ Opening Range Breakout.
+
+WRAITH rule: if an ICT/FVG/liquidity concept cannot be defined mechanically, it does not enter the bot. No live trading, broker connection, options execution, wallet execution, or money at risk is authorized.
+
+## Trading Research Corps v2.6
+
+Current source of truth:
+
+- TRADING_RESEARCH_CORPS_STATUS.md
+- src/data/tradingResearchCorps.ts
+- src/pages/TradingResearchCorps.tsx
+
+Programs:
+
+- PAIRFORGE: pairs trading / statistical arbitrage research.
+- VOLTA: options / volatility research.
+- ATLAS: long-term buy-and-hold / factor portfolio research.
+
+Doctrine: Trading programs are research programs until evidence proves expectancy. Every strategy must pass historical validation before paper mode.
+
+Hard boundaries: no live trading, no brokerage connection, no options execution, no money at risk, no fake PnL, no fake expectancy, no fake win rate, and no strategy promotion before historical validation.
+
+## Venture Scouts v2.7
+
+Current source of truth:
+
+- VENTURE_SCOUTS_STATUS.md
+- src/data/ventureScouts.ts
+
+Venture Scouts expand Revenue Corps into business-model discovery across Marketplace, Media, Software, Opportunity, and Asset divisions. They report to Revenue Architect, not directly to Mission Commander.
+
+Every scout uses the same Opportunity Scorecard:
+
+- Evidence people are paying.
+- Time to first dollar.
+- Originality and differentiation.
+- Fit with THE GRID's current capabilities.
+- Recurring revenue potential.
+- Confidence score from 0 to 100.
+
+Scores remain N/A until evidence exists. Scouts may gather public/manual evidence and create reports only. They may not publish, message customers, spend money, automate accounts, scrape against platform rules, copy protected work, or start experiments without Mission Commander approval.
+
+## Launch Center v2.2
+
+THE GRID has entered the marketplace.
+
+Current source of truth:
+
+- LAUNCH_CENTER_STATUS.md
+- src/data/launchCenter.ts
+- src/pages/LaunchCenter.tsx
+
+Current launch:
+
+- EXP-1 - Fiverr AI Automation Consulting.
+- Status: LIVE.
+- Launch Date: July 2, 2026.
+- Mission: Operation First Revenue.
+
+Current KPI focus:
+
+- Impressions.
+- Click-through rate.
+- Messages.
+- Consultations.
+- Orders.
+- Reviews.
+- Revenue.
+
+Do not fabricate metrics. Unknown values remain N/A until platform evidence exists. Do not over-edit the new live gig while indexing starts unless there is an obvious mistake.
 
 ## Identity System + Scout Agent Layer v2.1
 
@@ -131,6 +253,7 @@ Current v2.0 features:
 - Event Registry
 - Officer Network
 - The Bridge
+- Launch Center
 - Division Health
 - Company Health
 - Chronicle
@@ -522,3 +645,110 @@ npm run dev
 ```
 
 Before committing a milestone, `npm run check` and `npm run build` should pass in the local environment.
+
+
+## Revenue Corps
+
+Current version: v2.3.0
+
+Revenue Corps is the official name for the former Income Division. It reports through Revenue Architect and exists to create disciplined revenue discovery, product creation, and manual launch preparation.
+
+Structure:
+
+- Revenue Architect: commander.
+- Revenue Intelligence: general staff / evidence ranking.
+- Scout Corps: Marketplace Scout, Publishing Scout, Bounty Hunter, Asset Scout, Affiliate Scout, Trend Scout, and specialist scouts.
+- Product Corps: eBook Foundry, Asset Forge, Game Forge, Thumbnail Forge.
+- Launch Corps: Etsy Officer, Fiverr Officer, Gumroad Officer, Blog Officer.
+
+Rules:
+
+- Scouts do not create products.
+- Product Corps does not research markets.
+- Launch Corps does not invent offers.
+- Mission Commander approves irreversible actions.
+- Unknown metrics remain N/A.
+- No scraping against platform terms, autonomous publishing, customer messaging, spending, account automation, fake reviews, fake revenue, or copied products.
+
+
+## Scout Reports
+
+Current version: v2.4.0
+
+Scout Reports are the structured manual evidence intake for Revenue Corps.
+
+Scout teams:
+
+- Etsy Scout
+- Fiverr Scout
+- Gumroad Scout
+- Asset Scout
+- Bounty Scout
+- Trend Scout
+- Review Scout
+- Pricing Scout
+
+Rules:
+
+- Scouts report to Revenue Architect.
+- Revenue Architect ranks opportunities.
+- Mission Commander approves experiments.
+- Unknown values stay N/A.
+- No scraping integrations, account automation, autonomous publishing, customer messaging, fake marketplace data, fake reviews, copied products, or fabricated opportunity scores.
+
+Doctrine:
+
+Scouts discover demand. Product Corps creates original assets. Launch Corps publishes only after Mission Commander approval.
+
+
+## Obsidian Knowledge Vault Bridge
+
+Current version: v2.5.0
+
+Obsidian is the long-term second brain. Hermes remains institutional memory. THE GRID remains the visual command center.
+
+Key files:
+
+- OBSIDIAN_VAULT_STATUS.md
+- docs/OBSIDIAN_BRIDGE.md
+- scripts/exportObsidianVault.js
+- src/data/obsidianBridge.ts
+- obsidian-vault/
+
+Rules:
+
+- No Obsidian API yet.
+- No sync automation yet.
+- No secrets.
+- No .env files.
+- No API keys.
+- No raw logs unless sanitized.
+- The export script must never delete files and must back up before overwrite.
+
+
+## Opportunity Radar
+
+Current version: v2.6.0
+
+Opportunity Radar is the permanent opportunity hunting surface for Revenue Corps.
+
+Every opportunity is documented, scored, reviewed, and ranked before Mission Pipeline entry.
+
+Included modules:
+
+- Opportunity Radar
+- Experiment Lab
+- Revenue Forecasting
+- Revenue Flywheel
+- Product Foundry
+- Marketplace Intelligence
+- DealFlow Incubator
+- Opportunity Queue
+
+Rules:
+
+- Unknown values stay N/A.
+- Forecasts are planning models only.
+- Revenue Architect ranks opportunities.
+- Mission Commander approves experiments.
+- No backend, scraping integrations, account automation, autonomous publishing, spending, fake data, or fabricated scores.

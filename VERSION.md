@@ -1,73 +1,70 @@
 # THE GRID
 
-Current Version: v2.1.0
+Current Version: v2.7.0
 
 ## Status
 
-Identity System + Scout Agent Layer
+Quant Research Scout Engine
 
 ## Completed
 
 - Phase I Foundation
-- Doctrine
-- Constitution
-- Founding Council
-- World Map
+- Phase II Living Systems
 - Mission Control
+- The Bridge
+- World Map
+- Council
 - Revenue Intelligence
 - Approval System
 - Decision Records
 - Mission Pipeline
 - Academy
-- Institutional Memory
-- Operations Officer pattern
-- Revenue Architect
-- Mission Event Bus typed model
-- Event Registry
-- Officer Network
-- Operations Feed
-- Division Health
-- Company Health
-- The Bridge
-- Chronicle
-- Article 0 - The Mission
-- NERVOUS_SYSTEM_STATUS.md
-- Identity System
-- Company Seal
-- Founding Day Plaque
-- Operation First Revenue Campaign Patch
-- Division Insignias
-- Officer Badge shell
-- Mission Ribbons
-- Scout Officer Layer
-- Market Scout
-- Demand Scout
-- Risk Scout
-- IDENTITY_SYSTEM_STATUS.md
-- SCOUT_OFFICER_STATUS.md
+- Launch Center
+- Revenue Corps
+- Scout Reports
+- Obsidian Knowledge Vault Bridge
+- Opportunity Radar
+- Experiment Lab
+- Revenue Forecasting
+- Revenue Flywheel
+- Product Foundry
+- Marketplace Intelligence
+- DealFlow Incubator
+- Opportunity Queue
+- Trading Research Corps
+- Venture Scouts
+- Quant Research Scouts
+- ORION First Signal research task
+- PAIRFORGE / VOLTA / ATLAS research programs
+- ORION / WRAITH research programs
+- Quant Scout Mission 001 ranking
+- Opportunity Scorecard
+- VENTURE_SCOUTS_STATUS.md
+- OPPORTUNITY_RADAR_STATUS.md
 
 ## Current Focus
 
-- THE GRID Nervous System
-- The Bridge
-- Event Registry
-- Officer Network
-- Chronicle
-- Mission Bus architecture
-- Executive Brief pattern
-- Operation First Revenue
+- ORION Opening Range Breakout prototype specification
+- Quant Scout report intake
+- Trading research evidence scoring
+- Venture Scout business-model discovery
+- Opportunity Scorecard discipline
+- Permanent opportunity hunting
+- Revenue Corps opportunity ranking
+- Manual evidence collection
+- Explicit assumption modeling
+- Operation First Revenue prioritization
 
 ## Next Version
 
-v2.2.0
+v2.8.0
 
 Planned focus:
 
-- Mission Records data model expansion
-- After Action Review structure
-- Executive Brief composition
-- Evidence-backed Chronicle updates
-- Real status publishers when approved
+- First manually sourced venture report
+- Opportunity evidence templates
+- Approval request generation pattern
+- Manual opportunity matrix export
 
 ## Known Limitations
 
@@ -78,24 +75,33 @@ Planned focus:
 - No networking
 - No polling
 - No external writes
+- No Obsidian API
+- No sync automation
 - No AI automation
 - No autonomous Programs
 - No real trading integration
+- No options execution
+- No wallet execution
+- No brokerage connection
+- No money at risk
 - No commerce integrations
 - No Telegram bots
 - No connected Hermes agents
 - No autonomous publishing or messaging
 - No spending, trading, or account automation
 - No marketplace scraping
+- No scraping integrations
 - No live autonomous agents
 - No live approval execution
 - No decision persistence
 - No live stage advancement
 - No external KPI feeds
-- No fake Academy wins
-- No invented Academy failures
-- No fabricated live activity
-- No Scout publishing
-- No Scout customer messaging
-- No Scout spending
-- No Scout scraping against platform rules
+- No fake marketplace data
+- No fake orders
+- No fake reviews
+- No unsupported launch performance claims
+- No fabricated forecasts
+- No fabricated opportunity scores
+- No venture scout automation
+- No quant scout automation
+- No paper trading authorization from v2.7.1

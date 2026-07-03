@@ -1,6 +1,8 @@
 import { approvalQueue, decisionRecords } from "@/data/approvalSystem";
+import { liveProducts } from "@/data/launchCenter";
 import { experimentTracker, marketScannerCandidates, revenueDashboardMetrics } from "@/data/revenueIntelligence";
 import { missionPipelineItems } from "@/data/missionPipeline";
+import { scoutReportMetrics } from "@/data/scoutReports";
 
 export type KpiValue = string | number | "N/A";
 
@@ -31,17 +33,18 @@ export const companyHealth = {
 
 export const divisionKpiReports: DivisionKpiReport[] = [
   {
-    id: "income",
-    division: "Income Division",
+    id: "revenue-corps",
+    division: "Revenue Corps",
     status: "Manual Only",
     kpis: [
+      { label: "Scout reports", value: scoutReportMetrics.totalReports, evidence: "Scout Reports typed data." },
       { label: "Opportunities researched", value: marketScannerCandidates.length, evidence: "Market Scanner candidates." },
       { label: "Experiments launched", value: experimentTracker.length, evidence: "Revenue Intelligence experiment tracker." },
-      { label: "Listings published", value: "N/A", evidence: "No approved publishing evidence exists." },
+      { label: "Listings published", value: liveProducts.length, evidence: "Launch Center live product count." },
       { label: "First inquiries", value: "N/A", evidence: "No inquiry record exists." },
       { label: "Conversion rate", value: "N/A", evidence: "No traffic or conversion records exist." },
-      { label: "Revenue", value: "$0", evidence: "No revenue evidence recorded." },
-      { label: "Monthly recurring revenue", value: "$0", evidence: "No recurring revenue evidence recorded." },
+      { label: "Revenue", value: "N/A", evidence: "No revenue evidence recorded yet." },
+      { label: "Monthly recurring revenue", value: "N/A", evidence: "No recurring revenue evidence recorded yet." },
     ],
   },
   {
