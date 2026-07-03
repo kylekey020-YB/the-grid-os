@@ -43,6 +43,7 @@ export const missionPipelineDoctrine = [
   "Revenue precedes scale.",
   "Playbooks precede automation.",
   "Programs earn autonomy only after validated repeated workflows.",
+  "Scheduled research may create reports and recommendations, but experiments still require approval.",
 ];
 
 export const missionPipelineStages: MissionPipelineStage[] = [
@@ -178,6 +179,16 @@ export const missionPipelineItems: MissionPipelineItem[] = [
     evidenceState: "EXP-1 Fiverr AI Automation Consulting is live; first marketplace service published July 2, 2026.",
     approvalState: "Mission Commander launch action completed; post-launch metrics now require evidence.",
     nextGate: "Track impressions, click-through rate, messages, consultations, orders, reviews, and revenue.",
+  },
+  {
+    id: "MP-008",
+    title: "Semi-Autonomous Research Scheduler",
+    owner: "ZENITH / Revenue Architect / Trading Research Corps",
+    currentStage: "Research",
+    status: "Research",
+    evidenceState: "Typed schedule exists for Revenue Corps and Quant Research Corps research reports. No external execution, publishing, trading, messaging, spending, or account automation is connected.",
+    approvalState: "Scouts may create reports and recommendations only. Mission Commander approval is required before any experiment, launch, paper mode, spend, account action, or live-risk step.",
+    nextGate: "Use the scheduler manually, review first generated reports, and only then consider assisted scheduling improvements.",
   },
   {
     id: "MP-007",

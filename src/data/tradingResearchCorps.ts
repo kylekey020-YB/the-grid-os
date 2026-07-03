@@ -273,6 +273,7 @@ export const tradingResearchRules = [
   "Paper mode must precede any future live consideration.",
   "No live trading, brokerage connection, wallet execution, or options execution exists in THE GRID.",
   "Unknown expectancy, win rate, drawdown, return, and PnL values remain N/A.",
+  "Indicators are not edge. Indicators are hypotheses. Every signal must prove value through out-of-sample testing.",
 ];
 
 export const tradingResearchMetrics = {

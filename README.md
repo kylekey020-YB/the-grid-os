@@ -1,6 +1,6 @@
 # THE GRID UI Foundation
 
-Current Version: v2.7.1
+Current Version: v3.2.0
 
 THE GRID is a frontend foundation for an AI operating system interface that coordinates validated business workflows. It is intentionally grounded: workstations are manual first, and automation is deferred until workflows show repeatable value.
 
@@ -279,8 +279,96 @@ No live trading is authorized. No broker connection, options execution, wallet e
 - ORION first signal recommendation: prototype a SPY/QQQ Opening Range Breakout backtest specification. No profitability is claimed without historical test evidence.
 - This milestone is typed research architecture only: no live trading, broker connection, wallet connection, options execution, paper mode, autonomous execution, or money at risk.
 
+## Daily Command Brief v1.0
+
+- Added Daily Command Brief as the morning entry page for Mission Commander.
+- Added COMMAND_BRIEF_TEMPLATE.md as the Obsidian-compatible standard brief format.
+- Every division reports with the same schema: status, signal, evidence, blocker, next action, Mission ID, and Obsidian note.
+- The brief ends with ONE recommendation to reduce coordination.
+- No new divisions, officers, or decorative dashboards were added.
+
+## Execution Support Sprint
+
+- Current priority order: customer acquisition, product launches, Operations Hub, Obsidian integration, trading validation.
+- Added execution gate: increase revenue, reduce coordination, or improve validated learning. Otherwise postpone.
+- Added real-only execution metrics to Operations Hub. Unknown values remain N/A until evidence exists.
+- ORION Backtester is now Engineering's highest Trading priority.
+
+## Operations Hub v1.0
+
+- Added Operations Hub as the central mission queue.
+- Added Mission Inbox fields, lifecycle statuses, Today's Focus, mission actions, and daily workflow.
+- Enforced the rule: nothing enters Mission Control unless it has a Mission ID.
+- Added OPERATIONS_HUB.md as the Obsidian-compatible operating record.
+- This is a coordination system only: no backend, execution automation, publishing, trading, messaging, spending, or persistence.
+
+## v3.2 Headquarters
+
+- Added GRID_SYSTEM_PROMPT.md as the single source of truth for AI contributors.
+- Added OBSIDIAN_SYNC_MAP.md to map THE GRID systems to Obsidian folders.
+- Added MISSION_BOARD.md as the central operating board.
+- Updated RESEARCH_ROUTER.md for assignment-only routing and Chief Engineer doctrine.
+- Future documentation should be Obsidian-compatible Markdown and should reference GRID_SYSTEM_PROMPT.md instead of duplicating doctrine.
+
+## v3.0 Intelligence Corps
+
+- Added Intelligence Corps as THE GRID discovery engine.
+- Added Research Router as a typed assignment layer for ChatGPT, Hermes, Claude, Claude Code, Codex, and future providers.
+- Added canonical Obsidian vault structure for mission records and research outputs.
+- Added the principle: Knowledge belongs to THE GRID, not to any individual AI.
+- This milestone is typed UI and documentation only: no API routing, provider calls, Obsidian sync, autonomous execution, publishing, trading, messaging, spending, or account automation.
+
+## v2.8 Research Scheduler
+
+- Added Research Scheduler as a semi-autonomous research planning layer for Revenue Corps and Quant Research Corps.
+- Scheduled missions create reports, rank findings, and recommend experiments only.
+- No publishing, trading, broker connection, customer messaging, spending, account automation, irreversible action, or live execution is connected.
+- Added GIT_WORKFLOW.md to clarify branch and merge doctrine.
+
+## Playbook System v1.0
+
+- Added GRID_PLAYBOOKS.md and PLAYBOOK_TEMPLATE.md.
+- Added typed playbook registry in src/data/playbooks.ts.
+- Added Playbooks page with draft-only placeholders.
+- Integrated Playbooks with Mission Control, Operations Hub, The Academy, Obsidian Sync Map, Evidence Ledger, and Daily Command Brief.
+- Doctrine: THE GRID does not merely remember outcomes. It converts validated experience into reusable playbooks.
+- No playbook is validated until evidence exists.
+
+## Launch Intelligence v1.0
+
+- Added a typed Launch Intelligence evidence layer for real launch metrics.
+- Separates execution metrics controlled by THE GRID from market metrics controlled by customers and platforms.
+- Mission Control, Operations Hub, and Launch Center now reference the same launch evidence source.
+- Added EVIDENCE_LEDGER.md as the chronological record of verified evidence.
+- Unknown market values remain Unknown or Awaiting Evidence until Mission Commander records actual values.
+
+## R-005 Print-on-Demand Scout
+
+- Added R-005 as a persistent Revenue Corps research mission.
+- Researches evergreen, trend, underserved, premium, and seasonal POD niches across Etsy, Shopify, Printify, Printful, Gelato, and reputable suppliers.
+- Collects demand, competition, average selling price, estimated production cost, estimated margin, difficulty, time to revenue, and confidence.
+- Produces evidence only for Revenue Architect scoring: Proceed, Hold, or Reject.
+- Does not authorize launch, products, listings, design generation, supplier outreach, storefronts, scraping, or spending.
+
 ## Documentation
 
+- [GRID_PLAYBOOKS.md](GRID_PLAYBOOKS.md)
+- [PLAYBOOK_TEMPLATE.md](PLAYBOOK_TEMPLATE.md)
+- [EVIDENCE_LEDGER.md](EVIDENCE_LEDGER.md)
+- [R-005_PRINT_ON_DEMAND_SCOUT.md](R-005_PRINT_ON_DEMAND_SCOUT.md)
+- [COMMAND_BRIEF_TEMPLATE.md](COMMAND_BRIEF_TEMPLATE.md)
+- [EXECUTION_SUPPORT_SPRINT.md](EXECUTION_SUPPORT_SPRINT.md)
+- [OPERATIONS_HUB.md](OPERATIONS_HUB.md)
+- [STABILIZATION_STATUS.md](STABILIZATION_STATUS.md)
+- [REPOSITORY_CONSOLIDATION_PLAN.md](REPOSITORY_CONSOLIDATION_PLAN.md)
+- [GRID_SYSTEM_PROMPT.md](GRID_SYSTEM_PROMPT.md)
+- [OBSIDIAN_SYNC_MAP.md](OBSIDIAN_SYNC_MAP.md)
+- [MISSION_BOARD.md](MISSION_BOARD.md)
+- [INTELLIGENCE_CORPS_STATUS.md](INTELLIGENCE_CORPS_STATUS.md)
+- [RESEARCH_ROUTER.md](RESEARCH_ROUTER.md)
+- [OBSIDIAN_VAULT_STRUCTURE.md](OBSIDIAN_VAULT_STRUCTURE.md)
+- [RESEARCH_SCHEDULER_STATUS.md](RESEARCH_SCHEDULER_STATUS.md)
+- [GIT_WORKFLOW.md](GIT_WORKFLOW.md)
 - [FOUNDING_COUNCIL_BRIEF.md](FOUNDING_COUNCIL_BRIEF.md)
 - [NERVOUS_SYSTEM_STATUS.md](NERVOUS_SYSTEM_STATUS.md)
 - [SCOUT_OFFICER_STATUS.md](SCOUT_OFFICER_STATUS.md)
@@ -312,3 +400,14 @@ No live trading is authorized. No broker connection, options execution, wallet e
 - [HERMES_AGENT_STATUS.md](HERMES_AGENT_STATUS.md)
 - [docs/HERMES_AGENT_ARCHITECTURE.md](docs/HERMES_AGENT_ARCHITECTURE.md)
 - [design-system/README.md](design-system/README.md)
+
+## Alpha Lab v1.0
+
+- Added Alpha Lab as THE GRID's permanent alpha-generation system.
+- Added ALPHA_LAB_STATUS.md and ALPHA_GENERATION_DOCTRINE.md.
+- Added src/data/alphaLab.ts and src/pages/AlphaLab.tsx.
+- Added alpha families for Price Action, Market Microstructure, Statistical Arbitrage, Options / Volatility, Machine Learning, and Alternative Data.
+- Added ALPHA-501 Sequential Liquidation Model to connect WRAITH-LSTM research to the Alpha Library.
+- Integrated Alpha Lab with Mission Control, The Bridge, Trading Research Corps, Quant Research Scouts, The Academy, Evidence Ledger, Obsidian Sync Map, and GRID_SYSTEM_PROMPT.md.
+- Doctrine: no strategy is permanent, every hypothesis competes against evidence, every model must continually earn its place, and the research engine is the edge.
+- Boundary: no fake alpha, fake backtests, fake data, live trading, exchange connections, broker connections, or strategy promotion without evidence.

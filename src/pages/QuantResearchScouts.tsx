@@ -4,6 +4,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   botAssignmentMatrix,
+  orionBacktestSpec001,
   quantResearchMetrics,
   quantResearchScouts,
   quantResearchScoutsSummary,
@@ -21,6 +22,8 @@ import {
   type QuantScoutRoleStatus,
   type QuantWorkflowStage,
 } from "@/data/quantResearchScouts";
+import { researchSchedulerSummary, scheduledResearchMissions } from "@/data/researchScheduler";
+import { alphaLabMetrics, alphaLabSummary, alphaRecords } from "@/data/alphaLab";
 
 const statusTone: Record<QuantScoutRoleStatus, "manual" | "beta"> = {
   "Research Only": "manual",
@@ -114,6 +117,12 @@ export function QuantResearchScouts() {
         </div>
       </section>
 
+      <OrionBacktestSpecPanel />
+
+      <ResearchSchedulerQuantSection />
+
+      <AlphaLabQuantSection />
+
       <section className="space-y-4">
         <SectionHeader eyebrow="Research Inbox" title="Scout reports waiting for review" description="Reports capture evidence candidates. They do not authorize trades, broker connections, or paper mode." />
         <div className="grid gap-4 xl:grid-cols-2">
@@ -138,6 +147,86 @@ export function QuantResearchScouts() {
         <TopRecommendations />
       </section>
     </div>
+  );
+}
+
+
+
+function AlphaLabQuantSection() {
+  const wraithLstm = alphaRecords.find((record) => record.id === "ALPHA-501");
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Alpha Lab" title="Scout findings become alpha records" description={alphaLabSummary.continuousImprovement} />
+      <Card className="border-purple-300/30 bg-purple-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{alphaLabSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-purple-100">Hypothesis library before backtests</CardTitle>
+            </div>
+            <StatusBadge label="No alpha claims" tone="manual" />
+          </div>
+          <CardDescription>{alphaLabSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-5">
+          <Metric label="Families" value={String(alphaLabMetrics.families)} />
+          <Metric label="Records" value={String(alphaLabMetrics.records)} />
+          <Metric label="Evidence Scored" value={String(alphaLabMetrics.evidenceScored)} />
+          <Metric label="Live Candidates" value={String(alphaLabMetrics.liveCandidates)} />
+          <Metric label="ALPHA-501" value={wraithLstm?.currentVerdict ?? "N/A"} />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+function ResearchSchedulerQuantSection() {
+  const quantMissions = scheduledResearchMissions.filter((mission) => mission.division === "Quant Research Corps");
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Research Scheduler" title="Quant missions on the queue" description={researchSchedulerSummary.doctrine} />
+      <div className="grid gap-4 xl:grid-cols-2">
+        {quantMissions.map((mission) => <Card key={mission.missionId} className="border-blue-300/25 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-200">{mission.missionId}</p><CardTitle className="mt-2 text-lg">{mission.title}</CardTitle></div><StatusBadge label={mission.currentStatus} tone="manual" /></div><CardDescription>{mission.nextRunPlaceholder}</CardDescription></CardHeader><CardContent className="text-sm leading-6 text-foreground/85">{mission.approvalRequirement}</CardContent></Card>)}
+      </div>
+    </section>
+  );
+}
+
+function OrionBacktestSpecPanel() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow={orionBacktestSpec001.id} title="ORION backtest specification" description={orionBacktestSpec001.doctrine} />
+      <Card className="border-amber-300/30 bg-amber-950/15">
+        <CardHeader>
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">{orionBacktestSpec001.version}</p>
+              <CardTitle className="mt-2 text-2xl text-amber-100">15-minute ORB first</CardTitle>
+            </div>
+            <StatusBadge label="Spec Only" tone="manual" />
+          </div>
+          <CardDescription>{orionBacktestSpec001.recommendation}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-3 md:grid-cols-4">
+            <Metric label="Markets" value={orionBacktestSpec001.markets.join(" / ")} />
+            <Metric label="Variants" value={String(orionBacktestSpec001.variants.length)} />
+            <Metric label="Filters" value={String(orionBacktestSpec001.filters.length)} />
+            <Metric label="Outputs" value={String(orionBacktestSpec001.backtestOutputs.length)} />
+          </div>
+          <div className="grid gap-3 xl:grid-cols-3">
+            {orionBacktestSpec001.variants.map((variant) => (
+              <div key={variant.id} className="rounded-md border border-amber-300/20 bg-background/50 p-3">
+                <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{variant.id}</p>
+                <h3 className="mt-1 text-sm font-semibold text-amber-100">{variant.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-foreground/85">{variant.openingRange}</p>
+                <p className="mt-2 text-xs leading-5 text-muted-foreground">Purpose: {variant.researchPurpose}</p>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </section>
   );
 }
 

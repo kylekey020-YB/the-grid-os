@@ -18,8 +18,13 @@ import {
 import { chronicleDoctrine, chronicleEntries } from "@/data/chronicle";
 import { scoutReportMetrics, scoutReports, scoutReportsDoctrine } from "@/data/scoutReports";
 import { tradingResearchCorpsSummary, tradingResearchMetrics, tradingResearchPrograms } from "@/data/tradingResearchCorps";
-import { quantResearchMetrics, quantResearchScoutsSummary, quantScoutReports } from "@/data/quantResearchScouts";
+import { orionBacktestSpec001, quantResearchMetrics, quantResearchScoutsSummary, quantScoutReports } from "@/data/quantResearchScouts";
 import { obsidianBridgeSummary, obsidianVaultFolders } from "@/data/obsidianBridge";
+import { researchSchedulerMetrics, researchSchedulerSummary } from "@/data/researchScheduler";
+import { intelligenceCorpsMetrics, intelligenceCorpsSummary } from "@/data/intelligenceCorps";
+import { obsidianVaultMetrics, obsidianVaultSummary } from "@/data/obsidianVault";
+import { playbookDoctrine, playbookMetrics, playbooks } from "@/data/playbooks";
+import { alphaLabMetrics, alphaLabSummary, alphaRecords } from "@/data/alphaLab";
 import { cn } from "@/lib/utils";
 
 const accentClasses: Record<AcademyAccent, { border: string; text: string; bg: string; glow: string; line: string }> = {
@@ -104,11 +109,19 @@ export function Academy() {
         <EvolutionLab />
       </section>
 
+      <PlaybooksAcademy />
+
       <ScoutReportsAcademy />
 
       <TradingResearchAcademy />
 
       <QuantResearchAcademy />
+
+      <AlphaLabAcademy />
+
+      <ResearchSchedulerAcademy />
+
+      <IntelligenceCorpsAcademy />
 
       <ObsidianAcademyBridge />
 
@@ -230,6 +243,43 @@ function EvolutionLab() {
 }
 
 
+function PlaybooksAcademy() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Playbooks" title="Validated experience becomes reusable" description={playbookDoctrine} />
+      <div className="grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
+        <Card className="border-purple-300/30 bg-purple-950/15">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">Playbook System v1.0</p>
+                <CardTitle className="mt-2 text-2xl text-purple-100">Draft registry</CardTitle>
+              </div>
+              <StatusBadge label="Evidence required" tone="manual" />
+            </div>
+            <CardDescription>No playbook is validated until the workflow has repeated evidence.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-3 md:grid-cols-2">
+            <AcademyStat label="Playbooks" value={String(playbookMetrics.total)} />
+            <AcademyStat label="Draft" value={String(playbookMetrics.draft)} />
+            <AcademyStat label="Tested" value={String(playbookMetrics.tested)} />
+            <AcademyStat label="Validated" value={String(playbookMetrics.validated)} />
+          </CardContent>
+        </Card>
+        <Card className="border-cyan-300/30 bg-cyan-950/15">
+          <CardHeader>
+            <CardTitle className="text-cyan-100">Initial playbooks</CardTitle>
+            <CardDescription>Every current playbook remains Draft until evidence promotes it.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-2 md:grid-cols-2">
+            {playbooks.map((playbook) => <div key={playbook.playbookId} className="rounded-md border border-cyan-300/20 bg-background/50 px-3 py-2 text-sm text-foreground/90">{playbook.playbookId} / {playbook.title}</div>)}
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}
+
 function ScoutReportsAcademy() {
   return (
     <section className="space-y-4">
@@ -329,6 +379,8 @@ function QuantResearchAcademy() {
             <AcademyStat label="Reports" value={String(quantResearchMetrics.reports)} />
             <AcademyStat label="Sources" value={String(quantResearchMetrics.sources)} />
             <AcademyStat label="Prototype Candidates" value={String(quantResearchMetrics.prototypeCandidates)} />
+            <AcademyStat label="ORION Spec" value={orionBacktestSpec001.version} />
+            <AcademyStat label="Recommended Variant" value="15-minute ORB" />
           </CardContent>
         </Card>
         <Card className="border-cyan-300/30 bg-cyan-950/15">
@@ -343,6 +395,89 @@ function QuantResearchAcademy() {
           </CardContent>
         </Card>
       </div>
+    </section>
+  );
+}
+
+
+
+function AlphaLabAcademy() {
+  const wraithLstm = alphaRecords.find((record) => record.id === "ALPHA-501");
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Alpha Lab" title="Alpha research becomes institutional knowledge" description={alphaLabSummary.continuousImprovement} />
+      <Card className="border-purple-300/30 bg-purple-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{alphaLabSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-purple-100">Hypotheses, evidence, rejection, improvement</CardTitle>
+            </div>
+            <StatusBadge label="Evidence required" tone="manual" />
+          </div>
+          <CardDescription>{alphaLabSummary.doctrine}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-5">
+          <AcademyStat label="Families" value={String(alphaLabMetrics.families)} />
+          <AcademyStat label="Alpha Records" value={String(alphaLabMetrics.records)} />
+          <AcademyStat label="Live Candidates" value={String(alphaLabMetrics.liveCandidates)} />
+          <AcademyStat label="Evidence Scored" value={String(alphaLabMetrics.evidenceScored)} />
+          <AcademyStat label="ALPHA-501" value={wraithLstm?.currentVerdict ?? "N/A"} />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+function ResearchSchedulerAcademy() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Research Scheduler" title="Scheduled reports become institutional memory" description={researchSchedulerSummary.doctrine} />
+      <Card className="border-cyan-300/30 bg-cyan-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{researchSchedulerSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-cyan-100">Research records before action</CardTitle>
+            </div>
+            <StatusBadge label="Reports only" tone="manual" />
+          </div>
+          <CardDescription>{researchSchedulerSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <AcademyStat label="Scheduled Missions" value={String(researchSchedulerMetrics.missions)} />
+          <AcademyStat label="Revenue Corps" value={String(researchSchedulerMetrics.revenueMissions)} />
+          <AcademyStat label="Quant Corps" value={String(researchSchedulerMetrics.quantMissions)} />
+          <AcademyStat label="Irreversible Actions" value="0" />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+
+function IntelligenceCorpsAcademy() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Intelligence Corps" title="Research becomes durable institutional knowledge" description={intelligenceCorpsSummary.doctrine} />
+      <Card className="border-purple-300/30 bg-purple-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{obsidianVaultSummary.root}</p>
+              <CardTitle className="mt-2 text-2xl text-purple-100">Knowledge belongs to THE GRID</CardTitle>
+            </div>
+            <StatusBadge label="Canonical memory" tone="manual" />
+          </div>
+          <CardDescription>{obsidianVaultSummary.doctrine}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <AcademyStat label="Scout Divisions" value={String(intelligenceCorpsMetrics.divisions)} />
+          <AcademyStat label="Registered Scouts" value={String(intelligenceCorpsMetrics.registeredScouts)} />
+          <AcademyStat label="Vault Zones" value={String(obsidianVaultMetrics.zones)} />
+          <AcademyStat label="Sync Automations" value="0" />
+        </CardContent>
+      </Card>
     </section>
   );
 }

@@ -17,6 +17,10 @@ import { opportunityRadarItems, opportunityRadarSummary } from "@/data/opportuni
 import { ventureScoutMetrics, ventureScoutsSummary } from "@/data/ventureScouts";
 import { tradingResearchCorpsSummary, tradingResearchMetrics } from "@/data/tradingResearchCorps";
 import { quantResearchMetrics, quantResearchScoutsSummary } from "@/data/quantResearchScouts";
+import { researchSchedulerMetrics, researchSchedulerSummary } from "@/data/researchScheduler";
+import { intelligenceCorpsMetrics, intelligenceCorpsSummary } from "@/data/intelligenceCorps";
+import { researchRouterMetrics } from "@/data/researchRouter";
+import { alphaLabMetrics, alphaLabSummary } from "@/data/alphaLab";
 
 const panelTone: Record<BridgePanelStatus, "success" | "manual" | "beta" | "muted"> = {
   Active: "success",
@@ -93,9 +97,15 @@ export function Bridge() {
 
       <OpportunityRadarBridgePanel />
 
+      <AlphaLabBridgePanel />
+
       <TradingResearchBridgePanel />
 
       <QuantResearchBridgePanel />
+
+      <ResearchSchedulerBridgePanel />
+
+      <IntelligenceCorpsBridgePanel />
 
       <VentureScoutsBridgePanel />
 
@@ -255,6 +265,30 @@ function OpportunityRadarBridgePanel() {
 
 
 
+
+function AlphaLabBridgePanel() {
+  return (
+    <Card className="border-purple-300/30 bg-purple-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">Alpha Lab</p>
+            <CardTitle className="mt-2 text-2xl text-purple-100">Continuous alpha research engine</CardTitle>
+          </div>
+          <StatusBadge label="No fake alpha" tone="manual" />
+        </div>
+        <CardDescription>{alphaLabSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Families" value={String(alphaLabMetrics.families)} />
+        <MetricLine label="Records" value={String(alphaLabMetrics.records)} />
+        <MetricLine label="Live Candidates" value={String(alphaLabMetrics.liveCandidates)} />
+        <MetricLine label="Live Connections" value={String(alphaLabMetrics.liveConnections)} />
+      </CardContent>
+    </Card>
+  );
+}
+
 function TradingResearchBridgePanel() {
   return (
     <Card className="border-blue-300/30 bg-blue-950/15">
@@ -296,6 +330,54 @@ function QuantResearchBridgePanel() {
         <MetricLine label="Reports" value={String(quantResearchMetrics.reports)} />
         <MetricLine label="Queue" value={String(quantResearchMetrics.queueItems)} />
         <MetricLine label="Rejected" value={String(quantResearchMetrics.rejected)} />
+      </CardContent>
+    </Card>
+  );
+}
+
+
+function ResearchSchedulerBridgePanel() {
+  return (
+    <Card className="border-cyan-300/30 bg-cyan-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Research Scheduler</p>
+            <CardTitle className="mt-2 text-2xl text-cyan-100">Scheduled scout reports</CardTitle>
+          </div>
+          <StatusBadge label={researchSchedulerSummary.version} tone="beta" />
+        </div>
+        <CardDescription>{researchSchedulerSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Missions" value={String(researchSchedulerMetrics.missions)} />
+        <MetricLine label="Revenue" value={String(researchSchedulerMetrics.revenueMissions)} />
+        <MetricLine label="Quant" value={String(researchSchedulerMetrics.quantMissions)} />
+        <MetricLine label="Irreversible Actions" value={String(researchSchedulerMetrics.irreversibleActionsAllowed)} />
+      </CardContent>
+    </Card>
+  );
+}
+
+
+function IntelligenceCorpsBridgePanel() {
+  return (
+    <Card className="border-cyan-300/30 bg-cyan-950/15">
+      <CardHeader>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Intelligence Corps</p>
+            <CardTitle className="mt-2 text-2xl text-cyan-100">Discovery routes into memory</CardTitle>
+          </div>
+          <StatusBadge label={intelligenceCorpsSummary.version} tone="beta" />
+        </div>
+        <CardDescription>{intelligenceCorpsSummary.doctrine}</CardDescription>
+      </CardHeader>
+      <CardContent className="grid gap-3 md:grid-cols-4">
+        <MetricLine label="Scout Divisions" value={String(intelligenceCorpsMetrics.divisions)} />
+        <MetricLine label="Registered Scouts" value={String(intelligenceCorpsMetrics.registeredScouts)} />
+        <MetricLine label="Router Platforms" value={String(researchRouterMetrics.platforms)} />
+        <MetricLine label="External Routes" value="0" />
       </CardContent>
     </Card>
   );

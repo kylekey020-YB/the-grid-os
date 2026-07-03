@@ -32,6 +32,7 @@ export const approvalDoctrine = [
   "Approval objects identify decision, risk, cost, evidence, and next action.",
   "Buttons are review placeholders until persistence and authorization exist.",
   "Mission Commander remains the final approval authority.",
+  "Scheduled research may recommend experiments, but experiments still require Mission Commander approval.",
 ];
 
 export const approvalQueue: ApprovalRequest[] = [

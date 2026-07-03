@@ -346,3 +346,134 @@ export const quantResearchMetrics = {
   prototypeCandidates: strategyCandidateQueue.filter((item) => item.recommendation === "Prototype").length,
   rejected: rejectedStrategyGraveyard.length,
 };
+
+
+export type OrionOrbVariantId = "ORB-5M" | "ORB-15M" | "ORB-30M";
+
+export type OrionOrbVariant = {
+  id: OrionOrbVariantId;
+  name: string;
+  openingRange: string;
+  longEntry: string;
+  shortEntry: string;
+  primaryStop: string;
+  profitTargets: string[];
+  timeStops: string[];
+  researchPurpose: string;
+};
+
+export type OrionBacktestSpec = {
+  id: string;
+  version: string;
+  status: string;
+  recommendation: string;
+  doctrine: string;
+  markets: string[];
+  requiredIndicators: string[];
+  variants: OrionOrbVariant[];
+  filters: string[];
+  regimeTests: string[];
+  visualizationOutputs: string[];
+  backtestOutputs: string[];
+  passFailCriteria: string[];
+};
+
+export const orionIndicatorDoctrine = "Indicators are not edge. Indicators are hypotheses. Every signal must prove value through out-of-sample testing.";
+
+export const orionBacktestSpec001: OrionBacktestSpec = {
+  id: "ORION_BACKTEST_SPEC_001",
+  version: "v2.7.2",
+  status: "Backtest specification ready / no code implementation yet",
+  recommendation:
+    "Code the 15-minute ORB first because it balances noise reduction and sample size better than the 5-minute and 30-minute variants while still remaining mechanically simple.",
+  doctrine: orionIndicatorDoctrine,
+  markets: ["SPY", "QQQ"],
+  requiredIndicators: ["VWAP", "ATR", "Volume", "Previous day high/low", "Premarket high/low if available", "Time of day", "EMA ribbon", "Regime label placeholder"],
+  variants: [
+    {
+      id: "ORB-5M",
+      name: "5-minute Opening Range Breakout",
+      openingRange: "Use only 09:30:00-09:34:59 Eastern regular-hours bars.",
+      longEntry: "After 09:35, enter long when price trades above the 5-minute opening range high by the configured trigger buffer and optional filters pass.",
+      shortEntry: "After 09:35, enter short when price trades below the 5-minute opening range low by the configured trigger buffer and optional filters pass.",
+      primaryStop: "Opposite side of the opening range or ATR stop, whichever is closer after sensitivity review.",
+      profitTargets: ["1R", "1.5R", "2R", "trail after 1R"],
+      timeStops: ["10:30", "11:00", "12:00", "end of day"],
+      researchPurpose: "Fastest signal and highest sample count; expected to be noisiest and most sensitive to slippage.",
+    },
+    {
+      id: "ORB-15M",
+      name: "15-minute Opening Range Breakout",
+      openingRange: "Use only 09:30:00-09:44:59 Eastern regular-hours bars.",
+      longEntry: "After 09:45, enter long when price trades above the 15-minute opening range high by the configured trigger buffer and optional filters pass.",
+      shortEntry: "After 09:45, enter short when price trades below the 15-minute opening range low by the configured trigger buffer and optional filters pass.",
+      primaryStop: "Opposite side of the opening range and ATR stop comparison.",
+      profitTargets: ["1R", "1.5R", "2R", "VWAP/EMA trailing stop"],
+      timeStops: ["11:00", "12:00", "end of day"],
+      researchPurpose: "Recommended first implementation because it reduces opening noise without shrinking sample size as much as the 30-minute variant.",
+    },
+    {
+      id: "ORB-30M",
+      name: "30-minute Opening Range Breakout",
+      openingRange: "Use only 09:30:00-09:59:59 Eastern regular-hours bars.",
+      longEntry: "After 10:00, enter long when price trades above the 30-minute opening range high by the configured trigger buffer and optional filters pass.",
+      shortEntry: "After 10:00, enter short when price trades below the 30-minute opening range low by the configured trigger buffer and optional filters pass.",
+      primaryStop: "Opposite side of the opening range, ATR stop, or midpoint invalidation test.",
+      profitTargets: ["1R", "2R", "end-of-day trend capture"],
+      timeStops: ["12:00", "14:00", "end of day"],
+      researchPurpose: "Slowest and most selective variant; useful for trend-day detection and fewer false starts.",
+    },
+  ],
+  filters: [
+    "VWAP confirmation on/off",
+    "ATR regime filter on/off",
+    "Gap direction filter on/off",
+    "First candle range filter on/off",
+    "FOMC/news day exclusion placeholder on/off",
+    "EMA ribbon bullish/bearish/compressed filter on/off",
+  ],
+  regimeTests: [
+    "No regime filter baseline",
+    "Simple volatility regime",
+    "Trend/chop regime",
+    "Markov regime model only if feasible",
+    "Reject Markov if it adds complexity without improving out-of-sample expectancy",
+  ],
+  visualizationOutputs: [
+    "EMA ribbon and trend heatmap",
+    "Time-of-day performance heatmap",
+    "Day-of-week performance heatmap",
+    "Volatility regime heatmap",
+    "Gap-size heatmap",
+    "Opening range size heatmap",
+    "VWAP distance heatmap",
+    "Long vs short performance heatmap",
+    "SPY vs QQQ comparison heatmap",
+  ],
+  backtestOutputs: [
+    "equity curve",
+    "trade table",
+    "win rate",
+    "expectancy",
+    "profit factor",
+    "max drawdown",
+    "average winner",
+    "average loser",
+    "long/short breakdown",
+    "time-of-day breakdown",
+    "heatmaps",
+    "regime breakdown",
+    "EMA ribbon filter comparison",
+    "ORB variant comparison: 5m / 15m / 30m",
+  ],
+  passFailCriteria: [
+    "Positive out-of-sample expectancy after fees and slippage.",
+    "Profit factor greater than 1.15 out of sample, with sensitivity review.",
+    "Maximum drawdown must remain inside the predefined research limit.",
+    "Performance cannot depend on one narrow parameter combination.",
+    "Walk-forward results must not collapse relative to in-sample results.",
+    "Random-entry and no-filter baselines must be beaten after costs.",
+    "SPY and QQQ results must be reported separately; no cross-market assumption is allowed.",
+    "All unknowns and excluded dates must be recorded.",
+  ],
+};

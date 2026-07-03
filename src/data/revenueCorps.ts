@@ -293,6 +293,7 @@ export const opportunityIntelligenceQueue: OpportunityIntelligenceItem[] = [
   { id: "OI-001", opportunity: "Fiverr AI Automation Consulting", owner: "Fiverr Officer / Revenue Architect", confidence: "N/A", timeToLaunch: "Live", revenuePotential: "N/A", currentGate: "Experiment", nextAction: "Collect impressions, clicks, messages, consultations, orders, reviews, and revenue." },
   { id: "OI-002", opportunity: "Gumroad toolkit candidate", owner: "Publishing Scout", confidence: "N/A", timeToLaunch: "N/A", revenuePotential: "N/A", currentGate: "Research", nextAction: "Wait for banking clearance and documented demand evidence before launch preparation." },
   { id: "OI-003", opportunity: "Bounty opportunity shortlist", owner: "Bounty Hunter", confidence: "N/A", timeToLaunch: "N/A", revenuePotential: "N/A", currentGate: "Research", nextAction: "Create a public-opportunity shortlist with eligibility, deadline, risk, and effort notes." },
+  { id: "OI-004", opportunity: "Print-on-Demand niche research", owner: "Print-on-Demand Scout / Revenue Architect", confidence: "N/A", timeToLaunch: "N/A", revenuePotential: "N/A", currentGate: "Research", nextAction: "Collect POD evidence across Etsy, Shopify, Printify, Printful, Gelato, and reputable suppliers; score Proceed, Hold, or Reject without recommending launch." },
 ];
 
 export const revenueCorpsProhibitions = [

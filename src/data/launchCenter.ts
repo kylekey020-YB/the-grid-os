@@ -1,6 +1,7 @@
-export type LaunchPlatform = "Fiverr" | "Gumroad" | "DealFlow" | "Shopify" | "Etsy" | "Other";
-export type LaunchStatus = "Live" | "Preparing" | "Queued" | "Paused" | "Archived";
-export type LaunchMetricValue = number | string | "N/A";
+import { evidenceLedgerEntries, launchExecutionMetrics, launchIntelligenceDoctrine, launchIntelligenceSummary, launchMarketMetrics, launchRecords, type EvidenceValue, type LaunchPlatform, type LaunchStatus } from "@/data/launchIntelligence";
+
+export type { LaunchPlatform, LaunchStatus };
+export type LaunchMetricValue = EvidenceValue | "N/A";
 export type LaunchMilestoneStatus = "Recorded" | "Awaiting Evidence" | "Planned";
 
 export type LaunchKpi = {
@@ -20,6 +21,10 @@ export type LiveProduct = {
   owner: string;
   nextAction: string;
   evidence: string;
+  lastUpdated: string;
+  evidenceSource: string;
+  executionMetrics: LaunchKpi[];
+  marketMetrics: LaunchKpi[];
   kpis: LaunchKpi[];
 };
 
@@ -48,37 +53,31 @@ export type MarketingQueueItem = {
   boundary: string;
 };
 
-export const launchCenterDoctrine = [
-  "Live products track real marketplace state.",
-  "Unknown metrics remain N/A until platform evidence exists.",
-  "Do not constantly edit a new live listing unless there is an obvious mistake.",
-  "Support live launches with portfolio examples, FAQ refinements, and complementary offers.",
-  "Revenue is not claimed until evidence exists.",
-];
+const metricToKpi = (metric: typeof launchExecutionMetrics[number]): LaunchKpi => ({
+  label: metric.label,
+  value: metric.value,
+  evidence: metric.evidence,
+});
 
-export const liveProducts: LiveProduct[] = [
-  {
-    id: "EXP-1",
-    name: "Fiverr AI Automation Consulting",
-    platform: "Fiverr",
-    status: "Live",
-    launchDate: "July 2, 2026",
-    mission: "Operation First Revenue",
-    stage: "Live",
-    owner: "Revenue Architect",
-    nextAction: "Allow Fiverr search indexing time while building supporting assets: portfolio examples, FAQ refinements, and complementary gig concepts.",
-    evidence: "Mission Commander reported the first Fiverr service is live on July 2, 2026.",
-    kpis: [
-      { label: "Impressions", value: "N/A", evidence: "Awaiting Fiverr analytics." },
-      { label: "Click-through rate", value: "N/A", evidence: "Awaiting Fiverr analytics." },
-      { label: "Messages", value: "N/A", evidence: "No message count recorded yet." },
-      { label: "Consultations", value: "N/A", evidence: "No consultation record yet." },
-      { label: "Orders", value: "N/A", evidence: "No order evidence recorded yet." },
-      { label: "Reviews", value: "N/A", evidence: "No review evidence recorded yet." },
-      { label: "Revenue", value: "N/A", evidence: "No revenue evidence recorded yet." },
-    ],
-  },
-];
+export const launchCenterDoctrine = launchIntelligenceDoctrine;
+
+export const liveProducts: LiveProduct[] = launchRecords.map((record) => ({
+  id: record.id,
+  name: record.name,
+  platform: record.platform,
+  status: record.status,
+  launchDate: record.launchDate,
+  mission: record.mission,
+  stage: record.status === "Live" ? "Live" : "Experiment",
+  owner: record.owner,
+  nextAction: record.nextAction,
+  evidence: record.evidenceSource,
+  lastUpdated: record.lastUpdated,
+  evidenceSource: record.evidenceSource,
+  executionMetrics: Object.values(record.executionMetrics).map(metricToKpi),
+  marketMetrics: Object.values(record.marketMetrics).map(metricToKpi),
+  kpis: Object.values(record.marketMetrics).map(metricToKpi),
+}));
 
 export const revenueTimeline: RevenueTimelineEntry[] = [
   {
@@ -86,7 +85,7 @@ export const revenueTimeline: RevenueTimelineEntry[] = [
     date: "July 2, 2026",
     title: "THE GRID entered the marketplace",
     summary: "Operation First Revenue moved from preparation to execution with publication of the first Fiverr AI Automation Consulting service.",
-    amount: "N/A",
+    amount: "Unknown",
     evidence: "Live publication reported by Mission Commander; revenue not yet recorded.",
   },
 ];
@@ -101,49 +100,61 @@ export const launchMilestones: LaunchMilestone[] = [
   },
   {
     id: "LM-002",
+    title: "First impression",
+    date: "Unknown",
+    status: "Awaiting Evidence",
+    evidence: "No impression evidence recorded yet.",
+  },
+  {
+    id: "LM-003",
     title: "First customer message",
-    date: "N/A",
+    date: "Unknown",
     status: "Awaiting Evidence",
     evidence: "No customer message recorded yet.",
   },
   {
-    id: "LM-003",
+    id: "LM-004",
     title: "First consultation",
-    date: "N/A",
+    date: "Unknown",
     status: "Awaiting Evidence",
     evidence: "No consultation recorded yet.",
   },
   {
-    id: "LM-004",
+    id: "LM-005",
     title: "First order",
-    date: "N/A",
+    date: "Unknown",
     status: "Awaiting Evidence",
     evidence: "No order recorded yet.",
   },
   {
-    id: "LM-005",
+    id: "LM-006",
     title: "First review",
-    date: "N/A",
+    date: "Unknown",
     status: "Awaiting Evidence",
-    evidence: "No review recorded yet.",
+    evidence: "No review evidence recorded yet.",
   },
   {
-    id: "LM-006",
+    id: "LM-007",
     title: "First revenue",
-    date: "N/A",
+    date: "Unknown",
     status: "Awaiting Evidence",
     evidence: "No revenue evidence recorded yet.",
   },
-];
-
-export const launchLog = [
   {
-    id: "LL-001",
-    date: "July 2, 2026",
-    entry: "EXP-1 went live on Fiverr. THE GRID shifted from preparation to customer-facing execution.",
-    evidence: "Mission Commander executive dashboard update.",
+    id: "LM-008",
+    title: "First repeat customer",
+    date: "Unknown",
+    status: "Awaiting Evidence",
+    evidence: "No repeat customer evidence recorded yet.",
   },
 ];
+
+export const launchLog = evidenceLedgerEntries.map((entry) => ({
+  id: entry.id,
+  date: entry.date,
+  entry: entry.title,
+  evidence: entry.source,
+}));
 
 export const marketingQueue: MarketingQueueItem[] = [
   {
@@ -177,11 +188,15 @@ export const marketingQueue: MarketingQueueItem[] = [
 ];
 
 export const launchCenterSummary = {
-  version: "v2.2.0",
+  version: "v2.2.0 / Launch Intelligence v1.0",
   status: "Active",
   activeMission: "Operation First Revenue",
-  liveProducts: liveProducts.length,
+  liveProducts: launchIntelligenceSummary.liveProducts,
   recordedMilestones: launchMilestones.filter((milestone) => milestone.status === "Recorded").length,
-  revenue: "N/A",
-  nextKpis: ["Impressions", "Click-through rate", "Messages", "Consultations", "Orders", "Reviews", "Revenue"],
+  revenue: launchIntelligenceSummary.revenue,
+  marketEvidenceStatus: launchIntelligenceSummary.marketEvidenceStatus,
+  evidenceSource: launchIntelligenceSummary.evidenceSource,
+  executionMetrics: launchExecutionMetrics.length,
+  marketMetrics: launchMarketMetrics.length,
+  nextKpis: ["Impressions", "Views", "Clicks", "Visitors", "Messages", "Consultations", "Orders", "Sales", "Revenue", "Reviews", "Repeat Customers"],
 };

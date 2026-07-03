@@ -1,6 +1,6 @@
 # Founding Council Brief
 
-Current Version: v2.7.0
+Current Version: v3.0.0
 
 ## Purpose
 
@@ -609,3 +609,28 @@ Opportunity Radar is the permanent Revenue Corps opportunity queue and ranking b
 It contains opportunities, Experiment Lab, Forecasting, Flywheel, Product Foundry, Marketplace Intelligence, DealFlow Incubator, and Queue views.
 
 It is typed/manual only. No fake data or automated marketplace action is connected.
+
+## Research Scheduler
+
+Current version: v2.8.0
+
+Research Scheduler is the semi-autonomous research planning layer for Revenue Corps and Quant Research Corps. It coordinates recurring research missions, report output paths, approval requirements, risk levels, and queue states.
+
+Current queue families:
+
+- Revenue Corps: Etsy, Fiverr, Gumroad, YouTube / Shorts, Bounty, and GitHub Opportunity scans.
+- Quant Research Corps: ORION, WRAITH, PAIRFORGE, VOLTA, and ATLAS research missions.
+
+The scheduler does not publish, trade, message customers, spend money, automate accounts, connect brokers, or execute irreversible actions. It creates reports and recommendations only. Mission Commander approves experiments.
+
+## Intelligence Corps
+
+Current version: v3.0.0
+
+Intelligence Corps is THE GRID discovery engine. It organizes Revenue Scouts, Quant Scouts, Engineering Scouts, DealFlow Scouts, and AI Research Scouts.
+
+Research Router assigns missions across ChatGPT, Hermes, Claude, Claude Code, Codex, and future providers as typed local data only. No live provider routing, API calls, or background jobs exist.
+
+Constitutional principle:
+
+Knowledge belongs to THE GRID, not to any individual AI. The organization continues from records when any single AI platform is unavailable.

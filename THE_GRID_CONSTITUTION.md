@@ -1,6 +1,6 @@
 # THE GRID Constitution
 
-Current Version: v2.6.0
+Current Version: v3.0.0
 
 ## Article 0 - The Mission
 
@@ -542,3 +542,29 @@ Quant Scouts may collect, summarize, score, assign, and rank public/manual tradi
 Quant Scouts do not authorize live trading, broker connections, wallet connections, options execution, paper trading, autonomous execution, money at risk, fabricated PnL, fabricated expectancy, fabricated win rate, or profitability claims before historical validation.
 
 No strategy may advance beyond research unless its rules, data requirements, risk controls, fees, slippage, and validation plan are documented.
+
+## Semi-Autonomous Research Doctrine
+
+Version: v2.8.0
+
+Scouts may research on schedule.
+Scouts may create reports.
+Scouts may rank opportunities.
+Scouts may recommend experiments.
+Scouts may not publish, trade, message, spend, or execute.
+
+Scheduled research is a report-generation and decision-support capability only. It does not authorize publishing, trading, broker connections, customer messages, spending, account automation, irreversible actions, external execution, or live autonomous behavior.
+
+Revenue Corps and Quant Research Corps may use scheduled missions to organize public/manual research, document unknowns, rank candidates, and prepare recommendations. Mission Commander approval remains required before any experiment, launch, paper mode, external connection, spend, or live-risk step.
+
+## Knowledge Ownership Doctrine
+
+Version: v3.0.0
+
+Knowledge belongs to THE GRID, not to any individual AI.
+
+Hermes, Claude, ChatGPT, Claude Code, Codex, and future providers are contributors to the institution. They may research, draft, summarize, implement, or review within approved scope, but institutional memory must live in THE GRID records, Obsidian, the Constitution, Mission Records, Decision Records, Approval Records, playbooks, and handoff documents.
+
+If one platform is unavailable, another contributor should be able to continue from the records without rediscovering the project from memory.
+
+This doctrine does not authorize live provider routing, API calls, autonomous execution, account automation, secrets handling, publishing, trading, messaging, spending, or irreversible action.

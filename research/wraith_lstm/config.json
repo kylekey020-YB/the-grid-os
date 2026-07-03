@@ -1,0 +1,69 @@
+{
+  "version": "0.2.0",
+  "status": "research_only",
+  "data": {
+    "bar_minutes": 5,
+    "timestamp_column": "timestamp",
+    "required_columns": [
+      "timestamp",
+      "symbol",
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume",
+      "long_liquidations_usd",
+      "short_liquidations_usd",
+      "long_liquidations_count",
+      "short_liquidations_count",
+      "largest_long_liquidation_usd",
+      "largest_short_liquidation_usd",
+      "open_interest",
+      "funding_rate"
+    ],
+    "schema_version": "wraith_lstm_v0.2"
+  },
+  "features": {
+    "rolling_window": 20,
+    "volatility_window": 20,
+    "zscore_window": 50,
+    "use_vwap_distance": true
+  },
+  "targets": {
+    "horizons_minutes": [
+      15,
+      30,
+      60
+    ],
+    "large_move_threshold_pct": 0.5
+  },
+  "dataset": {
+    "sequence_length": 48,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.15,
+    "test_fraction": 0.15,
+    "target": "next_15m_direction"
+  },
+  "model": {
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.1,
+    "epochs": 10,
+    "learning_rate": 0.001,
+    "batch_size": 32
+  },
+  "validation": {
+    "split": "chronological",
+    "walk_forward": "placeholder",
+    "compare_naive_baseline": true,
+    "compare_logistic_regression_if_available": true,
+    "compare_random_forest_if_available": true
+  },
+  "safety": {
+    "live_trading": false,
+    "exchange_connection": false,
+    "wallet_connection": false,
+    "broker_connection": false,
+    "money_at_risk": false
+  }
+}

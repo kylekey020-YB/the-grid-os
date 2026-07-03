@@ -37,6 +37,7 @@ export const chronicleEntries: ChronicleEntry[] = [
       "The Academy became the institutional learning division.",
       "Launch Center became the customer-facing execution tracker.",
       "Phase II Living Systems began as typed architecture only.",
+      "Intelligence Corps became the discovery engine for research missions and scout routing.",
     ],
     majorVictories: [
       "Doctrine, Constitution, Mission Control, Mission Pipeline, Approval System, Decision Records, Revenue Intelligence, Operations Floor, The Academy, and Launch Center now exist as the operating headquarters foundation.",
@@ -47,11 +48,13 @@ export const chronicleEntries: ChronicleEntry[] = [
       "A learning organization needs memory, not just pages.",
       "Event-driven architecture can make THE GRID feel alive without fake AI activity.",
       "The Mission must anchor the institution beyond any one model, officer, or tool.",
+      "Knowledge belongs to THE GRID, not to any individual AI platform.",
     ],
     architectureChanges: [
       "Added Article 0 - The Mission to the Constitution.",
       "Introduced the Event Registry and Officer Network as Phase II typed architecture.",
       "Prepared The Bridge as the primary operations surface.",
+      "Added Research Router and canonical Obsidian mission-record structure for v3.0.",
     ],
     revenue: "N/A - first marketplace service is live, but no revenue evidence is recorded yet.",
     newOfficers: ["Hermes role clarified for institutional memory and executive operations."],

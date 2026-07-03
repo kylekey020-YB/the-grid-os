@@ -1,5 +1,5 @@
 import { approvalQueue, decisionRecords } from "@/data/approvalSystem";
-import { liveProducts } from "@/data/launchCenter";
+import { launchIntelligenceSummary } from "@/data/launchIntelligence";
 import { experimentTracker, marketScannerCandidates, revenueDashboardMetrics } from "@/data/revenueIntelligence";
 import { missionPipelineItems } from "@/data/missionPipeline";
 import { scoutReportMetrics } from "@/data/scoutReports";
@@ -19,13 +19,13 @@ export type DivisionKpiReport = {
   kpis: DivisionKpi[];
 };
 
-const revenueValue = revenueDashboardMetrics.find((metric) => metric.label === "Revenue")?.value ?? "Unknown";
+const revenueValue = launchIntelligenceSummary.revenue;
 
 export const companyHealth = {
   mission: "On Track",
   approvalsPending: approvalQueue.filter((approval) => approval.status === "Awaiting Commander").length,
   activeExperiments: experimentTracker.length,
-  revenue: revenueValue === "Unknown" ? "$0" : revenueValue,
+  revenue: revenueValue,
   mrrGoal: "$10,000",
   daysRemaining: 31,
   missionProgress: "Research -> Planning -> Launch",
@@ -40,10 +40,10 @@ export const divisionKpiReports: DivisionKpiReport[] = [
       { label: "Scout reports", value: scoutReportMetrics.totalReports, evidence: "Scout Reports typed data." },
       { label: "Opportunities researched", value: marketScannerCandidates.length, evidence: "Market Scanner candidates." },
       { label: "Experiments launched", value: experimentTracker.length, evidence: "Revenue Intelligence experiment tracker." },
-      { label: "Listings published", value: liveProducts.length, evidence: "Launch Center live product count." },
+      { label: "Listings published", value: launchIntelligenceSummary.productsLive, evidence: "Launch Intelligence execution metric." },
       { label: "First inquiries", value: "N/A", evidence: "No inquiry record exists." },
       { label: "Conversion rate", value: "N/A", evidence: "No traffic or conversion records exist." },
-      { label: "Revenue", value: "N/A", evidence: "No revenue evidence recorded yet." },
+      { label: "Revenue", value: launchIntelligenceSummary.revenue, evidence: "Launch Intelligence market metric; no revenue evidence recorded yet." },
       { label: "Monthly recurring revenue", value: "N/A", evidence: "No recurring revenue evidence recorded yet." },
     ],
   },

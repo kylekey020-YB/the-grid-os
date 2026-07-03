@@ -1,6 +1,6 @@
 export type ScoutReportStatus = "Not Started" | "Manual Research" | "Awaiting Evidence" | "Ready for Review" | "Parked";
 export type ScoutReportConfidence = "N/A" | "Low" | "Medium" | "High";
-export type ScoutReportLane = "Etsy" | "Fiverr" | "Gumroad" | "Assets" | "Bounties" | "Trends" | "Reviews" | "Pricing";
+export type ScoutReportLane = "Etsy" | "Fiverr" | "Gumroad" | "Assets" | "Bounties" | "Trends" | "Reviews" | "Pricing" | "Print-on-Demand";
 
 export type ScoutReport = {
   id: string;
@@ -169,6 +169,23 @@ export const scoutReports: ScoutReport[] = [
     recommendation: "Do not price offers until delivery scope and comparable public pricing are recorded.",
     confidence: "N/A",
     nextAction: "Build public price-band notes for approved lanes only.",
+  },
+  {
+    id: "SR-009",
+    scoutName: "Print-on-Demand Scout",
+    emoji: "POD",
+    lane: "Print-on-Demand",
+    currentStatus: "Manual Research",
+    evidenceSourcePlaceholder: "N/A - add public/manual notes from Etsy, Shopify, Printify, Printful, Gelato, or reputable POD suppliers before scoring.",
+    opportunityFindings: "N/A - no POD niche evidence recorded yet.",
+    buyerPain: "N/A - buyer language must come from manually reviewed public evidence.",
+    competitionNotes: "N/A - competition, saturation, and differentiation notes not recorded yet.",
+    marginPotential: "N/A - average selling price, production cost, shipping, fees, and estimated margin are unknown until evidenced.",
+    speedToLaunch: "N/A - time to revenue depends on evidence strength, original design scope, supplier economics, and manual approval.",
+    riskFlags: ["Trademark risk", "Copyrighted character risk", "Copied design risk", "Weak margin", "Supplier cost uncertainty", "Seasonality risk"],
+    recommendation: "Research only. Produce evidence for Revenue Architect scoring: Proceed, Hold, or Reject. Do not recommend launching.",
+    confidence: "N/A",
+    nextAction: "Collect demand, competition, average selling price, estimated production cost, estimated margin, difficulty, time to revenue, and confidence for POD niches.",
   },
 ];
 

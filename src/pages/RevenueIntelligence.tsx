@@ -13,6 +13,7 @@ import { scoutDoctrine, scoutOfficers } from "@/data/scoutOfficers";
 import { scoutReportMetrics, scoutReports, scoutReportsDoctrine } from "@/data/scoutReports";
 import { opportunityRadarItems, opportunityRadarSummary, rankOpportunities } from "@/data/opportunityRadar";
 import { opportunityScorecard, ventureScoutMetrics, ventureScouts, ventureScoutsSummary } from "@/data/ventureScouts";
+import { researchSchedulerSummary, scheduledResearchMissions } from "@/data/researchScheduler";
 
 const confidenceTone: Record<Confidence | SenateConfidence, "success" | "manual" | "beta" | "muted"> = { Unknown: "muted", Low: "beta", Medium: "manual", High: "success" };
 const radarTone: Record<RadarStatus, "success" | "manual" | "beta" | "muted" | "danger"> = { Research: "manual", Watching: "beta", Active: "success", Rejected: "danger", Validated: "success", Live: "success" };
@@ -37,6 +38,8 @@ export function RevenueIntelligence() {
       <section className="space-y-4"><SectionHeader eyebrow="Scout Evidence Layer" title="Opportunity discovery officers" description="Market Scout, Demand Scout, and Risk Scout prepare research reports for Revenue Architect. No publishing, messaging, spending, or platform-rule scraping." /><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">{scoutDoctrine.map((item) => <div key={item} className="rounded-md border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-cyan-100">{item}</div>)}</div><div className="grid gap-4 md:grid-cols-3">{scoutOfficers.map((scout) => <Card key={scout.id} className="border-cyan-300/25 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-md border border-cyan-300/30 bg-cyan-300/10 text-2xl">{scout.emoji}</span><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Reports to {scout.reportsTo}</p><CardTitle className="mt-1 text-lg">{scout.name}</CardTitle></div></div><StatusBadge label={scout.status} tone="beta" /></div><CardDescription>{scout.mission}</CardDescription></CardHeader><CardContent className="space-y-3 text-sm"><Info label="Watches" value={scout.watches.join(" / ")} /><Info label="Evidence Rule" value={scout.evidenceRules.join(" / ")} /></CardContent></Card>)}</div></section>
 
       <section className="space-y-4"><SectionHeader eyebrow="Revenue Architect" title="Operation First Revenue board" description="A manual operating board for the first revenue campaign: priorities, queues, evidence, experiments, approvals, and wins without fake metrics or autonomous marketplace action." /><Card className="border-emerald-300/35 bg-emerald-950/15"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{revenueArchitectMission.officer}</p><CardTitle className="mt-2 text-2xl text-emerald-100">{revenueArchitectMission.objective}</CardTitle></div><StatusBadge label="Manual Only" tone="manual" /></div><CardDescription>{revenueArchitectMission.mission}</CardDescription></CardHeader><CardContent className="grid gap-3 lg:grid-cols-2"><Info label="Doctrine" value={revenueArchitectMission.doctrine} /><Info label="Safety" value={revenueArchitectMission.safety} /></CardContent></Card><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{revenueArchitectBoard.map((item) => <RevenueArchitectCard key={item.id} item={item} />)}</div></section>
+      <ResearchSchedulerIntelligence />
+
       <section className="space-y-4"><SectionHeader eyebrow="Approval System" title="First-class approval queue" description="Everything irreversible flows through this queue. Current buttons are review placeholders only; no backend, persistence, or external action is connected." /><div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">{approvalDoctrine.map((item) => <div key={item} className="rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-sm leading-6 text-amber-100">{item}</div>)}</div><div className="grid gap-4 xl:grid-cols-2">{approvalQueue.map((request) => <ApprovalCard key={request.id} request={request} />)}</div></section>
       <section className="space-y-4"><SectionHeader eyebrow="Decision Records" title="Why decisions were made" description="Mission Records answer what happened. Decision Records answer why THE GRID chose a direction." /><div className="grid gap-4 xl:grid-cols-2">{decisionRecords.map((record) => <DecisionRecordCard key={record.id} record={record} />)}</div></section>
       <ScoutReportIntelligence />
@@ -107,6 +110,12 @@ function VentureScoutIntelligence() {
       </div>
     </section>
   );
+}
+
+
+function ResearchSchedulerIntelligence() {
+  const revenueMissions = scheduledResearchMissions.filter((mission) => mission.division === "Revenue Corps");
+  return <section className="space-y-4"><SectionHeader eyebrow="Research Scheduler" title="Scheduled Revenue Corps research" description={researchSchedulerSummary.doctrine} /><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{revenueMissions.map((mission) => <Card key={mission.missionId} className="border-cyan-300/20 bg-card/80"><CardHeader><div className="flex items-start justify-between gap-3"><div><p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{mission.missionId}</p><CardTitle className="mt-2 text-lg">{mission.title}</CardTitle></div><StatusBadge label={mission.priority} tone="manual" /></div><CardDescription>{mission.reportOutputPathPlaceholder}</CardDescription></CardHeader></Card>)}</div></section>;
 }
 
 function OpportunityRadarIntelligence() {

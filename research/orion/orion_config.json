@@ -1,0 +1,74 @@
+{
+  "version": "ORION_v0.1",
+  "mode": "research_backtest_only",
+  "markets": [
+    "SPY",
+    "QQQ"
+  ],
+  "data_files": {
+    "SPY": "research/orion/data/SPY.csv",
+    "QQQ": "research/orion/data/QQQ.csv"
+  },
+  "output_dir": "research/orion/outputs",
+  "csv_columns": [
+    "timestamp",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume"
+  ],
+  "session": {
+    "timezone": "America/New_York",
+    "market_open": "09:30",
+    "market_close": "16:00",
+    "opening_range_minutes": 15,
+    "latest_entry_time": "12:00",
+    "end_of_day_flat_time": "15:55"
+  },
+  "execution": {
+    "signal_timing": "completed_bar_close",
+    "entry_timing": "next_bar_open",
+    "initial_equity": 100000,
+    "position_notional": 10000,
+    "slippage_bps_per_side": 2,
+    "commission_per_trade": 0,
+    "one_trade_per_symbol_per_day": true
+  },
+  "exits": {
+    "stop_model": "opposite_opening_range",
+    "atr_stop_multiple": 1,
+    "take_profit_r_multiple": 2,
+    "use_take_profit": true,
+    "use_time_stop": true,
+    "time_stop": "11:00",
+    "use_trailing_stop": false,
+    "trailing_atr_multiple": 1,
+    "move_to_breakeven_after_r": 1
+  },
+  "filters": {
+    "use_vwap_filter": false,
+    "use_ema_ribbon_filter": false,
+    "use_atr_volatility_filter": false,
+    "atr_min_percentile": 25,
+    "atr_max_percentile": 75,
+    "avoid_news_days_placeholder": false
+  },
+  "indicators": {
+    "atr_period": 14,
+    "ema_periods": [
+      8,
+      13,
+      21,
+      34,
+      55
+    ],
+    "ema_compression_threshold_pct": 0.1
+  },
+  "safety": {
+    "live_trading": false,
+    "broker_connection": false,
+    "orders_enabled": false,
+    "money_at_risk": false
+  }
+}

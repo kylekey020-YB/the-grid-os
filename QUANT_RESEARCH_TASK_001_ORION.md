@@ -237,3 +237,33 @@ Recommended first version:
 - Exit: 11:00 AM time stop, end-of-day exit, and 1R/2R comparison
 
 No live trading. No paper mode. No profitability claim.
+
+
+## ORION Backtest Spec 001 Addendum
+
+Current follow-up artifact:
+
+- ORION_BACKTEST_SPEC_001.md
+
+The research task has now been converted into a precise backtest specification covering:
+
+- 5-minute ORB.
+- 15-minute ORB.
+- 30-minute ORB.
+- SPY and QQQ.
+- VWAP, ATR, volume, previous day levels, premarket levels if available, and time-of-day fields.
+- Long and short entry logic.
+- Stop loss, take profit, trailing stop, time stop, and end-of-day exit logic.
+- VWAP, ATR regime, gap direction, first candle range, FOMC/news placeholder, EMA ribbon, and regime filters.
+- Markov/regime research path.
+- EMA ribbon / trend heatmap research path.
+- Required heatmaps and backtest outputs.
+- Pass/fail gates before any prototype review.
+
+Updated recommendation:
+
+Code the 15-minute ORB first because it balances noise reduction and sample size better than the 5-minute and 30-minute variants while remaining mechanically simple.
+
+Doctrine added:
+
+Indicators are not edge. Indicators are hypotheses. Every signal must prove value through out-of-sample testing.

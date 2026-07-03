@@ -16,6 +16,7 @@ import {
 import { scoutReportMetrics, scoutReports, scoutReportsDoctrine } from "@/data/scoutReports";
 import { opportunityRadarItems, opportunityRadarSummary, opportunityQueue } from "@/data/opportunityRadar";
 import { opportunityScorecard, ventureScoutDivisions, ventureScoutMetrics, ventureScouts, ventureScoutsSummary, type VentureScoutStatus } from "@/data/ventureScouts";
+import { researchSchedulerSummary, scheduledResearchMissions } from "@/data/researchScheduler";
 
 const statusTone: Record<RevenueCorpsStatus, "success" | "manual" | "beta" | "muted"> = {
   Active: "success",
@@ -84,6 +85,8 @@ export function RevenueCorps() {
           ))}
         </div>
       </section>
+
+      <ResearchSchedulerRevenueSection />
 
       <VentureScoutsSection />
 
@@ -212,6 +215,37 @@ export function RevenueCorps() {
 
 
 
+
+
+function ResearchSchedulerRevenueSection() {
+  const revenueMissions = scheduledResearchMissions.filter((mission) => mission.division === "Revenue Corps");
+
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Research Scheduler" title="Daily scout missions" description={researchSchedulerSummary.doctrine} />
+      <div className="grid gap-4 lg:grid-cols-3">
+        {revenueMissions.map((mission) => (
+          <Card key={mission.missionId} className="border-emerald-300/25 bg-card/80">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">{mission.missionId}</p>
+                  <CardTitle className="mt-2 text-lg">{mission.title}</CardTitle>
+                </div>
+                <StatusBadge label={mission.currentStatus} tone="manual" />
+              </div>
+              <CardDescription>{mission.scoutOfficer} / {mission.cadence}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <MetricLine label="Report" value={mission.reportOutputPathPlaceholder} />
+              <MetricLine label="Approval" value={mission.approvalRequirement} />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function VentureScoutsSection() {
   const activeScouts = ventureScouts.filter((scout) => scout.status === "Manual Research" || scout.status === "Research Only");

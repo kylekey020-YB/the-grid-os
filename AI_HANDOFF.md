@@ -1,6 +1,6 @@
 # THE GRID AI Handoff
 
-Current Version: v2.7.1
+Current Version: v3.2.0
 
 ## First Read
 
@@ -59,6 +59,9 @@ At v0.1.1, everything is manual. No Program is autonomous.
 - Trading
 - Trading Research Corps
 - Quant Research Scouts
+- Research Scheduler
+- Intelligence Corps
+- Research Router
 - Commerce
 - Research
 - War Room
@@ -78,6 +81,101 @@ Current Commerce purpose:
 
 Trading remains research only. APEX is Beta and focused on data collection and research. No fake trades, fake PnL, or live execution metrics should be added.
 
+
+
+
+## ORION v0.1 Backtester Prototype
+
+Current source of truth:
+
+- ORION_BACKTEST_SPEC_001.md
+- research/orion/README.md
+- research/orion/orion_config.json
+- research/orion/src/orion_backtest.py
+
+Purpose:
+
+- Run local CSV-only historical research for SPY/QQQ 15-minute Opening Range Breakout.
+
+Inputs:
+
+- research/orion/data/SPY.csv
+- research/orion/data/QQQ.csv
+
+Expected CSV columns:
+
+- timestamp
+- open
+- high
+- low
+- close
+- volume
+
+Outputs:
+
+- trade_log.csv
+- summary.json
+- equity_curve.csv
+- heatmap_time_of_day.csv
+- heatmap_day_of_week.csv
+- regime_breakdown.csv
+- ema_filter_comparison.csv
+
+No-lookahead rule:
+
+- Signals are formed on completed bars.
+- Entries happen at the next bar open.
+- Opening range values are used only after the opening range window closes.
+
+Hard boundaries:
+
+- No live trading.
+- No broker connection.
+- No orders.
+- No paper trading yet.
+- No money at risk.
+- No paid/live data fetching.
+
+## ORION Backtest Spec 001
+
+Current source of truth:
+
+- ORION_BACKTEST_SPEC_001.md
+- QUANT_RESEARCH_TASK_001_ORION.md
+- src/data/quantResearchScouts.ts
+
+Purpose:
+
+- Convert ORION SPY/QQQ Opening Range Breakout research into exact backtest rules before any prototype code is built.
+
+Spec includes:
+
+- 5-minute ORB.
+- 15-minute ORB.
+- 30-minute ORB.
+- SPY and QQQ.
+- VWAP, ATR, volume, previous day high/low, premarket high/low if available, and time-of-day fields.
+- Markov/regime research.
+- EMA ribbon / trend heatmap research.
+- Required heatmaps, output tables, and pass/fail gates.
+
+Recommendation:
+
+- Code the 15-minute ORB first.
+
+Doctrine:
+
+- Indicators are not edge. Indicators are hypotheses. Every signal must prove value through out-of-sample testing.
+
+Hard boundaries:
+
+- No live trading.
+- No broker connection.
+- No paper trading yet.
+- No options execution.
+- No autonomous execution.
+- No money at risk.
+- No profitability claim without historical test evidence.
 
 ## Quant Research Scouts v2.7.1
 
@@ -752,3 +850,353 @@ Rules:
 - Revenue Architect ranks opportunities.
 - Mission Commander approves experiments.
 - No backend, scraping integrations, account automation, autonomous publishing, spending, fake data, or fabricated scores.
+
+## Research Scheduler v2.8.0
+
+Current source of truth:
+
+- RESEARCH_SCHEDULER_STATUS.md
+- GIT_WORKFLOW.md
+- src/data/researchScheduler.ts
+- src/pages/ResearchScheduler.tsx
+
+Purpose:
+
+Research Scheduler coordinates semi-autonomous research missions for Revenue Corps and Quant Research Corps. It is a typed schedule and report queue only. No external scheduler, networking, account connection, broker connection, marketplace action, or autonomous execution exists.
+
+Doctrine:
+
+Scouts may research on schedule. Scouts may create reports. Scouts may rank opportunities. Scouts may recommend experiments. Scouts may not publish, trade, message, spend, or execute.
+
+Current scheduled missions:
+
+- Revenue Corps: Etsy, Fiverr, Gumroad, YouTube / Shorts, Bounty, and GitHub Opportunity daily scans.
+- Quant Research Corps: ORION, WRAITH, PAIRFORGE, VOLTA, and ATLAS research missions.
+
+Hard boundaries:
+
+- No publishing.
+- No trading.
+- No broker connection.
+- No customer messages.
+- No spending.
+- No account automation.
+- No irreversible actions.
+- Research reports only.
+- Mission Commander approves experiments.
+
+## Intelligence Corps v3.0.0
+
+Current source of truth:
+
+- INTELLIGENCE_CORPS_STATUS.md
+- RESEARCH_ROUTER.md
+- OBSIDIAN_VAULT_STRUCTURE.md
+- src/data/intelligenceCorps.ts
+- src/data/researchRouter.ts
+- src/data/scoutRegistry.ts
+- src/data/obsidianVault.ts
+- src/pages/IntelligenceCorps.tsx
+- src/pages/ResearchRouter.tsx
+
+Principle:
+
+Knowledge belongs to THE GRID, not to any individual AI. Hermes, Claude, ChatGPT, Claude Code, Codex, and future providers are contributors. The durable memory belongs in THE GRID records and Obsidian.
+
+Divisions:
+
+- Revenue Scouts
+- Quant Scouts
+- Engineering Scouts
+- DealFlow Scouts
+- AI Research Scouts
+
+Research Router platforms:
+
+- ChatGPT
+- Hermes
+- Claude
+- Claude Code
+- Codex
+- Future providers
+
+Hard boundaries:
+
+- No live AI provider routing.
+- No API calls.
+- No Obsidian sync automation.
+- No publishing.
+- No trading.
+- No broker connection.
+- No customer messaging.
+- No spending.
+- No account automation.
+- No irreversible actions.
+- No autonomous execution.
+
+## Headquarters v3.2.0
+
+Start every future AI session by reading GRID_SYSTEM_PROMPT.md.
+
+GRID_SYSTEM_PROMPT.md is the single source of truth for doctrine, roles, loops, approval boundaries, and knowledge ownership. Do not duplicate doctrine in new docs; reference the system prompt.
+
+Current headquarters documents:
+
+- GRID_SYSTEM_PROMPT.md
+- OBSIDIAN_SYNC_MAP.md
+- MISSION_BOARD.md
+- RESEARCH_ROUTER.md
+
+Chief Engineer doctrine:
+
+Claude Code is Chief Engineer. Engineering decisions are made from the root GRID repository, not isolated APEX or CLU sessions.
+
+Documentation doctrine:
+
+Future reports should be Obsidian-compatible Markdown and should naturally belong inside the Second Brain.
+
+## Operations Hub v1.0
+
+Current source of truth:
+
+- OPERATIONS_HUB.md
+- src/data/operationsHub.ts
+- src/pages/OperationsHub.tsx
+
+Rule:
+
+Nothing enters Mission Control unless it has a Mission ID.
+
+Purpose:
+
+Operations Hub reduces Mission Commander coordination by routing work through one mission queue before it reaches the command floor.
+
+Hard boundary:
+
+Mission actions are operating intents only. They do not execute publishing, trading, customer messaging, spending, backtests, approvals, or Obsidian writes.
+
+## Execution Support Sprint
+
+Current priority order:
+
+1. Customer acquisition.
+2. Product launches.
+3. Operations Hub.
+4. Obsidian integration.
+5. Trading validation.
+
+Everything else enters the backlog.
+
+Engineering rule:
+
+Every feature must answer whether it increases revenue, reduces coordination, or improves validated learning. If not, recommend postponing it.
+
+ORION Backtester is now Engineering's highest Trading priority. No live trading, broker connection, paper mode, options execution, wallet execution, or money at risk is authorized.
+
+## Daily Command Brief v1.0
+
+Current source of truth:
+
+- COMMAND_BRIEF_TEMPLATE.md
+- src/data/dailyCommandBrief.ts
+- src/pages/DailyCommandBrief.tsx
+
+Daily Command Brief is the first page Mission Commander sees every morning. It reports Operations, Revenue, Engineering, Trading, Knowledge, Customers, Launches, Backtests, and Mission Records with the same schema and ends with ONE Recommendation.
+
+Do not add extra brief sections without approval. Unknown values remain N/A. Evidence must link back to Mission IDs and Obsidian notes.
+
+
+## Stabilization And Repository Consolidation
+
+Current source of truth:
+
+- STABILIZATION_STATUS.md
+- REPOSITORY_CONSOLIDATION_PLAN.md
+- GIT_WORKFLOW.md
+
+Canonical working tree:
+
+`C:\Users\NovaI\Documents\Codex\2026-06-30\mission-create-the-first-version-of`
+
+Do not move, merge, reset, clean, stage, or commit active work unless Mission Commander approves. Treat the Codex repository as canonical and preserve Git history during any future relocation.
+
+
+## Launch Intelligence v1.0
+
+Current source of truth:
+
+- src/data/launchIntelligence.ts
+- EVIDENCE_LEDGER.md
+- src/data/launchCenter.ts
+- src/data/operationsHub.ts
+
+Launch Intelligence tracks only real launch evidence. It separates execution metrics controlled by THE GRID from market metrics controlled by customers and platforms. Unknown market values remain Unknown or Awaiting Evidence until Mission Commander records actual evidence.
+
+R-005 Print-on-Demand Scout is a persistent Revenue Corps research mission. It researches POD demand, competition, pricing, production cost, margin, difficulty, time to revenue, and confidence only. It may output Proceed, Hold, or Reject for Revenue Architect review, but it does not authorize launch, product creation, design generation, listings, storefronts, supplier outreach, scraping, or spending.
+
+
+## Playbook System v1.0
+
+Current source of truth:
+
+- GRID_PLAYBOOKS.md
+- PLAYBOOK_TEMPLATE.md
+- src/data/playbooks.ts
+- src/pages/Playbooks.tsx
+
+Doctrine:
+
+THE GRID does not merely remember outcomes. It converts validated experience into reusable playbooks.
+
+All initial playbooks PB-001 through PB-008 are Draft placeholders. Do not mark a playbook Tested or Validated unless real Evidence Ledger entries, Mission Records, lessons learned, and Mission Commander review support the promotion.
+
+## WRAITH-LSTM v0.1
+
+Current source of truth:
+
+- research/wraith_lstm/README.md
+- research/wraith_lstm/config.json
+- research/wraith_lstm/src/features.py
+- research/wraith_lstm/src/dataset.py
+- research/wraith_lstm/src/model.py
+- research/wraith_lstm/src/train.py
+- research/wraith_lstm/src/evaluate.py
+- research/wraith_lstm/src/baselines.py
+
+Purpose:
+
+- Experimental local CSV-only sequential model for WRAITH crypto liquidation research.
+
+Expected input columns:
+
+- timestamp
+- open
+- high
+- low
+- close
+- volume
+- long_liquidations
+- short_liquidations
+- open_interest
+- funding_rate
+
+Outputs:
+
+- metrics.json
+- predictions.csv
+- feature_summary.csv
+- evaluation_report.md
+
+Validation commands:
+
+- python research/wraith_lstm/src/train.py --help
+- python research/wraith_lstm/src/evaluate.py --help
+
+Doctrine:
+
+LSTM is a signal generator, not a trading system. No model can advance unless it beats simple baselines out-of-sample.
+
+Hard boundaries:
+
+No live trading, exchange execution, wallet connection, broker connection, money at risk, or alpha claim without evidence.
+
+## WRAITH-LSTM v0.2 Data Contract
+
+Current source of truth:
+
+- research/wraith_lstm/README.md
+- research/wraith_lstm/config.json
+- research/wraith_lstm/src/validate_data.py
+- research/wraith_lstm/data/sample_data_format.csv
+- research/wraith_lstm/DATA_PROVIDER_RESEARCH.md
+
+Strict required columns:
+
+- timestamp
+- symbol
+- open
+- high
+- low
+- close
+- volume
+- long_liquidations_usd
+- short_liquidations_usd
+- long_liquidations_count
+- short_liquidations_count
+- largest_long_liquidation_usd
+- largest_short_liquidation_usd
+- open_interest
+- funding_rate
+
+Validation commands:
+
+- python research/wraith_lstm/src/validate_data.py --help
+- python research/wraith_lstm/src/train.py --help
+- python research/wraith_lstm/src/evaluate.py --help
+
+The sample CSV is schema-only dummy structure. Do not use it for training, metrics, model claims, or alpha claims.
+
+## Alpha Lab v1.0
+
+Current source of truth:
+
+- ALPHA_LAB_STATUS.md
+- ALPHA_GENERATION_DOCTRINE.md
+- src/data/alphaLab.ts
+- src/pages/AlphaLab.tsx
+
+Purpose:
+
+Alpha Lab is THE GRID's permanent alpha-generation system. It organizes trading hypotheses into alpha families and records each hypothesis with data requirements, expected edge source, model type, evidence score, overfitting risk, implementation difficulty, and current verdict.
+
+Core doctrine:
+
+- No strategy is permanent.
+- Every hypothesis competes against evidence.
+- Every model must continually earn its place.
+- The edge is not one signal.
+- The edge is the research engine.
+
+ALPHA-501 maps WRAITH-LSTM to the Alpha Library as Sequential Liquidation Model. It does not assume liquidation patterns are momentum or contrarian. It tests both possibilities and lets evidence decide.
+
+Hard boundaries:
+
+No fake alpha, fake backtests, fake data, live trading, exchange connection, wallet connection, broker connection, paper trading authorization, money at risk, or strategy promotion without evidence.
+
+## ORION v0.2 First Backtest Gate
+
+Current source of truth:
+
+- ORION_BACKTEST_RUNBOOK.md
+- research/orion/README.md
+- research/orion/data/README.md
+- research/orion/src/validate_data.py
+- research/orion/src/orion_backtest.py
+
+Expected data files:
+
+- research/orion/data/SPY.csv
+- research/orion/data/QQQ.csv
+
+Expected CSV schema:
+
+- timestamp
+- open
+- high
+- low
+- close
+- volume
+
+Validation command:
+
+- python research/orion/src/validate_data.py --spy research/orion/data/SPY.csv --qqq research/orion/data/QQQ.csv
+
+First backtest command after validation passes:
+
+- python research/orion/src/orion_backtest.py --config research/orion/orion_config.json
+
+Current blocker:
+
+Mission Commander must provide real SPY/QQQ intraday CSV data.
+
+No fake data, profitability claim, live trading, broker connection, paper mode, money at risk, or strategy promotion is authorized.

@@ -32,13 +32,14 @@ export function LaunchCenter() {
             <div className="space-y-3">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">THE GRID entered the marketplace</p>
               <h1 className="font-display text-4xl font-semibold leading-tight md:text-6xl">Launch Center</h1>
-              <p className="max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">Every launch gets tracked here: Fiverr, Gumroad, DealFlow, Shopify, and future products. Real metrics start now; unknowns remain N/A.</p>
+              <p className="max-w-3xl text-base leading-7 text-muted-foreground md:text-lg">Every launch gets tracked here: Fiverr, Gumroad, DealFlow, Shopify, and future products. Real metrics start now; unknowns remain Unknown or Awaiting Evidence.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               <LaunchStat label="Status" value={launchCenterSummary.status} />
               <LaunchStat label="Live Products" value={String(launchCenterSummary.liveProducts)} />
               <LaunchStat label="Recorded Milestones" value={String(launchCenterSummary.recordedMilestones)} />
               <LaunchStat label="Revenue" value={launchCenterSummary.revenue} />
+              <LaunchStat label="Market Evidence" value={launchCenterSummary.marketEvidenceStatus} />
             </div>
           </div>
           <Card className="border-amber-300/35 bg-amber-950/15">
@@ -53,7 +54,7 @@ export function LaunchCenter() {
               <CardDescription>Mission stage: Idea / Research / Evidence / Approval / Experiment / Live.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              <MetricLine label="Next KPI" value="Impressions / CTR / Messages / Consultations / Orders / Reviews / Revenue" />
+              <MetricLine label="Next KPI" value="Impressions / Views / Clicks / Messages / Orders / Revenue" />
               <div className="rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-sm leading-6 text-amber-100">Do not constantly edit the new live gig while indexing starts unless an obvious mistake exists.</div>
             </CardContent>
           </Card>
@@ -61,12 +62,12 @@ export function LaunchCenter() {
       </section>
 
       <section className="space-y-4">
-        <SectionHeader eyebrow="Doctrine" title="Customer-facing execution begins" description="The mission is no longer only building a business. It is now serving customers and measuring real marketplace response." />
+        <SectionHeader eyebrow="Doctrine" title="Customer-facing execution begins" description="The mission is no longer only building a business. It is now serving customers and measuring real marketplace response through verified evidence." />
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">{launchCenterDoctrine.map((item) => <div key={item} className="rounded-md border border-emerald-300/20 bg-emerald-300/10 p-3 text-sm leading-6 text-emerald-100">{item}</div>)}</div>
       </section>
 
       <section className="space-y-4">
-        <SectionHeader eyebrow="Live Products" title="Marketplace products now in the field" description="Live means published in the marketplace. Metrics remain N/A until real platform evidence exists." />
+        <SectionHeader eyebrow="Live Products" title="Marketplace products now in the field" description="Live means published in the marketplace. Execution metrics and market metrics are separated so launch activity is never confused with customer response." />
         <div className="grid gap-4 xl:grid-cols-2">{liveProducts.map((product) => <LiveProductCard key={product.id} product={product} />)}</div>
       </section>
 
@@ -103,10 +104,22 @@ function LiveProductCard({ product }: { product: typeof liveProducts[number] }) 
           <MetricLine label="Owner" value={product.owner} />
           <MetricLine label="Mission" value={product.mission} />
         </div>
-        <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">{product.kpis.map((kpi) => <div key={kpi.label} className="rounded-md border border-border/70 bg-background/50 p-3"><div className="flex items-center justify-between gap-3 text-sm"><span className="text-muted-foreground">{kpi.label}</span><span className="font-medium text-foreground">{String(kpi.value)}</span></div><p className="mt-2 text-xs leading-5 text-muted-foreground">{kpi.evidence}</p></div>)}</div>
+        <div className="space-y-3"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Execution Metrics / controlled by THE GRID</p><div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">{product.executionMetrics.map((kpi) => <MetricEvidence key={kpi.label} kpi={kpi} />)}</div></div><div className="space-y-3"><p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Market Metrics / controlled by the market</p><div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">{product.marketMetrics.map((kpi) => <MetricEvidence key={kpi.label} kpi={kpi} />)}</div></div>
         <div className="rounded-md border border-emerald-300/20 bg-emerald-300/10 p-3 text-sm leading-6 text-emerald-100">{product.nextAction}</div>
       </CardContent>
     </Card>
+  );
+}
+
+function MetricEvidence({ kpi }: { kpi: typeof liveProducts[number]["marketMetrics"][number] }) {
+  return (
+    <div className="rounded-md border border-border/70 bg-background/50 p-3">
+      <div className="flex items-center justify-between gap-3 text-sm">
+        <span className="text-muted-foreground">{kpi.label}</span>
+        <span className="font-medium text-foreground">{String(kpi.value)}</span>
+      </div>
+      <p className="mt-2 text-xs leading-5 text-muted-foreground">{kpi.evidence}</p>
+    </div>
   );
 }
 

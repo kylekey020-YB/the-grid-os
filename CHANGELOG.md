@@ -2,9 +2,214 @@
 
 All notable changes to THE GRID will be documented in this file.
 
-Current Version: v2.7.1
+Current Version: v3.2.0
 
+## Alpha Lab v1.0
 
+### Added
+
+- ALPHA_LAB_STATUS.md
+- ALPHA_GENERATION_DOCTRINE.md
+- src/data/alphaLab.ts
+- src/pages/AlphaLab.tsx
+- Alpha Library with ALPHA-100 through ALPHA-600 families
+- ALPHA-501 Sequential Liquidation Model for WRAITH-LSTM
+- Alpha Lab navigation entry
+
+### Changed
+
+- Mission Control, The Bridge, Trading Research Corps, Quant Research Scouts, The Academy, Evidence Ledger, Obsidian Sync Map, README, PROJECT_LOG, VERSION, AI_HANDOFF, and GRID_SYSTEM_PROMPT now reference Alpha Lab.
+
+### Boundary
+
+- No fake alpha, fake backtests, fake data, live trading, exchange connections, broker connections, wallet connections, paper trading authorization, or strategy promotion without evidence.
+
+## Playbook System v1.0
+
+### Added
+
+- GRID_PLAYBOOKS.md
+- PLAYBOOK_TEMPLATE.md
+- src/data/playbooks.ts
+- src/pages/Playbooks.tsx
+- Initial PB-001 through PB-008 draft placeholders
+
+### Changed
+
+- Mission Control, Operations Hub, The Academy, Daily Command Brief, Obsidian Sync Map, Evidence Ledger, README, PROJECT_LOG, VERSION, AI_HANDOFF, and GRID_SYSTEM_PROMPT now reference the Playbook system.
+
+### Boundary
+
+- No fake wins, fake lessons, completed playbooks, backend, automation, product launch, trading action, or merge action.
+
+## Launch Intelligence v1.0
+
+### Added
+
+- src/data/launchIntelligence.ts
+- EVIDENCE_LEDGER.md
+- R-005_PRINT_ON_DEMAND_SCOUT.md
+- R-005 Print-on-Demand Scout mission in Research Scheduler
+- Print-on-Demand Scout Report template
+
+### Changed
+
+- Launch Center now consumes shared Launch Intelligence records.
+- Mission Control and Operations Hub reference the same launch evidence source.
+- Company KPI revenue/live-product references now come from Launch Intelligence.
+
+### Boundary
+
+- No new dashboards, product creation, listings, design generation, storefronts, supplier outreach, scraping, spending, publishing, trading, or merge action.
+
+## Stabilization Pass
+
+### Added
+
+- STABILIZATION_STATUS.md
+- REPOSITORY_CONSOLIDATION_PLAN.md
+
+### Changed
+
+- Aligned package metadata with the documented v3.2.0 baseline.
+- Updated README, VERSION, PROJECT_LOG, AI_HANDOFF, and GIT_WORKFLOW with consolidation guidance.
+
+### Boundary
+
+- No dashboards, divisions, officers, backend, automation, repository move, merge action, or commit.
+
+## Daily Command Brief v1.0
+
+### Added
+
+- src/data/dailyCommandBrief.ts
+- src/pages/DailyCommandBrief.tsx
+- COMMAND_BRIEF_TEMPLATE.md
+- Daily Command Brief navigation entry and default landing page
+- Mission Control and Operations Hub integrations
+
+### Changed
+
+- App now opens Daily Command Brief first
+- GRID_SYSTEM_PROMPT.md daily operating cycle now starts with the Command Brief
+- OBSIDIAN_SYNC_MAP.md maps Command Brief artifacts to 01 Executive
+
+### Safety Boundary
+
+- No new divisions, officers, decorative dashboards, backend, automation, publishing, trading, messaging, spending, or merge action
+
+## Execution Support Sprint
+
+### Added
+
+- EXECUTION_SUPPORT_SPRINT.md
+- Operations Hub execution priority order
+- Operations Hub real-only execution metrics
+- Feature gate: revenue, coordination, or validated learning
+
+### Changed
+
+- ORION Backtester is now Engineering's highest Trading priority
+- Operations Hub mission queue now reflects the execution-first priority order
+- GRID_SYSTEM_PROMPT.md now includes the Execution Support Sprint rule
+
+### Safety Boundary
+
+- No new divisions, officers, decorative dashboards, backend, automation, publishing, trading, spending, customer messaging, or merge action
+
+## Operations Hub v1.0
+
+### Added
+
+- src/data/operationsHub.ts
+- src/pages/OperationsHub.tsx
+- OPERATIONS_HUB.md
+- Operations Hub navigation entry
+- Mission ID gate snapshot inside Mission Control
+- Mission Inbox, Today's Focus, mission actions, and daily workflow
+
+### Changed
+
+- Mission Control now references Operations Hub as the entry gate for mission-linked work
+- GRID_SYSTEM_PROMPT.md now includes the Operations Hub rule
+- OBSIDIAN_SYNC_MAP.md now maps Operations Hub and Mission Inbox to 01 Executive
+
+### Safety Boundary
+
+- No new divisions, officers, decorative dashboards, backend, persistence, execution automation, publishing, trading, customer messaging, spending, or automatic Obsidian writes
+
+## v3.2.0 - THE GRID Headquarters
+
+### Added
+
+- GRID_SYSTEM_PROMPT.md as the single source of truth for AI contributors
+- OBSIDIAN_SYNC_MAP.md for system-to-vault routing
+- MISSION_BOARD.md as the central operating board
+- Obsidian-compatible Markdown mirror for the v3.2 artifacts under the writable vault package
+
+### Changed
+
+- RESEARCH_ROUTER.md now reflects v3.2 assignment-only routing
+- Claude Code is documented as Chief Engineer
+- Engineering decisions are anchored to the root GRID repository
+- Future documentation generation is directed toward Obsidian-compatible Markdown
+
+### Safety Boundary
+
+- Documentation/governance only
+- No new officer pages, decorative dashboards, backend, automation, provider routing, publishing, trading, spending, customer messaging, or main branch merge
+
+## v3.0.0 - Intelligence Corps + Research Router
+
+### Added
+
+- src/data/intelligenceCorps.ts
+- src/data/researchRouter.ts
+- src/data/scoutRegistry.ts
+- src/data/obsidianVault.ts
+- src/pages/IntelligenceCorps.tsx
+- src/pages/ResearchRouter.tsx
+- INTELLIGENCE_CORPS_STATUS.md
+- RESEARCH_ROUTER.md
+- OBSIDIAN_VAULT_STRUCTURE.md
+- Intelligence Corps divisions for Revenue Scouts, Quant Scouts, Engineering Scouts, DealFlow Scouts, and AI Research Scouts
+- Research Router platform model for ChatGPT, Hermes, Claude, Claude Code, Codex, and future providers
+- Canonical Obsidian mission-record field schema
+
+### Changed
+
+- Canonical documentation version updated to v3.0.0
+- Mission Control, The Bridge, The Academy, and Chronicle now reference Intelligence Corps and Research Router
+- Constitution now states that knowledge belongs to THE GRID, not to any individual AI
+
+### Safety Boundary
+
+- Typed UI and documentation only
+- No live AI provider routing, API calls, Obsidian sync, publishing, trading, broker connection, customer messaging, spending, account automation, irreversible actions, or autonomous execution
+
+## v2.8.0 - Semi-Autonomous Research Scheduler
+
+### Added
+
+- src/data/researchScheduler.ts
+- src/pages/ResearchScheduler.tsx
+- RESEARCH_SCHEDULER_STATUS.md
+- GIT_WORKFLOW.md
+- Scheduled Revenue Corps research missions for Etsy, Fiverr, Gumroad, YouTube / Shorts, Bounty, and GitHub opportunity scans
+- Scheduled Quant Research Corps research missions for ORION, WRAITH, PAIRFORGE, VOLTA, and ATLAS
+- Research Queue statuses: Pending, Running, Completed, Needs Review, and Archived
+- Research Scheduler integrations in Mission Control, The Bridge, Revenue Corps, Revenue Intelligence, Quant Research Scouts, Trading Research Corps, The Academy, World Map, Mission Pipeline, and Approval doctrine
+
+### Changed
+
+- Canonical documentation version updated to v2.8.0
+- Research now has a semi-autonomous schedule model while execution remains prohibited
+- Git doctrine now clarifies stable main branch and feature branch approval boundaries
+
+### Safety Boundary
+
+- Research reports only
+- No publishing, trading, broker connection, customer messages, spending, account automation, irreversible actions, external execution, fake data, or autonomous research execution
 
 
 ## v2.7.1 - Quant Research Scout Engine

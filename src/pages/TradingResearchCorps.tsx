@@ -17,7 +17,9 @@ import {
   type TradingResearchProgram,
   type TradingScoutConfidence,
 } from "@/data/tradingResearchCorps";
-import { quantResearchMetrics, quantResearchScoutsSummary, strategyCandidateQueue } from "@/data/quantResearchScouts";
+import { orionBacktestSpec001, quantResearchMetrics, quantResearchScoutsSummary, strategyCandidateQueue } from "@/data/quantResearchScouts";
+import { researchSchedulerMetrics, researchSchedulerSummary, scheduledResearchMissions } from "@/data/researchScheduler";
+import { alphaLabMetrics, alphaLabSummary, alphaRecords } from "@/data/alphaLab";
 
 const statusTone: Record<TradingProgramStatus, "manual" | "beta" | "muted"> = {
   "Research Only": "manual",
@@ -85,6 +87,12 @@ export function TradingResearchCorps() {
 
       <QuantResearchEnginePanel />
 
+      <ResearchSchedulerTradingPanel />
+
+      <AlphaLabTradingPanel />
+
+      <OrionBacktestSpecSummary />
+
       <section className="space-y-4">
         <SectionHeader eyebrow="Programs" title="PAIRFORGE, VOLTA, ATLAS, ORION, and WRAITH" description="Each program is a research object with data requirements, validation gates, backtest requirements, and risk controls before paper mode." />
         <div className="grid gap-4 xl:grid-cols-2">
@@ -123,6 +131,90 @@ function QuantResearchEnginePanel() {
           <Metric label="Sources" value={String(quantResearchMetrics.sources)} />
           <Metric label="Prototype Candidates" value={String(quantResearchMetrics.prototypeCandidates)} />
           <Metric label="Lead" value={lead?.targetBot ?? "N/A"} />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+
+
+function AlphaLabTradingPanel() {
+  const wraithLstm = alphaRecords.find((record) => record.id === "ALPHA-501");
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="Alpha Lab" title="Alpha records before strategy promotion" description={alphaLabSummary.doctrine} />
+      <Card className="border-purple-300/30 bg-purple-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-200">{alphaLabSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-purple-100">Research engine, not one signal</CardTitle>
+            </div>
+            <StatusBadge label="Research only" tone="manual" />
+          </div>
+          <CardDescription>{alphaLabSummary.continuousImprovement}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-5">
+          <Metric label="Families" value={String(alphaLabMetrics.families)} />
+          <Metric label="Alpha Records" value={String(alphaLabMetrics.records)} />
+          <Metric label="Backtest Queue" value={String(alphaLabMetrics.backtestQueue)} />
+          <Metric label="Live Candidates" value={String(alphaLabMetrics.liveCandidates)} />
+          <Metric label="ALPHA-501" value={wraithLstm?.backtestStatus ?? "N/A"} />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+function ResearchSchedulerTradingPanel() {
+  const quantMissions = scheduledResearchMissions.filter((mission) => mission.division === "Quant Research Corps");
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow="v2.8 Research Scheduler" title="Research cadence before paper mode" description={researchSchedulerSummary.doctrine} />
+      <Card className="border-cyan-300/30 bg-cyan-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{researchSchedulerSummary.version}</p>
+              <CardTitle className="mt-2 text-2xl text-cyan-100">Quant scheduled missions</CardTitle>
+            </div>
+            <StatusBadge label="Research only" tone="manual" />
+          </div>
+          <CardDescription>{researchSchedulerSummary.safety}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-4">
+          <Metric label="Quant Missions" value={String(researchSchedulerMetrics.quantMissions)} />
+          <Metric label="Needs Review" value={String(researchSchedulerMetrics.needsReview)} />
+          <Metric label="Lead" value={quantMissions[0]?.missionId ?? "N/A"} />
+          <Metric label="Live Trading" value="0" />
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+function OrionBacktestSpecSummary() {
+  return (
+    <section className="space-y-4">
+      <SectionHeader eyebrow={orionBacktestSpec001.id} title="ORION Backtest Spec 001" description={orionBacktestSpec001.doctrine} />
+      <Card className="border-amber-300/30 bg-amber-950/15">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">{orionBacktestSpec001.version}</p>
+              <CardTitle className="mt-2 text-2xl text-amber-100">Backtest before prototype</CardTitle>
+            </div>
+            <StatusBadge label="No paper mode" tone="manual" />
+          </div>
+          <CardDescription>{orionBacktestSpec001.recommendation}</CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 md:grid-cols-5">
+          <Metric label="Markets" value={orionBacktestSpec001.markets.join(" / ")} />
+          <Metric label="Variants" value="5m / 15m / 30m" />
+          <Metric label="Regime Tests" value={String(orionBacktestSpec001.regimeTests.length)} />
+          <Metric label="Heatmaps" value={String(orionBacktestSpec001.visualizationOutputs.length)} />
+          <Metric label="Pass Gates" value={String(orionBacktestSpec001.passFailCriteria.length)} />
         </CardContent>
       </Card>
     </section>

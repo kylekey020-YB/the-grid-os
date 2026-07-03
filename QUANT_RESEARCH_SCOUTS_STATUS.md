@@ -1,7 +1,7 @@
 # Quant Research Scouts Status
 
-Version: v2.7.0
-Status: Research-only architecture
+Version: v2.8.0
+Status: Research-only architecture with scheduled report queue
 Date: July 2, 2026
 
 ## Mission
@@ -87,3 +87,52 @@ Run:
 - npm run build
 
 If sandbox blocks those commands, run the TypeScript compiler fallback and report the limitation.
+
+
+## ORION Backtest Spec 001
+
+Current artifact:
+
+- ORION_BACKTEST_SPEC_001.md
+
+ORION Backtest Spec 001 converts the first-signal research into mechanical backtest requirements. It defines 5-minute, 15-minute, and 30-minute ORB variants for SPY and QQQ, plus filters, regime research, EMA ribbon research, heatmaps, required outputs, and pass/fail criteria.
+
+Recommended first coded variant: 15-minute ORB.
+
+No live trading, broker connection, paper mode, or money at risk is authorized.
+
+Doctrine added:
+
+Indicators are not edge. Indicators are hypotheses. Every signal must prove value through out-of-sample testing.
+
+## v2.8 Scheduler Integration
+
+Research Scheduler now includes Quant Research Corps scheduled missions for ORION, WRAITH, PAIRFORGE, VOLTA, and ATLAS.
+
+The scheduler is a report queue only. Quant Scouts may research on schedule, create reports, rank strategy candidates, and recommend experiments. Quant Scouts may not trade, connect brokers or wallets, execute options, start paper mode, spend money, or perform irreversible actions. Mission Commander approval remains required before any experiment, paper-mode discussion, or live-risk step.
+
+## WRAITH-LSTM v0.1 Research Module
+
+WRAITH now has an experimental sequential-model research module at research/wraith_lstm/.
+
+The module supports local CSV-only feature engineering, chronological train/test splits, optional LSTM training when PyTorch is available, simple baseline comparison, and Markdown evaluation reports.
+
+Doctrine added:
+
+LSTM is a signal generator, not a trading system. No model can advance unless it beats simple baselines out-of-sample.
+
+This does not authorize live trading, wallet execution, exchange connections, broker connections, paper mode, money at risk, or strategy promotion.
+
+## WRAITH-LSTM v0.2 Data Gate
+
+WRAITH-LSTM now has a strict local data contract and validation script.
+
+Source of truth:
+
+- research/wraith_lstm/README.md
+- research/wraith_lstm/config.json
+- research/wraith_lstm/src/validate_data.py
+- research/wraith_lstm/data/sample_data_format.csv
+- research/wraith_lstm/DATA_PROVIDER_RESEARCH.md
+
+No model claim is valid until real historical liquidation data passes validation and beats simple baselines out-of-sample.

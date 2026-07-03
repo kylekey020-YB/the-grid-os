@@ -776,6 +776,73 @@ Safety boundary:
 - No fabricated opportunity scores.
 
 
+
+
+### ORION v0.1 - 15-Minute ORB Backtester Prototype
+
+Completed / in progress:
+
+- research/orion/ folder created.
+- Local CSV-only ORION prototype created.
+- 15-minute Opening Range Breakout logic implemented for SPY and QQQ.
+- Optional VWAP, EMA ribbon, ATR volatility, time stop, and end-of-day flat controls added through config.
+- No-lookahead comments added to the backtester.
+- Outputs defined for trade log, summary, equity curve, time-of-day heatmap, day-of-week heatmap, regime breakdown, and EMA filter comparison.
+
+Files:
+
+- research/orion/README.md
+- research/orion/orion_config.json
+- research/orion/data/README.md
+- research/orion/src/orion_backtest.py
+- research/orion/src/indicators.py
+- research/orion/src/regime.py
+- research/orion/src/reporting.py
+- research/orion/outputs/.gitkeep
+
+Safety boundary:
+
+- No live trading.
+- No broker connection.
+- No orders.
+- No paper trading yet.
+- No money at risk.
+- Local CSV input only.
+
+Next requirement:
+
+- Provide reliable SPY/QQQ intraday CSV data before evaluating performance.
+
+### ORION Backtest Spec 001
+
+Completed / in progress:
+
+- ORION_BACKTEST_SPEC_001.md created.
+- ORION first-signal research converted into precise mechanical backtest rules.
+- 5-minute, 15-minute, and 30-minute ORB variants defined for SPY and QQQ.
+- VWAP, ATR, volume, previous day high/low, premarket high/low if available, and time-of-day inputs documented.
+- Markov/regime research path added.
+- EMA ribbon / trend heatmap research path added.
+- Required heatmaps and backtest outputs defined.
+- Pass/fail criteria defined before ORION can move toward prototype review.
+- Quant Research Scouts page, Trading Research Corps page, and Academy updated with ORION spec references.
+
+Recommendation:
+
+- Code the 15-minute ORB first because it balances noise reduction and sample size while staying mechanically simple.
+
+Doctrine:
+
+- Indicators are not edge. Indicators are hypotheses. Every signal must prove value through out-of-sample testing.
+
+Safety boundary:
+
+- No live trading.
+- No broker connection.
+- No paper mode.
+- No money at risk.
+- No profitability claim without historical test evidence.
+
 ### v2.7.1 - Quant Research Scout Engine
 
 Completed / in progress:
@@ -906,3 +973,225 @@ Current trading state:
 Reason:
 
 - Reality before automation.
+
+## v2.8.0 - Semi-Autonomous Research Scheduler
+
+Completed:
+
+- Added Research Scheduler page, typed data, and status document.
+- Added scheduled Revenue Corps missions for Etsy, Fiverr, Gumroad, YouTube / Shorts, Bounty, and GitHub opportunity scans.
+- Added scheduled Quant Research Corps missions for ORION, WRAITH, PAIRFORGE, VOLTA, and ATLAS.
+- Integrated scheduler state into Mission Control, The Bridge, Revenue Corps, Revenue Intelligence, Quant Research Scouts, Trading Research Corps, The Academy, World Map, Mission Pipeline, and Approval doctrine.
+- Added GIT_WORKFLOW.md to document stable main branch, feature branch, approval, secrets, and research-output rules.
+
+Doctrine:
+
+Scouts may research on schedule. Scouts may create reports. Scouts may rank opportunities. Scouts may recommend experiments. Scouts may not publish, trade, message, spend, or execute.
+
+Validation target:
+
+- npm run check
+- npm run build
+
+Safety boundary:
+
+No publishing, trading, broker connection, customer messages, spending, account automation, irreversible actions, external execution, fake data, or autonomous research execution exists in v2.8.0.
+
+## v3.0.0 - Intelligence Corps + Research Router
+
+Completed:
+
+- Added Intelligence Corps as THE GRID discovery engine.
+- Added Scout Registry for Revenue Scouts, Quant Scouts, Engineering Scouts, DealFlow Scouts, and AI Research Scouts.
+- Added Research Router as a typed assignment layer for ChatGPT, Hermes, Claude, Claude Code, Codex, and future providers.
+- Added canonical Obsidian vault structure and mission-record schema.
+- Integrated v3.0 state into Mission Control, The Bridge, The Academy, and Chronicle.
+- Updated Constitution with the principle: Knowledge belongs to THE GRID, not to any individual AI.
+
+Validation target:
+
+- npm run check
+- npm run build
+
+Safety boundary:
+
+No live AI provider routing, API calls, Obsidian sync, publishing, trading, broker connection, customer messaging, spending, account automation, irreversible actions, or autonomous execution exists in v3.0.0.
+
+## v3.2.0 - THE GRID Headquarters
+
+Completed:
+
+- Created GRID_SYSTEM_PROMPT.md as the single source of truth for AI contributors.
+- Created OBSIDIAN_SYNC_MAP.md for mapping THE GRID systems to Obsidian folders.
+- Created MISSION_BOARD.md as the central operating board.
+- Updated RESEARCH_ROUTER.md for assignment-only research routing.
+- Documented Claude Code as Chief Engineer and root GRID repository as the engineering decision center.
+- Directed future documentation generation toward Obsidian-compatible Markdown.
+
+Boundary:
+
+No officer pages, decorative dashboards, backend, automation, provider routing, publishing, trading, spending, customer messaging, or merge action was added.
+
+## Operations Hub v1.0
+
+Completed:
+
+- Added Operations Hub as the central mission queue.
+- Added typed mission inbox records with Mission ID, title, division, priority, owner, assigned intelligence, status, created, due, evidence, and related Obsidian note.
+- Added Today's Focus: top 5 active missions, top 3 blockers, approvals waiting, customer messages, launches, and backtests running.
+- Added mission actions as non-executing operating intents.
+- Added daily workflow: Morning Brief -> Mission Queue -> Execution -> Evidence -> Executive Brief -> Archive.
+- Added Mission Control snapshot enforcing: nothing enters Mission Control unless it has a Mission ID.
+
+Boundary:
+
+No new divisions, new officers, decorative dashboards, backend, persistence, external execution, publishing, trading, customer messaging, spending, or automatic Obsidian writes were added.
+
+## Execution Support Sprint
+
+Completed:
+
+- Updated Operations Hub around the new execution priority order: customer acquisition, product launches, Operations Hub, Obsidian integration, trading validation.
+- Added execution gate questions: increase revenue, reduce coordination, improve validated learning.
+- Added real-only execution metrics with N/A for unknown values.
+- Promoted ORION Backtester to Engineering's highest Trading priority in the mission queue.
+- Added EXECUTION_SUPPORT_SPRINT.md and mirrored it into the writable Obsidian vault package.
+
+Boundary:
+
+No new divisions, officers, decorative dashboards, backend, automation, publishing, trading, customer messaging, spending, or merge action was added.
+
+## Daily Command Brief v1.0
+
+Completed:
+
+- Created COMMAND_BRIEF_TEMPLATE.md.
+- Added Daily Command Brief page as the morning entry point for Mission Commander.
+- Added shared reporting schema for Operations, Revenue, Engineering, Trading, Knowledge, Customers, Launches, Backtests, and Mission Records.
+- Added ONE Recommendation section.
+- Integrated the brief with Mission Control, Operations Hub, and the writable Obsidian vault package.
+
+Boundary:
+
+No new divisions, officers, decorative dashboards, backend, automation, publishing, trading, customer messaging, spending, or merge action was added.
+
+
+## Stabilization Pass
+
+Completed:
+
+- Aligned package metadata with THE GRID v3.2.0 documentation.
+- Added STABILIZATION_STATUS.md to record the current engineering posture.
+- Added REPOSITORY_CONSOLIDATION_PLAN.md to prepare for safe repository relocation or consolidation.
+- Updated Git workflow guidance so consolidation preserves canonical history and avoids active-work disruption.
+
+Boundary:
+
+No new dashboards, divisions, officers, backend, automation, publishing, trading, customer messaging, spending, repository move, merge action, or commit was added.
+
+
+## Launch Intelligence v1.0
+
+Completed:
+
+- Added src/data/launchIntelligence.ts as the single source of truth for launch evidence.
+- Separated execution metrics controlled by THE GRID from market metrics controlled by customers and platforms.
+- Wired Mission Control, Operations Hub, Launch Center, and company KPIs to shared launch evidence.
+- Added EVIDENCE_LEDGER.md for chronological verified evidence.
+- Added R-005 Print-on-Demand Scout as a persistent Revenue Corps research mission and scout report template.
+
+Boundary:
+
+No new dashboards, new organizational structure, product creation, listings, design generation, storefronts, supplier outreach, platform scraping, spending, publishing, trading, merge action, or fake metrics were added.
+
+
+## Playbook System v1.0
+
+Completed:
+
+- Added GRID_PLAYBOOKS.md as the official Playbook system document.
+- Added PLAYBOOK_TEMPLATE.md for future reusable process records.
+- Added src/data/playbooks.ts with PB-001 through PB-008 as Draft placeholders.
+- Added src/pages/Playbooks.tsx.
+- Integrated Playbooks with Mission Control, Operations Hub, The Academy, Obsidian Sync Map, Evidence Ledger, Daily Command Brief, README, VERSION, CHANGELOG, AI_HANDOFF, and GRID_SYSTEM_PROMPT.
+
+Doctrine:
+
+THE GRID does not merely remember outcomes. It converts validated experience into reusable playbooks.
+
+Boundary:
+
+No fake wins, fake lessons, completed playbooks, backend, automation, product launch, trading action, or merge action was added.
+
+## WRAITH-LSTM v0.1
+
+Completed:
+
+- Added research/wraith_lstm/ as an experimental sequential liquidation-model module for WRAITH.
+- Added local CSV input documentation and config.
+- Added feature engineering for returns, rolling volatility, liquidation imbalance, open-interest delta, funding change, VWAP distance, volume z-score, and liquidation z-score.
+- Added targets for 15m, 30m, and 60m direction and large-move classification.
+- Added chronological split helpers, optional PyTorch LSTM model, naive baseline, optional scikit-learn baselines, training entry point, and evaluation report generator.
+
+Doctrine:
+
+LSTM is a signal generator, not a trading system. No model can advance unless it beats simple baselines out-of-sample.
+
+Boundary:
+
+No exchange connection, wallet connection, broker connection, live trading, paper trading, money at risk, profitability claim, alpha claim, or strategy promotion was added.
+
+## WRAITH-LSTM v0.2
+
+Completed:
+
+- Added strict WRAITH-LSTM v0.2 data contract for historical crypto liquidation datasets.
+- Added local data validator covering schema, missing values, timestamp ordering, duplicate rows, negative values, train/validation/test split integrity, and raw future-leakage columns.
+- Added schema-only sample_data_format.csv with dummy rows clearly marked as non-training data.
+- Added DATA_PROVIDER_RESEARCH.md comparing Binance Futures, Bybit, OKX, CoinGlass, Hyblock, Laevitas, and CoinAPI-style vendors.
+- Updated README and data README to show where real data belongs, how to validate it, and why model training is invalid until real data exists.
+
+Boundary:
+
+No fake data, exchange connection, wallet connection, broker connection, live trading, paper trading, money at risk, fake alpha, or model claim was added.
+
+## Alpha Lab v1.0
+
+Completed:
+
+- Created ALPHA_LAB_STATUS.md.
+- Created ALPHA_GENERATION_DOCTRINE.md.
+- Created src/data/alphaLab.ts.
+- Created src/pages/AlphaLab.tsx.
+- Added Alpha Lab navigation and route.
+- Added six alpha families: ALPHA-100 Price Action, ALPHA-200 Market Microstructure, ALPHA-300 Statistical Arbitrage, ALPHA-400 Options / Volatility, ALPHA-500 Machine Learning, and ALPHA-600 Alternative Data.
+- Added initial alpha records including ALPHA-501 Sequential Liquidation Model for WRAITH-LSTM.
+- Integrated Alpha Lab into Mission Control, The Bridge, Trading Research Corps, Quant Research Scouts, and The Academy.
+- Updated Evidence Ledger and Obsidian Sync Map routing.
+
+Doctrine:
+
+No strategy is permanent. Every hypothesis competes against evidence. Every model must continually earn its place. The edge is not one signal. The edge is the research engine.
+
+Boundary:
+
+No fake alpha, fake backtests, fake data, live trading, exchange connection, wallet connection, broker connection, paper trading authorization, strategy promotion, or money at risk was added.
+
+## ORION v0.2 - First Historical Backtest Run
+
+Completed:
+
+- Located ORION backtester files under research/orion/.
+- Confirmed expected CSV schema for SPY and QQQ intraday data.
+- Added research/orion/src/validate_data.py.
+- Added ORION_BACKTEST_RUNBOOK.md.
+- Updated research/orion/README.md and research/orion/data/README.md.
+- Updated Trading Research Corps and Alpha Lab status with the current blocker.
+
+Current blocker:
+
+Mission Commander must provide real SPY/QQQ intraday CSV data.
+
+Boundary:
+
+No fake data, fake profitability, live trading, broker connection, orders, paper trading, money at risk, strategy promotion, or alpha claim was added.
